@@ -66,11 +66,15 @@ module.exports = function(grunt) {
 			}
 		},
 
+		htmllint: {
+    all: ['*.html']
+  },
+
 		// watch task
 		watch : {
 			scripts : {
 				files : ['js/*.js', 'sass/*.scss', 'css/stylesheet.css'],
-				tasks : ['sass', 'csslint', 'jshint', 'cssmin', 'uglify'],
+				tasks : ['sass', 'csslint', 'jshint'],
 				options : false,
 			},
 		}
@@ -84,9 +88,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-csslint');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-html');  //installed by pearly
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// Runt grunt task when typing grunt into terminal in public folder
 	grunt.registerTask('default', ['watch']);
+	grunt.registerTask('minify', ['cssmin','uglify']);
 
 };
