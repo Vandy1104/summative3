@@ -5,8 +5,9 @@ const bodyParser = require('body-parser'); //to parse all data coming from the u
 const cors = require('cors'); //to include cross orgin request
 const bcryptjs = require('bcryptjs');//to hash and compare password in an encrypted method
 const config = require('./config.json');//has credentials
-//const User = require('./models/user.js'); //this refers to the structure for user ojects
-//const Item = require('./models/item.js'); //this refers to the structure for product ojects
+const User = require('./models/user.js'); //this refers to the structure for user ojects
+const Product = require('./models/product.js'); //this refers to the structure for product ojects
+const Comment = require('./models/comment.js'); //this refers to the structure for comment ojects
 
 const port = 3000; //set server port
 
@@ -27,7 +28,25 @@ db.once('open', function() { // on open do this once
 });
 
 
-// =========  code from Pearly start
+//including body-parser, cors, bcryptjs
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false})); // for creating encrypted passwords
+app.use(cors());
+
+
+
+// *******  code from Pearly start
+
+//sets request format
+app.use((req,res,next)=>{
+  console.log(`${req.method} request for ${req.url}`); //missed this bit but keep it
+  next();//include this to go to the next middleware
+});
+
+//prints message on load
+app.get('/', (req, res) => res.send('Hello World!'))
+
+
 
 
 // code from Pearly end here
@@ -35,7 +54,7 @@ db.once('open', function() { // on open do this once
 
 
 
-//========== code from Vandy start
+// ********** code from Vandy start
 
 
 // code from Vandy end here
@@ -44,7 +63,7 @@ db.once('open', function() { // on open do this once
 
 
 
-//========== code from Kristine start
+//********** code from Kristine start
 
 
 
