@@ -55,7 +55,71 @@ app.get('/', (req, res) => res.send('Hello World!'))
 
 
 // ********** code from Vandy start
+// Adding a product
+app.post('/addProduct' , (req,res) =>{
+	const product = new Product({
+		_id : new mongoose.Types.ObjectId,
+		category : req.body.category,
+		businessName : req.body.businessName,
+		productName : req.body.productName,
+		price : req.body.price,
+		flavour : req.body.flavour,
+    description : req.body.description,
+		productImageUrl : req.body.productImageUrl,
+		user_id : req.body.user_id
+	});
+	// Pushes product to database
+	product.save().then(result =>{
+		res.send(result);
+	}).catch(err =>res.send(err));
+});    //addProduct ends here.
 
+// View products
+app.get('/allProducts', (req,res) =>{
+	Product.find().then(result =>{
+		res.send(result);
+	});
+});  //allProducts end here.
+
+// Updating a product
+app.patch('/updateProduct/:pID' , (req,res) =>{
+	// stores inputted project ID
+	const idParam = req.params.pID;
+	// Finds the relating Project with the same id
+	Product.findById(idParam , (err,project) =>{
+		// Updates the listed properties
+		const updateProduct = {
+      // _id : new mongoose.Types.ObjectId,
+      category : req.body.category,
+      businessName : req.body.businessName,
+      productName : req.body.productName,
+      price : req.body.price,
+      flavour : req.body.flavour,
+      description : req.body.description,
+      productImageUrl : req.body.productImageUrl,
+		};
+		// Updates the one matching project instead of all of them
+		Product.updateOne({_id:idParam}, updateProduct).then(result =>{
+			res.send(result);
+		}).catch(err =>res.send(err));
+	// If the user has entered the wrong id and the project cannot be found
+}).catch(err =>res.send('Product not found'));
+});  //updateProduct/:id ends here.
+
+
+// Delete a product
+app.delete('/deleteProduct/:pID', (req,res) =>{
+	const idParam = req.params.pID;
+	Product.findOne({_id:idParam}, (err,product) =>{
+		if (product){
+			Product.deleteOne({_id:idParam}, err =>{
+				res.send('Product successfully deleted');
+			});
+		} else {
+			res.send('Error: Not Found');
+		}
+	}).catch(err => res.send(err));
+});
 
 // code from Vandy end here
 
