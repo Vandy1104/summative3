@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const commentSchema = new mongoose.Schema({
   _id : mongoose.Schema.Types.ObjectId,
   message : String,
+  postby : String,
+  date : Date,
   user_id : {
     type : mongoose.Schema.Types.ObjectId,
     ref : 'User'

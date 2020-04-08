@@ -66,6 +66,7 @@ module.exports = function(grunt) {
 			}
 		},
 
+		// html
 		htmllint: {
     all: ['*.html']
   },
