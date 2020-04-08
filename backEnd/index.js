@@ -65,9 +65,69 @@ app.get('/', (req, res) => res.send('Hello World!'))
 
 //********** code from Kristine start
 
+//register user start
+app.post('/registerUser', (req,res)=>{
+  User.findOne({username:req.body.username},(err,userResult)=>{
+
+    if (userResult){
+      res.send('username taken already. Please try another one');
+    } else{
+       const hash = bcryptjs.hashSync(req.body.password);
+       const user = new User({
+         _id : new mongoose.Types.ObjectId,
+         username : req.body.username,
+         firstName : req.body.firstName,
+         lastName : req.body.lastName,
+         email : req.body.email,
+         password : hash,
+         businessName : req.body.businessName,
+         businessAbout : req.body.businessAbout
+       });
+
+       user.save().then(result =>{
+         res.send(result);
+       }).catch(err => res.send(err));
+    }
+  })
+});
+//register user end
+
+//login the user start
+app.post('/loginUser', (req,res)=>{
+  User.findOne({username:req.body.username},(err,userResult)=>{
+    if (userResult){
+      if (bcryptjs.compareSync(req.body.password, userResult.password)){
+        res.send(userResult);
+      } else {
+        res.send('not authorized');
+      }
+    } else {
+       res.send('user not found. Please register');
+    }
+  });
+});
+//login the user end
+
+// update user start
+app.patch('/updateUser/:uID', (req,res)=>{
+  const idParam = req.params.uID;
+    User.findById(idParam, (err,result)=>{
+      const updateUser = {
+        firstName : req.body.firstName,
+        lastName : req.body.lastName,
+        email : req.body.email,
+        businessName : req.body.businessName,
+        businessAbout : req.body.businessAbout
+      };
+      User.updateOne({_id:idParam}, updateUser).then(result=>{
+        res.send(result);
+      }).catch(err=> res.send(err));
+    }).catch(err=>res.send("Not found"))
+});
 
 
-// code from Kristine end here
+
+//********** code from Kristine end here
 
 
 //keep this always at the bottom so that you can see the errors reported
