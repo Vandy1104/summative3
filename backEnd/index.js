@@ -35,7 +35,7 @@ app.use(cors());
 
 
 
-// *******  code from Pearly start
+// ***************  code from Pearly start
 
 //sets request format
 app.use((req,res,next)=>{
@@ -43,10 +43,67 @@ app.use((req,res,next)=>{
   next();//include this to go to the next middleware
 });
 
-//prints message on load
+//prints message on load testing
 app.get('/', (req, res) => res.send('Hello World!'))
 
+// add new comment
+app.post('/addComment', (req,res)=> {
+      const productComment = new Comment({
+        _id : new mongoose.Types.ObjectId,
+        message : req.body.message,
+        postby : req.body.postby,
+        date : req.body.date,
+        user_id : req.body.user_id,
+        product_id : req.body.product_id
+      });
+      //save to database and notify the user accordingly
+      productComment.save().then(result => {
+        res.send(result);
+      }).catch(err => res.send(err));
+}); //end of add new comment
 
+
+// get comment by product id
+app.get('/allComments/p=:id', (req,res)=> {
+  const idParam = req.params.id;
+  Comment.find({product_id:idParam},(err, result)=>{
+    if(result.length> 0){
+      res.send(result)
+    }
+    else{
+      res.send("No comments with this product ID")
+    }
+  }).catch(err => res.send(err));
+}); // end of get comment by product id
+
+
+
+//get product by user id
+app.get('/allProducts/u=:id', (req,res)=>{
+  const idParam = req.params.id;
+  Product.find({user_id:idParam}, (err, result)=>{
+    if(result.length> 0){
+      res.send(result)
+    }
+    else{
+      res.send("Can't find product with this ID")
+    }
+  }).catch(err => res.send(err));
+}); // end of get product by user id
+
+
+//get product by category
+app.get('/allProducts/cat=:category', (req,res)=>{
+  const pCategory = req.params.category;
+  Product.find({category:pCategory}, (err, result)=>{
+    if(result.length> 0){
+      res.send(result)
+    }
+    else{
+      res.send("There's no product in this category")
+    }
+  }).catch(err => res.send(err));
+}); // end of get product by user id
 
 
 // code from Pearly end here
