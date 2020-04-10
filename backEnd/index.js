@@ -106,6 +106,20 @@ app.get('/allProducts/cat=:category', (req,res)=>{
 }); // end of get product by user id
 
 
+//get user by user id
+app.get('/user/u=:id', (req,res)=>{
+  const idParam = req.params.id;
+  User.find({_id:idParam}, (err, result)=>{
+    if(result){
+      res.send(result)
+    }
+    else{
+      res.send("Can't find this user in database")
+    }
+  }).catch(err => res.send(err));
+}); // end of get user by user id
+
+
 // code from Pearly end here
 
 
@@ -113,22 +127,29 @@ app.get('/allProducts/cat=:category', (req,res)=>{
 
 // ********** code from Vandy start
 // Adding a product
-app.post('/addProduct' , (req,res) =>{
-	const product = new Product({
-		_id : new mongoose.Types.ObjectId,
-		category : req.body.category,
-		businessName : req.body.businessName,
-		productName : req.body.productName,
-		price : req.body.price,
-		flavour : req.body.flavour,
-    description : req.body.description,
-		productImageUrl : req.body.productImageUrl,
-		user_id : req.body.user_id
-	});
-	// Pushes product to database
-	product.save().then(result =>{
-		res.send(result);
-	}).catch(err =>res.send(err));
+app.post('/addProduct', (req,res) =>{
+  // checking if item is found in the db already
+  Product.findOne({productName:req.body.productName},(err, result)=> {
+    if (result){
+      res.send('Item is already in database. Please try again!');
+    } else {
+      const addProduct = new Product({
+        _id : new mongoose.Types.ObjectId,
+        category : req.body.category,
+        businessName : req.body.businessName,
+        productName : req.body.productName,
+        price : req.body.price,
+        flavour : req.body.flavour,
+        description : req.body.description,
+        productImageUrl : req.body.productImageUrl,
+        user_id : req.body.user_id
+      });
+      //save to database and notify the user accordingly
+      addProduct.save().then(result => {
+        res.send(result);
+      }).catch(err => res.send(err));
+    }
+  })
 });    //addProduct ends here.
 
 // View products
@@ -148,12 +169,11 @@ app.patch('/updateProduct/:pID' , (req,res) =>{
 		const updateProduct = {
       // _id : new mongoose.Types.ObjectId,
       category : req.body.category,
-      businessName : req.body.businessName,
       productName : req.body.productName,
       price : req.body.price,
       flavour : req.body.flavour,
       description : req.body.description,
-      productImageUrl : req.body.productImageUrl,
+      productImageUrl : req.body.productImageUrl
 		};
 		// Updates the one matching project instead of all of them
 		Product.updateOne({_id:idParam}, updateProduct).then(result =>{
