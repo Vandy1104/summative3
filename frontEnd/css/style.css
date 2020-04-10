@@ -6,4 +6,22 @@
   scroll-behavior: smooth;
 }
 
+#portfolio-container {
+  background-color: #FFDFF0;
+}
+
+.fa-user-circle {
+  color: #F7268A;
+  font-size: 3rem;
+}
+
+.fa-user-circle:hover {
+  color: #FFFFFF;
+}
+
+.size {
+  width: 100%;
+  height: 1200px;
+}
+
 /*# sourceMappingURL=style.css.map */

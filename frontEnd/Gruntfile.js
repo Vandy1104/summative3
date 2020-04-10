@@ -66,16 +66,27 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// html
-		htmllint: {
-    all: ['*.html']
-  },
+		// html (by Pearly)
+		htmlhint: {
+		  html1: {
+		    options: {
+		      'tag-pair': true
+		    },
+		    src: ['*.html']
+		  }
+		  // html2: {
+		  //   options: {
+		  //     'tag-pair': true
+		  //   },
+		  //   src: ['*.html']
+		  // }
+		},
 
 		// watch task
 		watch : {
 			scripts : {
-				files : ['js/*.js', 'sass/*.scss', 'css/stylesheet.css'],
-				tasks : ['sass', 'csslint', 'jshint'],
+				files : ['*.html', 'js/*.js', 'sass/*.scss', 'css/stylesheet.css'],
+				tasks : ['htmlhint','sass', 'csslint', 'jshint'],
 				options : false,
 			},
 		}
@@ -89,7 +100,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-csslint');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
-	grunt.loadNpmTasks('grunt-html');  //installed by pearly
+	grunt.loadNpmTasks('grunt-htmlhint');  //installed by pearly
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// Runt grunt task when typing grunt into terminal in public folder
