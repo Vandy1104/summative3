@@ -7,7 +7,7 @@
     <meta name="author" content="Team VPK">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- favicon -->
-    <link rel="shortcut icon" type="image/png" href="images/treatme-logo-design-long.png">
+    <link rel="shortcut icon" type="image/png" href="images/image-treatme-donut-logo-round.png">
 
     <title>Treat Me</title>
     <!-- link to google font -->
@@ -27,9 +27,7 @@
 
 <!-- ********  code from Pearly start -->
    <!-- testing -->
-  <div class="jumbotron">
-  <h1 id="heading" class="text-warning">Welcome to Summative 3</h1>
-  </div>
+
 
 <!--code from Pearly end here -->
 
@@ -37,27 +35,114 @@
 
 <!-- *********  code from Vandy start -->
 
+<!-- Login & Register buttons on Homepage -->
+<div class="mt-4 float-right mr-3">
+  <button id="loginBtn" data-toggle="modal" data-target="#loginUserModal" type="button" class="btn btn-outline-danger rounded-pill">Login</button>
+  <button id="registerBtn" data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-outline-danger rounded-pill">Register</button>
+</div>
 
+        <!-- register form -->
+
+    <!-- Modal -->
+    <div class="modal registerModal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title ml-5" id="exampleModalLabel">Register</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-5">
+            <h3 class="mb-3">Enter your details</h3>
+              <form id="registerForm" class="rounded-pill">
+                  <label for="newUsername" class=""> Username: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="text" id="newUsername" name="newUsername" class="form-control rounded-pill" required>
+                  <br>
+                  <label for="firstName" class=""> First Name: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="text" id="firstName" name="firstName" class="form-control rounded-pill" required>
+                  <br>
+                  <label for="lastName" class=""> Last Name: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="text" id="lastName" name="lastName" class="form-control rounded-pill" required>
+                  <br>
+                  <label for="email" class=""> Email: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="email" id="email" name="email" class="form-control rounded-pill" required>
+                  <br>
+                  <label for="newPassword" class=""> Password: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="password" name="newPassword" id="newPassword" class="form-control rounded-pill" required>
+                  <br>
+                  <label for="confirmPassword" class="">Confirm Password: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="password" name="confirmPassword" id="confirmPassword" class="form-control rounded-pill" required>
+
+                    <label for="radio" class="mt-3">Choose account type: <span aria-hidden="true" class="required">*</span></label><br>
+                    <div class="border rounded border-danger">
+                      <div class="custom-control custom-radio">
+                        <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadio1"><b>Personal</b><br><p class="ml-3">Personal accounts allow you to purchase items from Treatme.</p></label>
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadio2"><b>Business</b><br><p class="ml-3">Business account allows you to sell items on Treatme.</p></label>
+                      </div>
+                    </div>
+                    <!-- Separate Div for Business Details - -->
+                  <div id="business" class="my-3">
+                    <label for="businessName" class="">Business Name: <span aria-hidden="true" class="required">*</span></label>
+                    <input type="text" name="businessName" id="businessName" class="form-control rounded">
+                    <label for="businessAbout" class="">Business Abouts: </label>
+                    <input type="text" name="businessAbout" id="businessAbout" class="form-control rounded" value="">
+                  </div>
+                </div>
+          <div class="modal-footer">
+              <button type="submit" class="btn bg-dark text-white rounded-pill btn-lg mx-auto">Create my account</button>
+          </div>
+            </form>
+        </div>
+      </div>
+    </div>
+    <!-- Register form ends -->
+
+    <!-- Login form -->
+    <div class="modal fade" id="loginUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title ml-5" id="exampleModalLabel">Login</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-5">
+            <h3 class="mb-3">Enter your details</h3>
+              <form id="loginForm" class="rounded-pill">
+                  <label for="username" class=""> Username <span aria-hidden="true" class="required">*</span></label>
+                  <input type="text" id="username" name="username" class="form-control rounded-pill" required>
+                  <br>
+                  <label for="password" class=""> Password <span aria-hidden="true" class="required">*</span></label>
+                  <input type="password" name="password" id="password" class="form-control rounded-pill" required>
+                  <br>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn bg-dark text-white rounded-pill btn-lg mx-auto">Login</button>
+            </div>
+            </form>
+        </div>
+      </div>
+    </div>
+		<!-- Login form end -->
+
+    <!-- Logout button container -->
+				<div class="row my-2">
+					<div id="logoutUserBtnContainer" class="col-12">
+
+					</div>
+				</div>
 <!--code from Vandy end here -->
 
 
 
 <!-- *********  code from Kristine start -->
-<div id="adminPage" class="my-5 mx-3 py-5 px-5 bg-dark text-light">
 
-        <button id="loginBtn" type="button" class="btn btn-dark rounded-pill mr-20px">Login</button>
-        <button id="registerBtn" type="button" class="btn btn-dark rounded-pill mr-20px">Register</button>
-
-        <!-- login form -->
-        <form id="loginForm" class="my-5 rounded-pill">
-        <label for="username" class=""> Username: </label>
-        <input type="text" id="username" name="username" class="form-control" value="">
-        <br> <br>
-        <label for="password" class=""> Password: </label>
-        <input type="password" name="password" id="password" class="form-control" value="">
-
-        <button id="submit" name="button" type="submit" class="btn bg-light text-dark btn-lg btn-dark mt-4"> Submit </button>
-        </form>
 
 
 <!--code from Kristine end here -->
