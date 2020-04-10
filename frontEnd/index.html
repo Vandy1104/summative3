@@ -19,6 +19,7 @@
   <!-- icons from fontawesome -->
  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
+
   <!-- link to bootstrap css -->
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <!-- link to own stylesheet -->
@@ -26,7 +27,48 @@
 
 </head>
 
-<body>
+
+  <body>
+    <!-- kristine code start here  -->
+  <div class= "homePage">
+    <header>
+      <!-- Principles: has two states - logged in, logged out -->
+      <div id="logo"><h1 id="treatme">Treatme</h1></div>
+      <!-- nav bar start -->
+      <nav id="navLoggedIn" class="navbar navbar-light bg-light justify-content-between">
+       
+      </nav>
+      <!-- nav bar finish -->
+    </header>
+
+    <div class="main">
+      <!-- Approach: faux paging (no JS routes yet) Principles: Dynamic view content. Content is updated based on button taps and specific filter settings -->
+      <!-- homepage start -->
+      <div id="views">
+        <div id="homeView">
+          <h1>Home</h1>
+          
+          <div id="manipulate" class="my-5">
+            <button id="cakeButton" value="cake" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">Cake</button>
+            <button id="donutButton" value="donut" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">Donut</button>
+            <button id="accessoriesButton" value="accessories" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">accessories</button>
+          </div>
+       
+
+        <div id="productsView">
+          <div id="productCards">
+            <h1>cakes</h1>
+            <!-- dynamically populate with DB results -->
+          </div>
+        </div>
+      </div>
+    </div> 
+<!--   Main div closing here. -->
+    </div>
+  </div> 
+<!--     Closing div for Home Page -->
+<!-- kristine code finish -->
+
 
   <!-- *********  code from Vandy start -->
 <!-- Login & Register buttons on Homepage -->
@@ -236,7 +278,6 @@
       </div>
     </div> <!-- edit user profile modal end -->
 
-
     <!-- edit listing modal -->
     <div class="modal fade" id="editListingModal" tabindex="-1" role="dialog" aria-labelledby="editListingModal" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -256,7 +297,6 @@
         </div>
       </div>
     </div> <!-- edit listing modal end -->
-
 
     <!-- add new listing modal -->
     <div class="modal fade" id="addNewListingModal" tabindex="-1" role="dialog" aria-labelledby="addNewListingModal" aria-hidden="true">
