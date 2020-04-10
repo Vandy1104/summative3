@@ -17,59 +17,63 @@
 
 
     <!-- link to bootstrap css -->
-    <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <!-- link to own stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
   </head>
 
   <body>
+    <!-- kristine code start here  -->
+    <header>
+      <!-- Principles: has two states - logged in, logged out -->
+      <div id="logo"><h1 id="treatme">Treatme</h1></div>
+      <!-- nav bar start -->
+      <nav id="navLoggedIn" class="navbar navbar-light bg-light justify-content-between">
+        <div class="container-fluid">
+          <button id="loginButton" class="btn btn-dark rounded-pill my-2 mr-2">Login</button>
+          <button id="registerButton" class="btn btn-outline-dark rounded-pill my-2">Register</button>
+        </div>
+      </nav>
+      <!-- nav bar finish -->
+    </header>
 
-<!-- ********  code from Pearly start -->
-   <!-- testing -->
-  <div class="jumbotron">
-  <h1 id="heading" class="text-warning">Welcome to Summative 3</h1>
-  </div>
+    <main>
+      <!-- Approach: faux paging (no JS routes yet) Principles: Dynamic view content. Content is updated based on button taps and specific filter settings -->
+      <!-- homepage start -->
+      <div id="views">
+        <div id="homeView">
+          Home
+          <!-- TODO: insert search bar markup -->
+          <div id="manipulate" class="my-5">
+            <button id="cakeButton" value="cake" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">Cake</button>
+            <button id="donutButton" value="donut" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">Donut</button>
+            <button id="accessoriesButton" value="accessories" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">accessories</button>
+          </div>
+        </div>
 
-<!--code from Pearly end here -->
+        <div id="productsView">
+          <div id="productCards">
+            <h1>cakes</h1>
+            <!-- dynamically populate with DB results -->
+          </div>
+        </div>
 
+      </div>
+    </main>
 
-
-<!-- *********  code from Vandy start -->
-
-
-<!--code from Vandy end here -->
-
-
-
-<!-- *********  code from Kristine start -->
-<div id="adminPage" class="my-5 mx-3 py-5 px-5 bg-dark text-light">
-
-        <button id="loginBtn" type="button" class="btn btn-dark rounded-pill mr-20px">Login</button>
-        <button id="registerBtn" type="button" class="btn btn-dark rounded-pill mr-20px">Register</button>
-
-        <!-- login form -->
-        <form id="loginForm" class="my-5 rounded-pill">
-        <label for="username" class=""> Username: </label>
-        <input type="text" id="username" name="username" class="form-control" value="">
-        <br> <br>
-        <label for="password" class=""> Password: </label>
-        <input type="password" name="password" id="password" class="form-control" value="">
-
-        <button id="submit" name="button" type="submit" class="btn bg-light text-dark btn-lg btn-dark mt-4"> Submit </button>
-        </form>
-
-
-<!--code from Kristine end here -->
-
+    <footer>
+      <!-- Principles: Static content -->
+    </footer>
+<!-- kristine code finish -->
 
 
 
   <!-- ***Vandy*** -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="node_modules\jquery\dist\jquery.min.js"></script>
-  <script src="node_modules\@popperjs\core\dist\umd\popper.min.js"></script>
-  <script src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="config.json"></script>
   <script src="js/script.js"></script>
   <!-- Vandy ends here -->
