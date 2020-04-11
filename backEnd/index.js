@@ -9,7 +9,7 @@ const User = require('./models/user.js'); //this refers to the structure for use
 const Product = require('./models/product.js'); //this refers to the structure for product ojects
 const Comment = require('./models/comment.js'); //this refers to the structure for comment ojects
 
-const port = 3000; //set server port
+const port = 8080; //set server port
 
 //connect to db
 
@@ -44,7 +44,7 @@ app.use((req,res,next)=>{
 });
 
 //prints message on load testing
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => res.send('Hello World!'));
 
 // add new comment
 app.post('/addComment', (req,res)=> {
@@ -229,7 +229,7 @@ app.post('/registerUser', (req,res)=>{
          res.send(result);
        }).catch(err => res.send(err));
     }
-  })
+  });
 });
 //register user end
 
@@ -263,13 +263,13 @@ app.patch('/updateUser/:uID', (req,res)=>{
       User.updateOne({_id:idParam}, updateUser).then(result=>{
         res.send(result);
       }).catch(err=> res.send(err));
-    }).catch(err=>res.send("Not found"))
+    }).catch(err=>res.send("Not found"));
 });
 
 
 
-//********** code from Kristine end here
+//********** code from Kristine finishes here
 
 
 //keep this always at the bottom so that you can see the errors reported
-app.listen(port, () => console.log(`Mongodb app listening on port ${port}!`))
+app.listen(port, () => console.log(`Mongodb app listening on port ${port}!`));

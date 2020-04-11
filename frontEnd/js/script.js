@@ -1,93 +1,89 @@
-console.log("summative 3 connected");
+console.log("Summative 3 connected");
 
-let url;
 //get url and port from config.json
+let url;
 $.ajax({
-url :'config.json',
-type :'GET',
-dataType :'json',
-success : function(configData){
-console.log(configData);
-url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
-},
-error:function (){
-console.log('oops');
-}
+  url :'config.json',
+  type :'GET',
+  dataType :'json',
+  success : function(configData){
+  console.log(configData);
+  url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
+  },
+  error:function (){
+    console.log('oops');
+  }
 });
 
 
 $(document).ready(function(){
-  
+
   // *********  code from Kristine start
 
-// Show #homeView only
-// $('#views').children().hide();
-// $('#homeView').show();
-// $('#productsView').hide();
-// Tap #logo and show #homeView only
-// $('#logo').click(function() {
-//   $('#views').children().hide();
-//   $('#homeView').show();
-// });
+  // A function to hide all views except home view
+  function showHomeView() {
+    $('#views').children().hide();
+    $('#homeView').show();
+  }
 
-//view cakes button start
-  $('#cakeButton').click(function(){
-    console.log('cakebuttonclicked');
-    // $('#views').children().hide();
-    $('#productsView').show();
-//
-let cake = $('#cakeButton').val();
-//     console.log('cakeButton clicked');//checking if button click responds
+  showHomeView();
+
+  // Logo: Tapping the 'treatme' logo will navigate the user back to the home view
+  $('#logo').click(function() {
+    showHomeView();
+  });
+
+  // Selected category buttons: Tapping a category button will navigate the user to the selected products view with only the specific category of items displayed
+  function categorySelected(selectedButtonValue) {
+    // handle view display
+    $('#homeView').hide(); // hide home view
+    $('#selectedProductsView').show(); // show selected products view
+
+    // 
+    console.log("Selected category: ", selectedButtonValue);
+    
     $.ajax({
-    url :`${url}/allProducts/cat=${cake}`,
-    type :'GET',
-    dataType :'json',
-    success : function(displayProducts){
-      console.log(displayProducts);
-      document.getElementById('productCards').innerHTML = "";
-      for(let i=0; i<displayProducts.length; i++){
-        document.getElementById('productCards').innerHTML +=
-        `<div class="col-3 mr-5 mb-5 px-5 py-3">
-        <img class="img-thumbnail" src="${displayProducts[i].productImageUrl}" alt="Image">
-        </div>  <h1>hello<h1>`;
-      }
-    },//success
-      error:function(){
-        console.log('error: cannot call api');
-      }//error
-    });//ajax
-  });//view cakes button finish
-
-  //view donuts button start
-    $('#donutButton').click(function(){
-      console.log('donutButtonclicked');
-      // $('#views').children().hide();
-      $('#productsView').show();
-  //
-  let donut = $('#donutButton').val();
-  //     console.log('cakeButton clicked');//checking if button click responds
-      $.ajax({
-      url :`${url}/allProducts/cat=${donut}`,
+      url :`${url}/allProducts/cat=${selectedButtonValue}`,
       type :'GET',
       dataType :'json',
       success : function(displayProducts){
-        console.log(displayProducts);
-        document.getElementById('productCards').innerHTML = "";
-        for(let i=0; i<displayProducts.length; i++){
-          document.getElementById('productCards').innerHTML +=
-          `<div class="col-3 mr-5 mb-5 px-5 py-3">
-          <img class="img-thumbnail" src="${displayProducts[i].productImageUrl}" alt="Image">
-          </div>  <h1>hello<h1>`;
+        $('#selectedProductsView .products').html(""); // clear products container
+        for(let i=0; i<displayProducts.length; i++) {
+          // populate products container
+          $('#selectedProductsView .products').append(
+            `<div class="col-3 mr-5 mb-5 px-5 py-3">
+            <img class="img-thumbnail" src="${displayProducts[i].productImageUrl}" alt="Image">
+            <h3 class="">${displayProducts[i].businessName}</h3>
+            <h4 class="">${displayProducts[i].productName}</h4>
+            <h4 class="">${displayProducts[i].price}</h4>
+            </div>`
+          );
         }
-      },//success
-        error:function(){
-          console.log('error: cannot call api');
-        }//error
-      });//ajax
-    });//view donuts button finish
-//
-// //  code from Kristine end
-  
+      },
+      error:function(){
+        console.log('error: Cannot call api');
+      }
+    });
+  }
+
+  // Selected category buttons: use categorySelected()
+  $('#cakeButton').click(function(){
+    let buttonValue = $(this).val();
+    categorySelected(buttonValue);
+  });
+
+  $('#donutButton').click(function(){
+    let buttonValue = $(this).val();
+    categorySelected(buttonValue);
+  });
+
+  $('#accessoriesButton').click(function(){
+    let buttonValue = $(this).val();
+    categorySelected(buttonValue);
+  });
+
+//******* code from Kristine finishes
+
 
 // *********  code from Vandy start
 
@@ -223,7 +219,7 @@ $('#customRadio1').click(function(){
   			document.getElementById('logoutUserBtnContainer').innerHTML = '';
   		});//logout Button functionality ends here
   	}
-  
+
 //  code from Vandy end
 
 

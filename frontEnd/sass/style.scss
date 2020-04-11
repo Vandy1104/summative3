@@ -1,6 +1,7 @@
 @import "reset";
 @import "variables";
 @import "nav";
+@import "productCard";
 
 
 
@@ -28,3 +29,11 @@
 
 
   // code from Pearly end -->
+
+
+/* Kristine's code starts  */
+
+#landing-product-container {
+  background-color: $theme-primary-color-light-pink;
+}
+/* Kristine's code finishes  */
