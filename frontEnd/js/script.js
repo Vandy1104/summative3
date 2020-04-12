@@ -51,14 +51,15 @@ $(document).ready(function(){
         for(let i=0; i<displayProducts.length; i++) {
           // populate products container
           $('#selectedProductsView .products').append(
-            `<div class="col-3 mr-5 mb-5 px-5 py-3">
+            `<div class="productCard col-3 mr-5 mb-5 px-5 py-3" data-productid="${displayProducts[i]._id}">
             <img class="img-thumbnail" src="${displayProducts[i].productImageUrl}" alt="Image">
             <h3 class="">${displayProducts[i].businessName}</h3>
             <h4 class="">${displayProducts[i].productName}</h4>
             <h4 class="">${displayProducts[i].price}</h4>
             </div>`
-          );
+          ); // missing productID
         }
+
       },
       error:function(){
         console.log('error: Cannot call api');
@@ -80,6 +81,50 @@ $(document).ready(function(){
   $('#accessoriesButton').click(function(){
     let buttonValue = $(this).val();
     categorySelected(buttonValue);
+  });
+
+
+  // Selected product: Tapping a product will display a modal with specific product information
+  function showSelectedProduct(productId) {
+    console.log("Selected productID: ", productId);
+    
+    // REQUIRES NEW API
+    $.ajax({
+      url :`${url}/allProducts/p=${productId}`, // need to update with path to specific product id
+      type :'GET',
+      dataType :'json',
+      success : function(product){
+        $('#exampleModalLongTitle').html(""); // clear exampleModalLongTitle
+        $('#selectedProductModalView .modal-body').html(""); // clear modal body
+
+        for(let i=0; i<product.length; i++) {
+          // populate exampleModalLongTitle
+          $('#exampleModalLongTitle').append(
+            `${product[i].productName}`
+          );
+
+          // populate modal body
+          $('#selectedProductModalView .modal-body').append(
+            `<img class="img-thumbnail" src="${product[i].productImageUrl}" alt="Image" style="width: 100%; height: auto">
+            <h3 class="">${product[i].businessName}</h3>
+            <h4 class="">${product[i].price}</h4>`
+          );
+
+          $('#selectedProductModalView').modal('toggle'); // show modal
+
+          console.log(product);
+        }
+      },
+      error:function(){
+        console.log('error: Cannot call api');
+      }
+    });
+  }
+
+  // Product cards: Click event
+  $(document).on("click", ".productCard" , function() {
+    let productId = $(this).data('productid');
+    showSelectedProduct(productId);
   });
 
 //******* code from Kristine finishes

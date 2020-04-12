@@ -27,27 +27,26 @@
 
 </head>
 
-
-  <body>
+<div class="main-container">
   <!--  *****************   Kristine's code starts here  *****************  -->
-    <div class="treatme-header">
-      <!-- Principles: has two states - logged in, logged out -->
-      <div id="logo"><h1 id="treatme">Treatme</h1></div>
-      <!-- homepage nav bar start -->
-      <nav id="navLoggedIn" class="navbar navbar-light bg-light justify-content-between">
-      </nav>
-    </div>
-      <!-- homepage nav bar finishes -->
+  <div class="treatme-header">
+    <!-- Principles: has two states - logged in, logged out -->
+    <div id="logo"><h1 id="treatme">Treatme</h1></div>
+    <!-- homepage nav bar start -->
+    <nav id="navLoggedIn" class="navbar navbar-light bg-light justify-content-between">
+    </nav>
+  </div>
+  <!-- homepage nav bar finishes -->
 
-    <!-- homepage body start -->
-    <div class="treatme-body">
-      <!-- Approach: faux paging (no JS routes yet) Principles: Dynamic view content. Content is updated based on button taps and specific filter settings -->
-      <div id="views">
+  <!-- homepage body start -->
+  <div class="treatme-body">
+    <!-- Approach: faux paging (no JS routes yet) Principles: Dynamic view content. Content is updated based on button taps and specific filter settings -->
+    <div id="views">
 
-        <!-- Home view -->
-        <div id="homeView">
-          <div class="container">
-            <h2>Home</h2>
+      <!-- Home view -->
+      <div id="homeView">
+        <div class="container">
+          <h2>Home</h2>
             <div id="manipulate" class="my-5">
               <button id="cakeButton" value="cake" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">Cake</button><br>
               <button id="donutButton" value="donut" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">Donut</button><br>
@@ -71,13 +70,13 @@
               </div>
               -->
             </div>
-          </div>
         </div>
+      </div>
 
-        <!-- Select products view -->
-        <div id="selectedProductsView">
-          <div class="container">
-            <h2>Selected products</h2>
+      <!-- Select products view -->
+      <div id="selectedProductsView">
+        <div class="container">
+          <h2>Selected products</h2>
             <div class="products">
               <!-- populate with products from db -->
 
@@ -95,12 +94,35 @@
               </div>
               -->
             </div>
-          </div>
-        </div>
-      </div>
+
+            <!-- Selected product modal start -->
+            <div id="selectedProductModalView" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                    <div class="modal-body">
+                        <!-- populate with product information from db -->
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Selected product modal end -->
+
+          </div>     
+      </div>  
     </div>
   </div>
 </div>
+
 
 <!--  *****************   Kristine code finishes here  *****************  -->
 
