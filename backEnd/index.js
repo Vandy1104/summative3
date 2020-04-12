@@ -266,6 +266,18 @@ app.patch('/updateUser/:uID', (req,res)=>{
     }).catch(err=>res.send("Not found"));
 });
 
+//get product by product id
+app.get('/allProducts/p=:id', (req,res)=>{
+  const idParam = req.params.id;
+  Product.find({_id:idParam}, (err, result)=>{
+    if(result.length> 0){
+      res.send(result);
+    }
+    else{
+      res.send("Can't find product with this ID");
+    }
+  }).catch(err => res.send(err));
+}); // end of get product by user id
 
 
 //********** code from Kristine finishes here
