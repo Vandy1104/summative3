@@ -216,6 +216,7 @@ app.post('/registerUser', (req,res)=>{
        const hash = bcryptjs.hashSync(req.body.password);
        const user = new User({
          _id : new mongoose.Types.ObjectId,
+         profileImgUrl : req.body.profileImgUrl,
          username : req.body.username,
          firstName : req.body.firstName,
          lastName : req.body.lastName,
@@ -254,9 +255,11 @@ app.patch('/updateUser/:uID', (req,res)=>{
   const idParam = req.params.uID;
     User.findById(idParam, (err,result)=>{
       const updateUser = {
+        profileImgUrl : req.body.profileImgUrl,
         firstName : req.body.firstName,
         lastName : req.body.lastName,
         email : req.body.email,
+        password : req.body.password,
         businessName : req.body.businessName,
         businessAbout : req.body.businessAbout
       };
