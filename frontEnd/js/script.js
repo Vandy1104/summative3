@@ -1,5 +1,6 @@
 console.log("summative 3 connected");
 
+
 let url;
 //get url and port from config.json
 $.ajax({
@@ -17,7 +18,7 @@ console.log('oops');
 
 
 $(document).ready(function(){
-  
+
   // *********  code from Kristine start
 
 // Show #homeView only
@@ -87,21 +88,21 @@ let cake = $('#cakeButton').val();
     });//view donuts button finish
 //
 // //  code from Kristine end
-  
+
 
 // *********  code from Vandy start
 
 console.log(sessionStorage);
 
 
-  sessionStorage.clear();
+  //sessionStorage.clear();
 
   	// Login Status
   	function checkLoginStatus(){
   		if(sessionStorage.getItem('uID')){
   		// add logout button
   			document.getElementById('logoutUserBtnContainer').innerHTML =
-  			`<button id="logoutBtn" class="btn btn-danger btn-block">Logout</button>`;
+  			`<button id="logoutBtn" class="btn btn-outline-danger rounded-pill">Logout</button>`;
   		} else{
   			console.log('No user logged in');
   		}
@@ -119,6 +120,7 @@ $('#customRadio2').click(function(){
 $('#customRadio1').click(function(){
   $('#business').hide();
 });
+
 
 
 	$('#registerForm').submit(function(){
@@ -207,6 +209,9 @@ $('#customRadio1').click(function(){
 			    }
 				checkLoginStatus();
 				logoutBtnClick();
+        $('#loginBtn').hide();
+        $('#registerBtn').hide();
+
 			  }, // success
 			  error : function(){
 				console.log('error: cannot call api');
@@ -215,15 +220,18 @@ $('#customRadio1').click(function(){
 		} // else
 	}); // submit function for login loginForm
 
+
   // Logout function called inside of login form submission
   	function logoutBtnClick(){
   		$('#logoutBtn').on('click', function(){
   			sessionStorage.clear();
   			// Removes priviledges from page
   			document.getElementById('logoutUserBtnContainer').innerHTML = '';
+        $('#loginBtn').show();
+        $('#registerBtn').show();
   		});//logout Button functionality ends here
   	}
-  
+
 //  code from Vandy end
 
 
