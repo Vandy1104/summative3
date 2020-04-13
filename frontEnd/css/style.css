@@ -6,22 +6,98 @@
   scroll-behavior: smooth;
 }
 
-#portfolio-container {
+.container-bg-color {
   background-color: #FFDFF0;
 }
 
-.fa-user-circle {
+.profile-container-size {
+  width: 100%;
+  height: auto;
+}
+
+.fas, .my-close-btn-style, .fa-user-circle {
   color: #F7268A;
   font-size: 3rem;
+  cursor: pointer;
+}
+
+.fas:hover, .my-close-btn-style:hover, .fa-user-circle:hover {
+  color: #2B2B2B;
+}
+
+.fa-star {
+  color: #F7268A;
+  font-size: 1rem;
+}
+
+.profile-img-size {
+  width: 250px;
+  height: 250px;
+}
+
+.text-color {
+  color: #F7268A;
+}
+
+.font-style, .text-color, .my-btn-style {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.my-close-btn-style {
+  font-size: 2rem;
+}
+
+.form-bg-image {
+  background-image: url("../images/image-edit-profile-background.jpg");
+}
+
+.border-color {
+  border: 1px solid #FFDFF0;
+}
+
+.extra-radius {
+  border-radius: 20px;
+}
+
+.dropshadow {
+  box-shadow: 3px 3px 3px #FFDFF0;
 }
 
 .fa-user-circle:hover {
   color: #FFFFFF;
 }
 
-.size {
-  width: 100%;
-  height: 1200px;
+.fa-camera {
+  color: #FFDFF0;
+}
+
+.my-btn-style {
+  background-color: #F7268A;
+}
+
+.form-bg-image-2 {
+  background-image: url("../images/image-add-listing-background.jpg");
+}
+
+.flex-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hover-effect:hover {
+  color: #FFDFF0;
+}
+
+@media only screen and (max-width: 768px) {
+  .vertical-rl {
+    writing-mode: vertical-rl;
+    display: inline-block;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .flex-container {
+    display: block;
+  }
 }
 
 .makeCenter {

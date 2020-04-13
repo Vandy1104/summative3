@@ -24,7 +24,8 @@
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <!-- link to own stylesheet -->
   <link rel="stylesheet" href="css/style.css">
-
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 
 
@@ -109,7 +110,6 @@
                   <br>
                   <label for="confirmPassword" class="">Confirm Password: <span aria-hidden="true" class="required">*</span></label>
                   <input type="password" name="confirmPassword" id="confirmPassword" class="form-control rounded-pill" required>
-
                     <label for="radio" class="mt-3">Choose account type: <span aria-hidden="true" class="required">*</span></label><br>
                     <div class="border rounded border-danger">
                       <div class="custom-control custom-radio">
@@ -138,8 +138,7 @@
 
         </div>
       </div>
-    </div>
-    <!-- Register form ends -->
+    </div><!-- Register form ends -->
 
     <!-- Login form -->
     <div class="modal fade" id="loginUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -181,253 +180,269 @@
 <!--code from Vandy end here -->
 
 
+    
+  <!-- *************  code from Pearly start ****************** -->
 
-  <!-- *************  code from Pearly start ***************** -->
 
-  <!-- TO BE DELETED AFTER MERGED FROM HERE -->
-  <!-- simulate login to get sessionStorage -->
-  <!-- <div id="log-in-container" class="mx-5">
-    <form id="log-in-form" class="my-5 rounded-pill">
-      <div class="user-name-container">
-        <input type="text" id="username" name="username" class="form-sign-up-user-name" value="" placeholder="Enter your user name">
-      </div>
-      <div class="email-container">
-        <input type="password" name="password" id="password" class="form-sign-up-email" value="" placeholder="Enter your password">
-      </div>
-      <button id="submit" name="button" type="submit" class="log-in-form-btn"> Submit </button>
-    </form>
-  </div> -->
-  <!-- TO BE DELETED AFTER MERGED FINISH HERE-->
+ <!-- profile icons  -->
 
-  <!-- <button id="viewProfileBtn" type="button" class="btn border border-primary my-5 mx-5">View Profile</button> -->
   <nav class="float-right mr-5">
     <i class="fas fa-user-circle foat-right mx-5"></i>
   </nav>
 
-  <div id="portfolio-container" class="size">
+  <div id="profile-page" class="profile-container-size container-bg-color pt-5">
 
-    <div class="user-container">
+    <div class="user-container pt-5 mt-5">
         <div id="displayProfile"></div>
-          <!-- <button id="addProductBtn" type="button" class="btn border border-primary my-5 mx-5" data-toggle="modal" data-target="#listingModalProfile">Add Product</button> -->
-          <button id="editProfileBtn" type="button" class="btn border border-primary my-5 mx-5" data-toggle="modal" data-target="#editProfileModal">Edit Profile</button>
-          <button id="editListingBtn" type="button" class="btn border border-primary my-5 mx-5" data-toggle="modal" data-target="#editListingModal">Edit Listing</button>
     </div>
 
     <!-- dipslay listing item -->
-    <div class="listing-container">
-      <div id="listingCard" class="row">
-      </div>
+    <div class="listing-container container">
+        <div id="listingCard" class="row">
+        </div>
     </div>
+
+     <!-- display selling and buying tab listing -->
+      <!-- <div id="tabs">
+        <ul>
+          <li><a href="#listingCard">Sell Listing</a></li>
+          <li><a href="#tabs-2">Buy Listing</a></li>
+        </ul>
+        <div class="listing-container container">
+          <div id="listingCard" class="row">
+          </div>
+        </div>
+        <div id="tabs-2">
+          <p>You currently don't have any buy items! </p>
+        </div>
+      </div> -->
 
 
     <!-- edit user profile modal -->
     <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModal" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Edit Profile</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content form-bg-image">
+          <div class="modal-header bg-white">
+            <h4 class="modal-title font-weight-bold font-style">Edit Profile</h4>
+            <button type="button" class="close my-close-btn-style" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <form id="editProfileForm" class="container">
-              <div class="form row">
-                <label for="usernameProfile" class="col-sm-6 col-form-label">Username:</label>
-                <div class="col-sm-6">
-                  <input type="text" readonly class="form-control-plaintext text-muted w-50" id="usernameProfile" name="usernameProfile">
+          <div class="modal-body mx-3">
+            <div class="profile-container">
+              <div id="profileImg" class="text-center mb-2"></div>
+              <div class="username-container d-flex justify-content-center pl-5 mb-3">
+                <span><label for="usernameProfile" class="col-sm-12 col-form-label text-color pl-5">Username:</label></span>
+                <span><input type="text" id="usernameProfile" readonly class="form-control-plaintext text-color" name="usernameProfile"></span>
+              </div>
+            </div>
+            <form id="editProfileForm" class="container-sm container-md container-lg container-xl bg-white py-3 px-5 rounded dropshadow">
+               <div class="profile-img-container row">
+                 <label for="editProfileImage" class="col-sm-12 col-form-label text-color">Change Profile Image:</label>
+                 <input type="text" id="editProfileImage" class="col-sm-12 form-control rounded-pill border-color" name="editProfileImage">
+               </div>
+               <div class="detail-container row">
+                 <div class="account-container col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                   <div class="modal-title mt-5 mb-2">
+                     <h6 class="col-sm-12 font-weight-bold">Account Details</h6>
+                   </div>
+                   <div class="first-name-container mb-2">
+                      <label for="editFirstName" class="col-sm-12 col-form-label text-color">First Name:</label>
+                      <input type="text" id="editFirstName" class="col-sm-12 form-control rounded-pill border-color" name="editUsername">
+                    </div>
+                    <div class="last-name-container mb-2">
+                      <label for="editLastName" class="col-sm-12 col-form-label text-color">Last Name:</label>
+                      <input type="text" id="editLastName" class="col-sm-12 form-control rounded-pill border-color" name="editLastName">
+                    </div>
+                    <div class="email-container mb-2">
+                      <label for="editEmail" class="col-sm-12 col-form-label text-color">Email Address:</label>
+                      <input type="text" id="editEmail" class="col-sm-12 form-control rounded-pill border-color" name="editEmail">
+                    </div>
+                    <div class="password-container mb-2">
+                      <label for="editPassword" class="col-sm-12 col-form-label text-color">Password:</label>
+                      <input type="password" id="editPassword" class="col-sm-12 form-control rounded-pill border-color" name="editPassword">
+                    </div>
+                  </div>
+                  <div class="business-container col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <div class="modal-title mt-5 mb-2">
+                      <h6 class="col-sm-12 font-weight-bold">Business Details</h6>
+                    </div>
+                    <div class="business-name-container mb-2">
+                      <label for="editBusinessName" class="col-sm-12 col-form-label text-color">Business Name:</label>
+                      <input type="text" id="editBusinessName" class="col-sm-12 form-control rounded-pill border-color" name="editBusinessName">
+                    </div>
+                    <div class="business-about-container mb-2">
+                      <label for="editBusinessAbout" class="col-sm-12 col-form-label text-color">About:</label>
+                      <textarea id="editBusinessAbout" class="col-sm-12 form-control extra-radius border-color font-style" rows="5"></textarea>
+                    </div>
+                  </div>
                 </div>
-             </div>
-             <div class="form row">
-               <h4 class="col-sm-12 modal-title">Account Details</h4>
-             </div>
-              <div class="form row">
-                <label for="editFirstName" class="col-sm-12 col-form-label">First Name:</label>
-              </div>
-              <div class="form row">
-                <input type="text" class="col-sm-12 form-control" id="editFirstName" name="editUsername">
-              </div>
-              <div class="form-group row">
-                <label for="editLastName" class="col-sm-12 col-form-label">Last Name:</label>
-              </div>
-              <div class="form-group row">
-                  <input type="text" class="col-sm-12 form-control" id="editLastName" name="editLastName">
-              </div>
-              <div class="form-group row">
-                <label for="editEmail" class="col-sm-12 col-form-label">Email Address:</label>
-              </div>
-              <div class="form-group row">
-                  <input type="text" class="col-sm-12 form-control" id="editEmail" name="editEmail">
-              </div>
-              <div class="form row">
-                <h4 class="col-sm-12 modal-title">Business Details</h4>
-              </div>
-              <div class="form-group row">
-                <label for="editBusinessName" class="col-sm-12 col-form-label">Business Name:</label>
-              </div>
-              <div class="form-group row">
-                  <input type="text" class="col-sm-12 form-control" id="editBusinessName" name="editBusinessName">
-              </div>
-              <div class="form-group row">
-                <label for="editBusinessAbout" class="col-sm-12 col-form-label">About:</label>
-              </div>
-              <div class="form-group row">
-                <textarea class="col-sm-12 form-control" id="editBusinessAbout" rows="3"></textarea>
-              </div>
             </form>
           </div>
-          <div class="modal-footer d-flex justify-content-center">
-            <button id="updateProfileBtn" type="submit" class="btn btn-primary">Update Profile</button>
+          <div class="d-flex justify-content-center py-4">
+            <button id="updateProfileBtn" type="submit" class="btn bg-dark text-white rounded-pill px-5 py-3 mb-3 border border-white font-style">Update Profile</button>
           </div>
         </div>
       </div>
     </div> <!-- edit user profile modal end -->
 
-    <!-- edit listing modal -->
-    <div class="modal fade" id="editListingModal" tabindex="-1" role="dialog" aria-labelledby="editListingModal" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
+    <!-- show listing modal -->
+    <div class="modal fade" id="showListingModal" tabindex="-1" role="dialog" aria-labelledby="showListingModal" aria-hidden="true">
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content container-bg-color">
           <div class="modal-header">
-            <h5 class="modal-title">Edit Listing</h5>
-            <button type="button" id="editModalClose" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title font-weight-bold font-style">Edit Listing</h5>
+            <button type="button" id="showModalClose" class="close my-close-btn-style" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <div id="listingCardEdit" class="row"></div>
+          <div class="modal-body pl-5">
+            <div id="listingCardEdit" class="row mx-auto">
+            </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button id="addProductBtn" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#addNewListingModal">Add Product</button>
+             <nav class="text-center">
+               <i id="addProductBtn" class="fas fa-plus-circle" data-toggle="modal" data-target="#addNewListingModal"></i>
+               <p class="font-style">Add new listing</p>
+             </nav>
+            <!-- <button id="addProductBtn" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#addNewListingModal">Add Product</button> -->
           </div>
         </div>
       </div>
-    </div> <!-- edit listing modal end -->
+    </div> <!-- show listing modal end -->
 
-    <!-- add new listing modal -->
+    <!-- add new product modal -->
     <div class="modal fade" id="addNewListingModal" tabindex="-1" role="dialog" aria-labelledby="addNewListingModal" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content form-bg-image-2">
           <div class="modal-header">
-            <h5 class="modal-title">Add New Listing</h5>
-            <button type="button" id="addNewModalClose" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title font-weight-bold font-style">Add New Listing</h5>
+            <button type="button" id="addNewModalClose" class="close my-close-btn-style" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <form id="addListingForm" class="container">
-              <div class="form row">
-                <label for="addProductCategory" class="col-sm-12 col-form-label">Category:</label>
+          <div class="modal-body mx-3">
+            <div class="business-name-container d-flex justify-content-center mb-2">
+              <span><label for="addbusinessName" class="col-sm-12 col-form-label text-color font-weight-bold font-style">Business Name:</label></span>
+              <span><input type="text" id="addbusinessName" readonly class="form-control-plaintext text-color w-100 font-weight-bold font-style" name="addbusinessName"></span>
+            </div>
+            <form id="addListingForm" class="container-sm container-md container-lg container-xl bg-white py-5 px-5 rounded dropshadow">
+              <div class="listing-category-container mb-2">
+                <label for="addProductCategory" class="col-sm-12 col-form-label text-color">Category:</label>
+                <div class="product-category-option">
+                  <select name="group" id="addProductCategory" class="col-sm-12 form-control rounded-pill border-color">
+                    <option selected>Select Category</option>
+                    <option value="cake">Cake</option>
+                    <option value="donut">Donut</option>
+                    <option value="accessories">Accessories</option>
+                  </select>
+                </div>
               </div>
-              <div class="form row">
-                <select name="group" id="addProductCategory" class="col-sm-12 form-control">
-                  <option selected>Select Category</option>
-                  <option value="cake">Cake</option>
-                  <option value="donut">Donut</option>
-                  <option value="accessories">Accessories</option>
-                </select>
+              <div class="listing-name-container mb-2">
+                <label for="addProductName" class="col-sm-12 col-form-label text-color">Product Name:</label>
+                <input type="text" id="addProductName" class="col-sm-12 form-control rounded-pill border-color" name="addProductName">
               </div>
-              <div class="form row">
-                <label for="addProductName" class="col-sm-12 col-form-label">Product Name:</label>
+              <div class="listing-flavour-container mb-2">
+                <label for="addProductFlavour" class="col-sm-12 col-form-label text-color">Flavour:</label>
+                <input type="text" id="addProductFlavour" class="col-sm-12 form-control rounded-pill border-color" name="addProductFlavour">
               </div>
-              <div class="form row">
-                <input type="text" class="col-sm-12 form-control" id="addProductName" name="addProductName">
+              <div class="listing-desc-container mb-2">
+                <label for="addProductDesc" class="col-sm-12 col-form-label text-color">Description:</label>
+                <textarea id="addProductDesc" class="col-sm-12 form-control extra-radius border-color" rows="3"></textarea>
               </div>
-              <div class="form-group row">
-                <label for="addProductFlavour" class="col-sm-12 col-form-label">Flavour:</label>
+              <div class="listing-price-container mb-2">
+                <label for="addProductPrice" class="col-sm-12 col-form-label text-color">Price: $ </label>
+                <input type="number" id="addProductPrice" class="col-sm-12 form-control rounded-pill border-color" name="addProductPrice">
               </div>
-              <div class="form-group row">
-                  <input type="text" class="col-sm-12 form-control" id="addProductFlavour" name="addProductFlavour">
-              </div>
-              <div class="form-group row">
-                <label for="addProductDesc" class="col-sm-12 col-form-label">Description:</label>
-              </div>
-              <div class="form-group row">
-                <textarea class="col-sm-12 form-control" id="addProductDesc" rows="3"></textarea>
-              </div>
-              <div class="form-group row">
-                <label for="addProductPrice" class="col-sm-12 col-form-label">Price:</label>
-              </div>
-              <div class="form-group row">
-                <input type="text" class="col-sm-12 form-control" id="addProductPrice" name="addProductPrice">
-              </div>
-              <div class="form-group row">
-                <label for="addProductImage" class="col-sm-12 col-form-label">Upload Picture:</label>
-              </div>
-              <div class="form-group row">
-                <input type="text" class="col-sm-12 form-control" id="addProductImage" name="addProductImage">
+              <div class="listing-image-container extra-radius border-color d-flex flex-column mt-4 mb-2 pt-3">
+                <i class="fas fa-camera text-center"></i>
+                <label for="addProductImage" class="col-sm-12 col-form-label text-color text-center">Upload Picture:</label>
+                <div class="justify-content-center mt-2">
+                  <input type="text" id="addProductImage" class="col-sm-12 form-control border-color" name="addProductImage">
+                </div>
               </div>
             </form>
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button id="submitListingBtn" type="submit" class="btn btn-primary">Add New Listing</button>
+            <button id="submitAddNewBtn" type="submit" class="btn bg-dark text-white rounded-pill px-5 py-3 mb-3 border border-white font-style">Add New Listing</button>
           </div>
-
         </div>
       </div>
-    </div> <!-- add new listing modal end -->
+    </div> <!-- add new product modal end -->
 
     <!-- update product modal -->
     <div class="modal fade" id="updateProductModal" tabindex="-1" role="dialog" aria-labelledby="updateProductModal" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content form-bg-image-2">
           <div class="modal-header">
-            <h5 class="modal-title">Update Listing</h5>
-            <button type="button" id="updateProductClose" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title font-weight-bold font-style">Update Listing</h5>
+            <button type="button" id="updateProductClose" class="close my-close-btn-style" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <form id="updateProductForm" class="container">
-              <div class="form row">
-                <label for="updateProductCategory" class="col-sm-12 col-form-label">Category:</label>
+          <div class="modal-body mx-3">
+            <form id="updateProductForm" class="container-sm container-md container-lg container-xl bg-white py-5 px-5 rounded dropshadow">
+              <div class="product-img-container mb-2">
+                <div id="productImg" class="text-center"></div>
+                <label for="updateProductImage" class="col-sm-12 col-form-label text-color">Upload Picture:</label>
+                <input type="text" id="updateProductImage" class="col-sm-12 form-control rounded-pill border-color" name="updateProductImage">
               </div>
-              <div class="form row">
-                <select name="group" id="updateProductCategory" class="col-sm-12 form-control">
+              <div class="product-category-container mb-2">
+                <label for="updateProductCategory" class="col-sm-12 col-form-label text-color">Category:</label>
+                <select name="group" id="updateProductCategory" class="col-sm-12 form-control rounded-pill border-color">
                   <option selected>Select Category</option>
                   <option value="cake">Cake</option>
                   <option value="donut">Donut</option>
                   <option value="accessories">Accessories</option>
                 </select>
               </div>
-              <div class="form row">
-                <label for="updateProductName" class="col-sm-12 col-form-label">Product Name:</label>
+              <div class="product-name-container mb-2">
+                <label for="updateProductName" class="col-sm-12 col-form-label text-color">Product Name:</label>
+                <input type="text" id="updateProductName" class="col-sm-12 form-control rounded-pill border-color" name="updateProductName">
               </div>
-              <div class="form row">
-                <input type="text" class="col-sm-12 form-control" id="updateProductName" name="updateProductName">
+              <div class="product=flavour-container mb-2">
+                <label for="updateProductFlavour" class="col-sm-12 col-form-label text-color">Flavour:</label>
+                  <input type="text" id="updateProductFlavour" class="col-sm-12 form-control rounded-pill border-color" name="updateProductFlavour">
               </div>
-              <div class="form-group row">
-                <label for="updateProductFlavour" class="col-sm-12 col-form-label">Flavour:</label>
+              <div class="product-desc-container mb-2">
+                <label for="updateProductDesc" class="col-sm-12 col-form-label text-color">Description:</label>
+                <textarea id="updateProductDesc" class="col-sm-12 form-control extra-radius border-color" rows="3"></textarea>
               </div>
-              <div class="form-group row">
-                  <input type="text" class="col-sm-12 form-control" id="updateProductFlavour" name="updateProductFlavour">
-              </div>
-              <div class="form-group row">
-                <label for="updateProductDesc" class="col-sm-12 col-form-label">Description:</label>
-              </div>
-              <div class="form-group row">
-                <textarea class="col-sm-12 form-control" id="updateProductDesc" rows="3"></textarea>
-              </div>
-              <div class="form-group row">
-                <label for="updateProductPrice" class="col-sm-12 col-form-label">Price:</label>
-              </div>
-              <div class="form-group row">
-                <input type="text" class="col-sm-12 form-control" id="updateProductPrice" name="updateProductPrice">
-              </div>
-              <div class="form-group row">
-                <label for="updateProductImage" class="col-sm-12 col-form-label">Upload Picture:</label>
-              </div>
-              <div class="form-group row">
-                <input type="text" class="col-sm-12 form-control" id="updateProductImage" name="updateProductImage">
+              <div class="product-price-container mb-2">
+                <label for="updateProductPrice" class="col-sm-12 col-form-label text-color">Price:</label>
+                <input type="number" id="updateProductPrice" class="col-sm-12 form-control rounded-pill border-color" name="updateProductPrice">
               </div>
             </form>
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button id="submitUpdateBtn" type="submit" class="btn btn-primary">Update Listing</button>
+            <button id="submitUpdateBtn" type="submit" class="btn bg-dark text-white rounded-pill px-5 py-3 mb-3 border border-white font-style">Update Listing</button>
           </div>
-
         </div>
       </div>
-    </div> <!-- edit/update product modal end -->
+    </div>
+    <!-- update product modal end -->
+
+    <!-- delete product modal -->
+    <div class="modal fade" id="deleteProductModal" tabindex="-1" role="dialog" aria-labelledby="deleteProductModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content container-bg-color">
+          <div class="modal-header">
+            <button type="button" id="deleteProductClose" class="close my-close-btn-style" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="deleteInformation" class="text-center"></div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button id="submitDeleteBtn" type="submit" class="btn text-white rounded-pill px-4 py-3 mb-3 my-btn-style">Yes, Delete Listing</button>
+            <button id="cancelBtn" type="submit" class="btn bg-dark text-white rounded-pill px-4 py-3 mb-3 border border-white font-style">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- delete product modal end -->
+
 
 </div>
 
@@ -443,6 +458,9 @@
 <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="config.json"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="js/script.js"></script>
 
 <!-- Vandy ends here -->

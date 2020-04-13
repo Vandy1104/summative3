@@ -6,26 +6,130 @@
 
 
 
-// code from Pearly start -->
+// ************   code from Pearly start -->
 
-#portfolio-container {
+
+// === style profile page
+.container-bg-color {
   background-color : $theme-primary-color-light-pink;
 }
 
-.fa-user-circle {
+.profile-container-size {
+  width: 100%;
+  height: auto;
+}
+
+.fas {
   color : $theme-sec-color-hot-pink;
   font-size: 3rem;
+  cursor : pointer;
+}
+
+.fas:hover {
+  color : $theme-accent-color;
+}
+
+.fa-star {
+  color : $theme-sec-color-hot-pink;
+  font-size: 1rem;
 }
 
 
-.fa-user-circle:hover {
+
+.profile-img-size {
+  width : 250px;
+  height : 250px;
+}
+
+// ==== style the form (update profile form)
+.text-color {
+  color: $theme-sec-color-hot-pink;
+  @extend .font-style;
+}
+
+.font-style {
+  font-family: $bodyff;
+}
+
+.my-close-btn-style {
+  font-size : 2rem;
+  @extend .fas;
+
+}
+
+.form-bg-image {
+  background-image: url('../images/image-edit-profile-background.jpg');
+
+}
+
+.border-color {
+  border : 1px solid $theme-primary-color-light-pink;
+}
+
+.extra-radius {
+  border-radius: 20px;
+}
+
+.dropshadow{
+  box-shadow: $box-shadow;
+}
+
+// =====  style listing form
+.fa-user-circle {
+  @extend .fas;
+}
+
+.fa-user-circle:hover, {
   color : $theme-form-background-color;
 }
 
-.size {
-  width: 100%;
-  height: 1200px;
+.fa-camera {
+  color : $theme-primary-color-light-pink;
 }
+
+.my-btn-style {
+  background-color: $theme-sec-color-hot-pink;
+  @extend .font-style;
+}
+
+.form-bg-image-2 {
+  background-image: url('../images/image-add-listing-background.jpg');
+}
+
+.flex-container {
+  display : flex;
+  justify-content: flex-start;
+}
+
+
+.hover-effect:hover {
+  color : $theme-primary-color-light-pink;
+}
+
+// mobile display only
+@media only screen and (max-width: 768px){
+   // .desktop-display-text {
+   //   display : none;
+   // }
+
+   .vertical-rl {
+     writing-mode: vertical-rl;
+     display: inline-block;
+   }
+
+
+}
+
+// desktop display only
+@media only screen and (min-width: 768px){
+  .flex-container {
+    display: block;
+  }
+
+
+
+}
+
 
 
   // code from Pearly end -->
@@ -50,3 +154,4 @@
 }
 
 // code from Vandy end -->
+

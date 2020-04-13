@@ -85,8 +85,10 @@ module.exports = function(grunt) {
 		// watch task
 		watch : {
 			scripts : {
-				files : ['*.html', 'js/*.js', 'sass/*.scss', 'css/stylesheet.css'],
-				tasks : ['htmlhint','sass', 'csslint', 'jshint'],
+				 files : ['*.html', 'sass/*.scss', 'css/stylesheet.css', 'js/*.js'],
+				 tasks : ['htmlhint','sass', 'csslint', 'jshint'],
+				//files : ['js/*.js', 'sass/*.scss', 'css/stylesheet.css'],
+				//tasks : ['sass', 'csslint', 'jshint'],
 				options : false,
 			},
 		}
