@@ -2,8 +2,7 @@
 @import "variables";
 @import "nav";
 @import "productCard";
-
-
+@import "categoryFilters";
 
 
 // code from Pearly start -->
@@ -33,7 +32,18 @@
 
 /* Kristine's code starts  */
 
-#landing-product-container {
-  background-color: $theme-primary-color-light-pink;
+.products {
+  &__image {
+      border-radius: 16px;
+      overflow: hidden;
+  }
+
+  &__title {
+      color: red;
+      font-size: 18px;
+      font-weight: bold;
+  }
 }
+
+
 /* Kristine's code finishes  */

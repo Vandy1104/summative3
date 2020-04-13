@@ -277,7 +277,7 @@ app.get('/allProducts/p=:id', (req,res)=>{
       res.send("Can't find product with this ID");
     }
   }).catch(err => res.send(err));
-}); // end of get product by user id
+}); // end of get product by product id
 
 
 //********** code from Kristine finishes here

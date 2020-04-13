@@ -6,6 +6,38 @@
   scroll-behavior: smooth;
 }
 
+.productCard__image {
+  border-radius: 16px;
+  overflow: hidden;
+}
+.productCard__title {
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.selectedProductsCategoryFilter {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.selectedProductsCategoryFilter li {
+  display: inline-block;
+  margin-right: 16px;
+  color: #F7268A;
+  cursor: pointer;
+}
+.selectedProductsCategoryFilter li:hover, .selectedProductsCategoryFilter li:active {
+  color: black;
+}
+.selectedProductsCategoryFilter li.isSelected {
+  font-style: "Noto Sans", sans-serif;
+  font-weight: bold;
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: #F7268A;
+}
+
 #portfolio-container {
   background-color: #FFDFF0;
 }
@@ -24,5 +56,17 @@
   height: 1200px;
 }
 
+/* Kristine's code starts  */
+.products__image {
+  border-radius: 16px;
+  overflow: hidden;
+}
+.products__title {
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Kristine's code finishes  */
 
 /*# sourceMappingURL=style.css.map */

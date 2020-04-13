@@ -33,13 +33,15 @@ $(document).ready(function(){
     showHomeView();
   });
 
-  // Selected category buttons: Tapping a category button will navigate the user to the selected products view with only the specific category of items displayed
+  // Selected category link: Tapping a category link will navigate the user to the individual selected product view with only the specific category of item displayed
   function categorySelected(selectedButtonValue) {
     // handle view display
     $('#homeView').hide(); // hide home view
     $('#selectedProductsView').show(); // show selected products view
 
-    // 
+    $('.selectedProductsCategoryFilter li').removeClass('isSelected');
+    $('*[data-category="' + selectedButtonValue + '"]').addClass('isSelected'); // https://stackoverflow.com/questions/2487747/selecting-element-by-data-attribute
+
     console.log("Selected category: ", selectedButtonValue);
     
     $.ajax({
@@ -51,21 +53,21 @@ $(document).ready(function(){
         for(let i=0; i<displayProducts.length; i++) {
           // populate products container
           $('#selectedProductsView .products').append(
-            `<div class="productCard col-3 mr-5 mb-5 px-5 py-3" data-productid="${displayProducts[i]._id}">
+            `<div class="productCard col-10 mr-5 mb-5 px-5 py-3" data-productid="${displayProducts[i]._id}">
             <img class="img-thumbnail" src="${displayProducts[i].productImageUrl}" alt="Image">
             <h3 class="">${displayProducts[i].businessName}</h3>
             <h4 class="">${displayProducts[i].productName}</h4>
             <h4 class="">${displayProducts[i].price}</h4>
             </div>`
-          ); // missing productID
-        }
+          ); // append end
+        }//for end 
 
-      },
+      },//success end
       error:function(){
         console.log('error: Cannot call api');
       }
-    });
-  }
+    });//ajax end
+  }//function end
 
   // Selected category buttons: use categorySelected()
   $('#cakeButton').click(function(){
@@ -84,11 +86,13 @@ $(document).ready(function(){
   });
 
 
-  // Selected product: Tapping a product will display a modal with specific product information
-  function showSelectedProduct(productId) {
-    console.log("Selected productID: ", productId);
-    
-    // REQUIRES NEW API
+  $('.selectedProductsCategoryFilter li').click(function(){
+    let buttonValue = $(this).data('category');
+    categorySelected(buttonValue);
+  });
+
+  // // Selected product: Tapping a product will display a modal with specific product information
+  function selectedProductModalView(productId){
     $.ajax({
       url :`${url}/allProducts/p=${productId}`, // need to update with path to specific product id
       type :'GET',
@@ -108,24 +112,30 @@ $(document).ready(function(){
             `<img class="img-thumbnail" src="${product[i].productImageUrl}" alt="Image" style="width: 100%; height: auto">
             <h3 class="">${product[i].businessName}</h3>
             <h4 class="">${product[i].price}</h4>`
-          );
+          );//append end
 
           $('#selectedProductModalView').modal('toggle'); // show modal
 
           console.log(product);
-        }
-      },
+        }//for end
+      },//success end
       error:function(){
         console.log('error: Cannot call api');
-      }
-    });
-  }
+      }//closing error end
+      
+    });//ajax end
+  }//function end
 
   // Product cards: Click event
   $(document).on("click", ".productCard" , function() {
     let productId = $(this).data('productid');
-    showSelectedProduct(productId);
+    console.log("productId: ", productId);
+    selectedProductModalView(productId);
   });
+
+
+  // Selected category link: Tapping a category link will navigate the user to the selected products view with only the specific category of items displayed
+
 
 //******* code from Kristine finishes
 
