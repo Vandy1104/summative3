@@ -1,8 +1,8 @@
 @import "reset";
 @import "variables";
 @import "nav";
-
-
+@import "productCard";
+@import "categoryFilters";
 
 
 
@@ -135,6 +135,25 @@
   // code from Pearly end -->
 
 
+
+/* Kristine's code starts  */
+
+.products {
+  &__image {
+      border-radius: 16px;
+      overflow: hidden;
+  }
+
+  &__title {
+      color: red;
+      font-size: 18px;
+      font-weight: bold;
+  }
+}
+
+
+/* Kristine's code finishes  */
+
 // code from Vandy start -->
 .makeCenter {
   display: block;
@@ -154,4 +173,5 @@
 }
 
 // code from Vandy end -->
+
 

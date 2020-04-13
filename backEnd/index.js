@@ -44,7 +44,7 @@ app.use((req,res,next)=>{
 });
 
 //prints message on load testing
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => res.send('Hello World!'));
 
 // add new comment
 app.post('/addComment', (req,res)=> {
@@ -230,7 +230,7 @@ app.post('/registerUser', (req,res)=>{
          res.send(result);
        }).catch(err => res.send(err));
     }
-  })
+  });
 });
 //register user end
 
@@ -266,13 +266,25 @@ app.patch('/updateUser/:uID', (req,res)=>{
       User.updateOne({_id:idParam}, updateUser).then(result=>{
         res.send(result);
       }).catch(err=> res.send(err));
-    }).catch(err=>res.send("Not found"))
+    }).catch(err=>res.send("Not found"));
 });
 
+//get product by product id
+app.get('/allProducts/p=:id', (req,res)=>{
+  const idParam = req.params.id;
+  Product.find({_id:idParam}, (err, result)=>{
+    if(result.length> 0){
+      res.send(result);
+    }
+    else{
+      res.send("Can't find product with this ID");
+    }
+  }).catch(err => res.send(err));
+}); // end of get product by product id
 
 
-//********** code from Kristine end here
+//********** code from Kristine finishes here
 
 
 //keep this always at the bottom so that you can see the errors reported
-app.listen(port, () => console.log(`Mongodb app listening on port ${port}!`))
+app.listen(port, () => console.log(`Mongodb app listening on port ${port}!`));

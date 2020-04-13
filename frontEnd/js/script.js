@@ -1,23 +1,21 @@
-console.log("summative 3 connected");
-
+console.log("Summative 3 connected");
 
 let url, pID, businessName;
 
-
-
-
 //get url and port from config.json
+
 $.ajax({
-    url :'config.json',
-    type :'GET',
-    dataType :'json',
-    success : function(configData){
-    console.log(configData);
-    url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
-},
-    error:function (){
+  url :'config.json',
+  type :'GET',
+  dataType :'json',
+  success : function(configData){
+  console.log(configData);
+  url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
+  },
+  error:function (){
     console.log('oops');
-}
+  }
+
 });
 
 $('#tabs').hide();
@@ -25,73 +23,126 @@ $(document).ready(function(){
 
   // *********  code from Kristine start
 
-// Show #homeView only
-// $('#views').children().hide();
-// $('#homeView').show();
-// $('#productsView').hide();
-// Tap #logo and show #homeView only
-// $('#logo').click(function() {
-//   $('#views').children().hide();
-//   $('#homeView').show();
-// });
+  // A function to hide all views except home view
+  function showHomeView() {
+    $('#views').children().hide();
+    $('#homeView').show();
+  }
 
-//view cakes button start
-  $('#cakeButton').click(function(){
-    console.log('cakebuttonclicked');
-    // $('#views').children().hide();
-    $('#productsView').show();
-//
-let cake = $('#cakeButton').val();
-//     console.log('cakeButton clicked');//checking if button click responds
+  showHomeView();
+
+  // Logo: Tapping the 'treatme' logo will navigate the user back to the home view
+  $('#logo').click(function() {
+    showHomeView();
+  });
+
+  // Selected category link: Tapping a category link will navigate the user to the individual selected product view with only the specific category of item displayed
+  function categorySelected(selectedButtonValue) {
+    // handle view display
+    $('#homeView').hide(); // hide home view
+    $('#selectedProductsView').show(); // show selected products view
+
+    $('.selectedProductsCategoryFilter li').removeClass('isSelected');
+    $('*[data-category="' + selectedButtonValue + '"]').addClass('isSelected'); // https://stackoverflow.com/questions/2487747/selecting-element-by-data-attribute
+
+    console.log("Selected category: ", selectedButtonValue);
+    
     $.ajax({
-    url :`${url}/allProducts/cat=${cake}`,
-    type :'GET',
-    dataType :'json',
-    success : function(displayProducts){
-      console.log(displayProducts);
-      document.getElementById('productCards').innerHTML = "";
-      for(let i=0; i<displayProducts.length; i++){
-        document.getElementById('productCards').innerHTML +=
-        `<div class="col-3 mr-5 mb-5 px-5 py-3">
-        <img class="img-thumbnail" src="${displayProducts[i].productImageUrl}" alt="Image">
-        </div>  <h1>hello<h1>`;
-      }
-    },//success
-      error:function(){
-        console.log('error: cannot call api');
-      }//error
-    });//ajax
-  });//view cakes button finish
-
-  //view donuts button start
-    $('#donutButton').click(function(){
-      console.log('donutButtonclicked');
-      // $('#views').children().hide();
-      $('#productsView').show();
-  //
-  let donut = $('#donutButton').val();
-  //     console.log('cakeButton clicked');//checking if button click responds
-      $.ajax({
-      url :`${url}/allProducts/cat=${donut}`,
+      url :`${url}/allProducts/cat=${selectedButtonValue}`,
       type :'GET',
       dataType :'json',
       success : function(displayProducts){
-        console.log(displayProducts);
-        document.getElementById('productCards').innerHTML = "";
-        for(let i=0; i<displayProducts.length; i++){
-          document.getElementById('productCards').innerHTML +=
-          `<div class="col-3 mr-5 mb-5 px-5 py-3">
-          <img class="img-thumbnail" src="${displayProducts[i].productImageUrl}" alt="Image">
-          </div>  <h1>hello<h1>`;
-        }
-      },//success
-        error:function(){
-          console.log('error: cannot call api');
-        }//error
-      });//ajax
-    });//view donuts button finish
-//
-// //  code from Kristine end
+
+        $('#selectedProductsView .products').html(""); // clear products container
+        for(let i=0; i<displayProducts.length; i++) {
+          // populate products container
+          $('#selectedProductsView .products').append(
+            `<div class="productCard col-10 mr-5 mb-5 px-5 py-3" data-productid="${displayProducts[i]._id}">
+            <img class="img-thumbnail" src="${displayProducts[i].productImageUrl}" alt="Image">
+            <h3 class="">${displayProducts[i].businessName}</h3>
+            <h4 class="">${displayProducts[i].productName}</h4>
+            <h4 class="">${displayProducts[i].price}</h4>
+            </div>`
+          ); // append end
+        }//for end 
+
+      },//success end
+      error:function(){
+        console.log('error: Cannot call api');
+      }
+    });//ajax end
+  }//function end
+
+  // Selected category buttons: use categorySelected()
+  $('#cakeButton').click(function(){
+    let buttonValue = $(this).val();
+    categorySelected(buttonValue);
+  });
+
+  $('#donutButton').click(function(){
+    let buttonValue = $(this).val();
+    categorySelected(buttonValue);
+  });
+
+  $('#accessoriesButton').click(function(){
+    let buttonValue = $(this).val();
+    categorySelected(buttonValue);
+  });
+
+
+  $('.selectedProductsCategoryFilter li').click(function(){
+    let buttonValue = $(this).data('category');
+    categorySelected(buttonValue);
+  });
+
+  // // Selected product: Tapping a product will display a modal with specific product information
+  function selectedProductModalView(productId){
+    $.ajax({
+      url :`${url}/allProducts/p=${productId}`, // need to update with path to specific product id
+      type :'GET',
+      dataType :'json',
+      success : function(product){
+        $('#exampleModalLongTitle').html(""); // clear exampleModalLongTitle
+        $('#selectedProductModalView .modal-body').html(""); // clear modal body
+
+        for(let i=0; i<product.length; i++) {
+          // populate exampleModalLongTitle
+          $('#exampleModalLongTitle').append(
+            `${product[i].productName}`
+          );
+
+          // populate modal body
+          $('#selectedProductModalView .modal-body').append(
+            `<img class="img-thumbnail" src="${product[i].productImageUrl}" alt="Image" style="width: 100%; height: auto">
+            <h3 class="">${product[i].businessName}</h3>
+            <h4 class="">${product[i].price}</h4>`
+          );//append end
+
+          $('#selectedProductModalView').modal('toggle'); // show modal
+
+          console.log(product);
+        }//for end
+      },//success end
+      error:function(){
+        console.log('error: Cannot call api');
+      }//closing error end
+      
+    });//ajax end
+  }//function end
+
+  // Product cards: Click event
+  $(document).on("click", ".productCard" , function() {
+    let productId = $(this).data('productid');
+    console.log("productId: ", productId);
+    selectedProductModalView(productId);
+  });
+
+
+  // Selected category link: Tapping a category link will navigate the user to the selected products view with only the specific category of items displayed
+
+
+//******* code from Kristine finishes
+
 
 
 // *********  code from Vandy start

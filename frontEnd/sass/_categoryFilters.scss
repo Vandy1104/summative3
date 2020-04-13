@@ -1,0 +1,29 @@
+.homeCategoryFilter {
+
+}
+
+.selectedProductsCategoryFilter {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        display: inline-block;
+        margin-right: 16px;
+        color: $theme-sec-color-hot-pink;
+        cursor: pointer;
+
+        &:hover,
+        &:active {
+            color: black;
+        }
+
+        &.isSelected {
+            font-style: $bodyff;
+            font-weight: bold;
+            color: black;
+            text-decoration: underline;
+            text-decoration-color: $theme-sec-color-hot-pink;;
+        }
+    }
+}
