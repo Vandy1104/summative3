@@ -5,7 +5,9 @@
 
 
 
+
 // ************   code from Pearly start -->
+
 
 // === style profile page
 .container-bg-color {
@@ -129,4 +131,27 @@
 }
 
 
-  // *********  code from Pearly end -->
+
+  // code from Pearly end -->
+
+
+// code from Vandy start -->
+.makeCenter {
+  display: block;
+  margin: auto;
+}
+
+.formText{
+  color : $theme-sec-color-hot-pink;
+}
+
+.loginBtnBackground{
+  background-color : $theme-sec-color-hot-pink;
+}
+
+#logoutUserBtnContainer{
+
+}
+
+// code from Vandy end -->
+
