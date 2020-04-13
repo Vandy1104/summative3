@@ -5,6 +5,7 @@
 
 
 
+
 // code from Pearly start -->
 
 #portfolio-container {
@@ -28,3 +29,24 @@
 
 
   // code from Pearly end -->
+
+
+// code from Vandy start -->
+.makeCenter {
+  display: block;
+  margin: auto;
+}
+
+.formText{
+  color : $theme-sec-color-hot-pink;
+}
+
+.loginBtnBackground{
+  background-color : $theme-sec-color-hot-pink;
+}
+
+#logoutUserBtnContainer{
+
+}
+
+// code from Vandy end -->

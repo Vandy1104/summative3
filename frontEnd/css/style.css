@@ -24,4 +24,17 @@
   height: 1200px;
 }
 
+.makeCenter {
+  display: block;
+  margin: auto;
+}
+
+.formText {
+  color: #F7268A;
+}
+
+.loginBtnBackground {
+  background-color: #F7268A;
+}
+
 /*# sourceMappingURL=style.css.map */

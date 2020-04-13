@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- favicon -->
   <link rel="shortcut icon" type="image/png" href="images/image-treatme-logo-design-long.png">
- 
+
   <title>Treat Me</title>
   <!-- link to google font -->
   <link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet">
@@ -36,7 +36,7 @@
       <div id="logo"><h1 id="treatme">Treatme</h1></div>
       <!-- nav bar start -->
       <nav id="navLoggedIn" class="navbar navbar-light bg-light justify-content-between">
-       
+
       </nav>
       <!-- nav bar finish -->
     </header>
@@ -47,13 +47,13 @@
       <div id="views">
         <div id="homeView">
           <h1>Home</h1>
-          
+
           <div id="manipulate" class="my-5">
             <button id="cakeButton" value="cake" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">Cake</button>
             <button id="donutButton" value="donut" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">Donut</button>
             <button id="accessoriesButton" value="accessories" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">accessories</button>
           </div>
-       
+
 
         <div id="productsView">
           <div id="productCards">
@@ -62,10 +62,10 @@
           </div>
         </div>
       </div>
-    </div> 
+    </div>
 <!--   Main div closing here. -->
     </div>
-  </div> 
+  </div>
 <!--     Closing div for Home Page -->
 <!-- kristine code finish -->
 
@@ -89,7 +89,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body mx-5">
+          <div class="modal-body formText mx-5">
             <h3 class="mb-3">Enter your details</h3>
               <form id="registerForm" class="rounded-pill">
                   <label for="newUsername" class=""> Username: <span aria-hidden="true" class="required">*</span></label>
@@ -128,11 +128,14 @@
                     <label for="businessAbout" class="">Business Abouts: </label>
                     <input type="text" name="businessAbout" id="businessAbout" class="form-control rounded" value="">
                   </div>
-                </div>
-          <div class="modal-footer">
-              <button type="submit" class="btn bg-dark text-white rounded-pill btn-lg mx-auto">Create my account</button>
-          </div>
-            </form>
+                  <button type="submit" class="btn bg-dark text-white rounded-pill btn-lg my-4 makeCenter">Create my account</button>
+                </form>
+              </div>
+
+          <!-- <div class="modal-footer">
+
+          </div> -->
+
         </div>
       </div>
     </div>
@@ -148,7 +151,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body mx-5">
+          <div class="modal-body formText mx-5">
             <h3 class="mb-3">Enter your details</h3>
               <form id="loginForm" class="rounded-pill">
                   <label for="username" class=""> Username <span aria-hidden="true" class="required">*</span></label>
@@ -157,11 +160,13 @@
                   <label for="password" class=""> Password <span aria-hidden="true" class="required">*</span></label>
                   <input type="password" name="password" id="password" class="form-control rounded-pill" required>
                   <br>
+                    <button type="submit" class="btn loginBtnBackground text-white rounded-pill btn-lg my-2 mx-auto btn-block makeCenter">Login</button>
+              </form>
             </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn bg-dark text-white rounded-pill btn-lg mx-auto">Login</button>
-            </div>
-            </form>
+            <!-- <div class="modal-footer">
+
+            </div> -->
+
         </div>
       </div>
     </div>
@@ -175,7 +180,7 @@
 				</div>
 <!--code from Vandy end here -->
 
- 
+
 
   <!-- *************  code from Pearly start ***************** -->
 
@@ -433,11 +438,13 @@
 
 <!-- ***Vandy*** -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="config.json"></script>
 <script src="js/script.js"></script>
+
 <!-- Vandy ends here -->
 
 </body>
