@@ -6,7 +6,6 @@
   scroll-behavior: smooth;
 }
 
-
 .productCard__image {
   border-radius: 16px;
   overflow: hidden;
@@ -38,7 +37,6 @@
   text-decoration: underline;
   text-decoration-color: #F7268A;
 }
-
 
 .container-bg-color {
   background-color: #FFDFF0;
@@ -133,7 +131,18 @@
     display: block;
   }
 }
+/* Kristine's code starts  */
+.products__image {
+  border-radius: 16px;
+  overflow: hidden;
+}
+.products__title {
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+}
 
+/* Kristine's code finishes  */
 .makeCenter {
   display: block;
   margin: auto;
@@ -147,17 +156,8 @@
   background-color: #F7268A;
 }
 
-/* Kristine's code starts  */
-.products__image {
-  border-radius: 16px;
-  overflow: hidden;
+.comment-outline {
+  border: 2px solid #FFDFF0;
 }
-.products__title {
-  color: red;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-/* Kristine's code finishes  */
 
 /*# sourceMappingURL=style.css.map */

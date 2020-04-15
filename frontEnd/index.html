@@ -11,7 +11,7 @@
   <link rel="shortcut icon" type="image/png" href="images/image-treatme-logo-design-long.png">
 
   <title>Treat Me</title>
-  
+
   <!-- link to google font -->
   <link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
@@ -26,8 +26,6 @@
   <!-- link to own stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
 
 </head>
 <body>
@@ -56,10 +54,10 @@
                 <button id="donutButton" value="donut" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">Donut</button><br>
                 <button id="accessoriesButton" value="accessories" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">Accessories</button>
               </div>
-              
+
               <div class="products">
                 <!-- populate with products from db -->
-    
+
                 <!--TODO: Style productCard and add to index.js
                   <div class="productCard">
                   <div class="productCard__image">
@@ -128,8 +126,8 @@
               </div>
               <!-- Selected product modal end -->
 
-          </div>     
-        </div>  
+          </div>
+        </div>
       </div>
 
     </div>
@@ -138,7 +136,7 @@
 
   <!--  *****************   Kristine code finishes here  *****************  -->
 
-    
+
   <!-- *********  code from Vandy start -->
 <!-- Login & Register buttons on Homepage -->
 <div class="mt-4 float-right mr-3">
@@ -161,7 +159,7 @@
           <div class="modal-body formText mx-5">
             <h3 class="mb-3">Enter your details</h3>
               <form id="registerForm" class="rounded-pill">
-                  <label for="newUsername" class=""> Username: <span aria-hidden="true" class="required">*</span></label>
+                  <label for="newUsername" class=""> Username: <span aria-hidden="true" class="required">*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Username can't be changed)</span></label>
                   <input type="text" id="newUsername" name="newUsername" class="form-control rounded-pill" required>
                   <br>
                   <label for="firstName" class=""> First Name: <span aria-hidden="true" class="required">*</span></label>
@@ -194,7 +192,7 @@
                     <label for="businessName" class="">Business Name: <span aria-hidden="true" class="required">*</span></label>
                     <input type="text" name="businessName" id="businessName" class="form-control rounded">
                     <label for="businessAbout" class="">Business Abouts: </label>
-                    <input type="text" name="businessAbout" id="businessAbout" class="form-control rounded" value="">
+                    <textarea rows="4" cols="50" type="text" name="businessAbout" id="businessAbout" class="form-control rounded" value=""></textarea>
                   </div>
                   <button type="submit" class="btn bg-dark text-white rounded-pill btn-lg my-4 makeCenter">Create my account</button>
                 </form>
@@ -241,14 +239,28 @@
 
     <!-- Logout button container -->
 				<div class="row my-2">
-					<div id="logoutUserBtnContainer" class="col-12">
-
-					</div>
+            <button id="logoutBtn" class="btn btn-outline-danger rounded-pill">Logout</button>
 				</div>
+
+
+    <!-- Add Comment Form -->
+        <form class="form-inline container" id="addCommentForm">
+            <h5 class="my-2 mx-auto text-color font-weight-bold">Ask the seller questions</h5><br>
+            <textarea rows="4" cols="50" class="form-control container extra-radius" id="message" placeholder="Type Comment"></textarea>
+            <button type="submit" class="btn w-75 loginBtnBackground text-white rounded-pill my-4 mx-auto btn-block">Send</button>
+            <div class="container">
+              <h6 class="my-2 mx-2 py-2 text-color">Comments :</h6>
+            <div id="commentShow" class="row"></div>
+          </div>
+        </form>
+
+    <!-- Add Comment Form ends -->
+
+
 <!--code from Vandy end here -->
 
 
-    
+
   <!-- *************  code from Pearly start ****************** -->
 
 
@@ -265,10 +277,10 @@
     </div>
 
     <!-- dipslay listing item -->
-    <div class="listing-container container">
+    <!-- <div class="listing-container container">
         <div id="listingCard" class="row">
         </div>
-    </div>
+    </div> -->
 
      <!-- display selling and buying tab listing -->
       <!-- <div id="tabs">
@@ -522,13 +534,12 @@
 <!-- ***Vandy*** -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="config.json"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="js/script.js"></script>
 
 <!-- Vandy ends here -->
