@@ -161,7 +161,7 @@
           <div class="modal-body formText mx-5">
             <h3 class="mb-3">Enter your details</h3>
               <form id="registerForm" class="rounded-pill">
-                  <label for="newUsername" class=""> Username: <span aria-hidden="true" class="required">*</span></label>
+                  <label for="newUsername" class=""> Username: <span aria-hidden="true" class="required">*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Username can't be changed)</span></label>
                   <input type="text" id="newUsername" name="newUsername" class="form-control rounded-pill" required>
                   <br>
                   <label for="firstName" class=""> First Name: <span aria-hidden="true" class="required">*</span></label>
@@ -193,8 +193,8 @@
                   <div id="business" class="my-3">
                     <label for="businessName" class="">Business Name: <span aria-hidden="true" class="required">*</span></label>
                     <input type="text" name="businessName" id="businessName" class="form-control rounded">
-                    <label for="businessAbout" class="">Business Abouts: </label>
-                    <input type="text" name="businessAbout" id="businessAbout" class="form-control rounded" value="">
+                    <label for="businessAbout" class="">Business Abouts: </label>                   
+                    <textarea rows="4" cols="50" type="text" name="businessAbout" id="businessAbout" class="form-control rounded" value=""></textarea>
                     <input type="text" id="defaultProfileImg" name="defaultProfileImg" class="form-control rounded-pill invisible" value="https://drive.google.com/thumbnail?id=1pzSfhPX_Pf85c3ScMGpivyLKVvlxg0hd">
                   </div>
                   <button type="submit" class="btn bg-dark text-white rounded-pill btn-lg my-4 makeCenter">Create my account</button>
@@ -242,12 +242,25 @@
 
     <!-- Logout button container -->
 				<div class="row my-2">
-					<div id="logoutUserBtnContainer" class="col-12">
-
-					</div>
+            <button id="logoutBtn" class="btn btn-outline-danger rounded-pill">Logout</button>
 				</div>
-<!--code from Vandy end here -->
 
+
+    <!-- Add Comment Form -->
+        <form class="form-inline container" id="addCommentForm">
+            <h5 class="my-2 mx-auto text-color font-weight-bold">Ask the seller questions</h5><br>
+            <textarea rows="4" cols="50" class="form-control container extra-radius" id="message" placeholder="Type Comment"></textarea>
+            <button type="submit" class="btn w-75 loginBtnBackground text-white rounded-pill my-4 mx-auto btn-block">Send</button>
+            <div class="container">
+              <h6 class="my-2 mx-2 py-2 text-color">Comments :</h6>
+            <div id="commentShow" class="row"></div>
+          </div>
+        </form>
+
+    <!-- Add Comment Form ends -->
+
+
+<!--code from Vandy end here -->
 
 
   <!-- *************  code from Pearly start ****************** -->
@@ -562,11 +575,11 @@
 
 
 
-<!-- Sweet Alet CDN by Pearly -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 
 <!-- ***Vandy*** -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
