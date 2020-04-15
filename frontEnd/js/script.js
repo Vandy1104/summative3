@@ -32,7 +32,7 @@ $(document).ready(function(){
   showHomeView();
 
   // Logo: Tapping the 'treatme' logo will navigate the user back to the home view
-  $('#logo').click(function() {
+  $('#treatme').click(function() {
     showHomeView();
   });
 
@@ -42,7 +42,7 @@ $(document).ready(function(){
     $('#homeView').hide(); // hide home view
     $('#selectedProductsView').show(); // show selected products view
 
-    $('.selectedProductsCategoryFilter li').removeClass('isSelected');
+    $('.selected-products-category-filter li').removeClass('isSelected');
     $('*[data-category="' + selectedButtonValue + '"]').addClass('isSelected'); // https://stackoverflow.com/questions/2487747/selecting-element-by-data-attribute
 
     console.log("Selected category: ", selectedButtonValue);
@@ -51,18 +51,26 @@ $(document).ready(function(){
       url :`${url}/allProducts/cat=${selectedButtonValue}`,
       type :'GET',
       dataType :'json',
-      success : function(displayProducts){
+      success : function(displayProducts){        
 
         $('#selectedProductsView .products').html(""); // clear products container
         for(let i=0; i<displayProducts.length; i++) {
-          // populate products container
+          
           $('#selectedProductsView .products').append(
-            `<div class="productCard col-10 mr-5 mb-5 px-5 py-3" data-productid="${displayProducts[i]._id}">
-            <img class="img-thumbnail" src="${displayProducts[i].productImageUrl}" alt="Image">
-            <h3 class="">${displayProducts[i].businessName}</h3>
-            <h4 class="">${displayProducts[i].productName}</h4>
-            <h4 class="">${displayProducts[i].price}</h4>
-            </div>`
+            `<div class="productCard col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-5" data-productid="${displayProducts[i]._id}">
+                <div class="productCard__image">
+                  <img class="img-thumbnail extra-radius" src="${displayProducts[i].productImageUrl}" alt="Image">
+                </div>
+                <div class="productCard__businessName .text-dark h4">
+                  ${displayProducts[i].businessName}
+                </div>
+                <div class="productCard__productName">
+                  ${displayProducts[i].productName}
+                </div>
+                <div class="productCard__price">
+                  $${displayProducts[i].price}
+                </div>
+             </div>` 
           ); // append end
         }//for end
 
@@ -84,13 +92,22 @@ $(document).ready(function(){
     categorySelected(buttonValue);
   });
 
-  $('#accessoriesButton').click(function(){
+  $('#cookiesButton').click(function(){
     let buttonValue = $(this).val();
     categorySelected(buttonValue);
   });
 
+  // hover function for desktop
+  $(document).ready(function(){
+    $("p").hover(function(){
+      $(this).css("background-color", "yellow");
+      }, function(){
+      $(this).css("background-color", "pink");
+    });
+  });
 
-  $('.selectedProductsCategoryFilter li').click(function(){
+  // Selected product catagory: use categorySelected()
+  $('.selected-products-category-filter li').click(function(){
     let buttonValue = $(this).data('category');
     categorySelected(buttonValue);
   });
@@ -114,11 +131,11 @@ $(document).ready(function(){
 
           // populate modal body
           $('#selectedProductModalView .modal-body').append(
-            `<img class="img-thumbnail" src="${product[i].productImageUrl}" alt="Image" style="width: 100%; height: auto">
+            `<img class="img-thumbnail extra-radius" src="${product[i].productImageUrl}" alt="Image" style="width: 100%; height: auto">
             <h3 class="">${product[i].businessName}</h3>
-            <h4 class="">${product[i].price}</h4>`,
+            <h4 class="">${product[i].price}</h4>,
+            <button type="button" class="btn btn-dark px-5 py-2 float-right rounded-pill">Buy</button>`
             $('#addCommentForm').show()   //Line By Vandy
-
           );//append end
 
           $('#selectedProductModalView').modal('toggle'); // show modal
@@ -141,7 +158,6 @@ $(document).ready(function(){
     console.log("productId: ", productId);
     selectedProductModalView(productId);
   });
-
 
   // Selected category link: Tapping a category link will navigate the user to the selected products view with only the specific category of items displayed
 
@@ -435,7 +451,7 @@ function showProfile(){
       type :'GET',
       dataType :'json',
       success : function(displayUser){
-        console.log(displayUser);
+        console.log(displayUser);          
         document.getElementById('displayProfile').innerHTML = "";
 
         for(let i=0; i<displayUser.length; i++){
@@ -804,6 +820,7 @@ $('#submitAddNewBtn').click(function(){
       console.log(addProduct);
       // addProduct = 'Item is already in database. Please try again!';
       // if (! addProduct) {
+
       if (!(addProduct == 'Item is already in database. Please try again!')) {
       // alert('added listing');
       Swal.fire({
@@ -818,7 +835,7 @@ $('#submitAddNewBtn').click(function(){
       $('.modal-backdrop').hide();
       displayListing();
       showProfile();
-
+        
       } else {
         //alert('Item is already in database. Please try again!');
         Swal.fire({

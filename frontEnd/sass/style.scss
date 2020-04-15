@@ -183,6 +183,12 @@
      display: inline-block;
    }
 
+//Kristine
+
+   .category-image {
+    display: none;
+  }
+
 
 
 }
@@ -192,6 +198,19 @@
   .flex-container {
     display: block;
   }
+
+//Kristine
+.catagory-button {
+  width: 320px;
+  height: 150px;
+  margin-right: 25px;
+  border: none;
+  font-family: $bodyff;
+  font-weight: bold;
+  font-size: 100px;
+  color: white;
+  background: none;
+}
 
 
 
@@ -203,23 +222,49 @@
 
 
 
-/* Kristine's code starts  */
+/**** Kristine's code starts here ****/
 
-.products {
-  &__image {
-      border-radius: 16px;
-      overflow: hidden;
-  }
+//homeview styling starts here 
 
-  &__title {
-      color: red;
-      font-size: 18px;
-      font-weight: bold;
-  }
+.homeview-container {
+  background-image:url('../images/image-login-mobile-background.jpg');
 }
 
+.treatme-header {
+  padding: 16px;
+  background-color: $theme-accent-color;
+}
 
-/* Kristine's code finishes  */
+.treatme-logo {
+  width: 164px;
+  height: auto;
+}
+
+.catagory-button {
+  width: 320px;
+  height: 150px;
+  border: 5px solid $theme-sec-color-hot-pink;
+  border: 2px solid white;
+  font-family: $bodyff;
+  font-weight: bold;
+  font-size: 30px;
+  color: $theme-sec-color-hot-pink;
+  background: none;
+}
+
+.form-control {
+  width: 320px;
+  font-family: $bodyff;
+  border: none;
+  color: $theme-sec-color-hot-pink;
+}
+
+//Selected Products View starts here 
+.selectedProductsView {
+  background-color: $theme-primary-color-light-pink;
+}
+
+/**** Kristine's code finishes here ****/
 
 
 // code from Vandy start -->
@@ -229,7 +274,7 @@
 }
 
 .formText{
-  color : $theme-sec-color-hot-pink;
+  font-color : $theme-sec-color-hot-pink;
 }
 
 .loginBtnBackground{
