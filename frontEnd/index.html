@@ -29,6 +29,8 @@
 
 </head>
 <body>
+  <!-- header by all members - Vandy(login - out button), Pearly (profile icon)& Kristine (treatme logo) -->
+
   <div class="main-container">
     <!--  *****************   Kristine's code starts here  *****************  -->
     <div class="treatme-header">
@@ -191,8 +193,9 @@
                   <div id="business" class="my-3">
                     <label for="businessName" class="">Business Name: <span aria-hidden="true" class="required">*</span></label>
                     <input type="text" name="businessName" id="businessName" class="form-control rounded">
-                    <label for="businessAbout" class="">Business Abouts: </label>
+                    <label for="businessAbout" class="">Business Abouts: </label>                   
                     <textarea rows="4" cols="50" type="text" name="businessAbout" id="businessAbout" class="form-control rounded" value=""></textarea>
+                    <input type="text" id="defaultProfileImg" name="defaultProfileImg" class="form-control rounded-pill invisible" value="https://drive.google.com/thumbnail?id=1pzSfhPX_Pf85c3ScMGpivyLKVvlxg0hd">
                   </div>
                   <button type="submit" class="btn bg-dark text-white rounded-pill btn-lg my-4 makeCenter">Create my account</button>
                 </form>
@@ -260,42 +263,66 @@
 <!--code from Vandy end here -->
 
 
-
   <!-- *************  code from Pearly start ****************** -->
 
 
- <!-- profile icons  -->
-
-  <nav class="float-right mr-5">
+  <!-- profile icons by Pearly -->
+  <nav id="profileIcon" class="float-right mr-5">
     <i class="fas fa-user-circle foat-right mx-5"></i>
-  </nav>
+  </nav> <!-- by Pearly -->
 
-  <div id="profile-page" class="profile-container-size container-bg-color pt-5">
+<!-- filter and sort button by Pearly -->
+  <div class="filter-sort-container mx-5 my-5">
+      <div class="row w-100">
+      <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12 mb-3">
+         <select id="filterDropdown" class="custom-select my-dropdown text-white rounded-pill font-style pl-4 mr-5">
+             <option selected>Filter</option>
+             <option value="Chocolate">Chocolate</option>
+             <option value="Vanilla">Vanilla</option>
+             <option value="Caramel">Caramel</option>
+             <option value="Strawberry">Strawberry</option>
+             <option value="Berry">Berry</option>
+         </select>
+      </div>
+        <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12">
+         <select id="sortDropdown" class="custom-select col-sm-6 col-md-12 col-lg-12 my-dropdown text-white rounded-pill font-style pl-4">
+             <option selected>Sort Price</option>
+             <option value="one">$ Low to High</option>
+             <option value="two">$ High to Low</option>
+         </select>
+       </div>
+       </div>
+      <div id="viewSortList" class="row pt-5"></div>
+ </div>   <!-- by Pearly -->
 
-    <div class="user-container pt-5 mt-5">
+
+ <!-- Profile page section start -->
+  <div id="profilePage" class="profile-container-size container-bg-color pt-5">
+    <div class="user-container pt-5 pr-3 mt-5">
         <div id="displayProfile"></div>
     </div>
 
-    <!-- dipslay listing item -->
-    <!-- <div class="listing-container container">
-        <div id="listingCard" class="row">
-        </div>
-    </div> -->
 
      <!-- display selling and buying tab listing -->
-      <!-- <div id="tabs">
-        <ul>
-          <li><a href="#listingCard">Sell Listing</a></li>
-          <li><a href="#tabs-2">Buy Listing</a></li>
+      <div id="tab">
+        <ul class="nav d-flex justify-content-start mb-3 container">
+          <li>
+            <button id="sellingTab" type="button" class="btn btn-link text-color mx-2"><u>Selling Listing</u></button>
+          </li>
+          <li>
+            <button id="buyingTab" type="button" class="btn btn-link text-color mx-2"><u>Buying Listing</u></button>
+          </li>
         </ul>
-        <div class="listing-container container">
+
+        <div id="sellCart" class="buying-listing-container container">
           <div id="listingCard" class="row">
           </div>
         </div>
-        <div id="tabs-2">
-          <p>You currently don't have any buy items! </p>
+
+        <div id="buyCart" class="selling-listing-container container">
+          <p class="py-5">You currently don't have any buy items! </p>
         </div>
-      </div> -->
+      </div>
 
 
     <!-- edit user profile modal -->
@@ -366,30 +393,28 @@
       </div>
     </div> <!-- edit user profile modal end -->
 
-    <!-- show listing modal -->
-    <div class="modal fade" id="showListingModal" tabindex="-1" role="dialog" aria-labelledby="showListingModal" aria-hidden="true">
-      <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content container-bg-color">
-          <div class="modal-header">
-            <h5 class="modal-title font-weight-bold font-style">Edit Listing</h5>
-            <button type="button" id="showModalClose" class="close my-close-btn-style" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body pl-5">
-            <div id="listingCardEdit" class="row mx-auto">
-            </div>
-          </div>
-          <div class="modal-footer d-flex justify-content-center">
-             <nav class="text-center">
-               <i id="addProductBtn" class="fas fa-plus-circle" data-toggle="modal" data-target="#addNewListingModal"></i>
-               <p class="font-style">Add new listing</p>
-             </nav>
-            <!-- <button id="addProductBtn" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#addNewListingModal">Add Product</button> -->
-          </div>
+</div>
+<!-- profile page section end -->
+
+
+ <!-- show listing product at profile page -->
+  <div id="showListingSection" class="container-bg-color py-5">
+      <div class="header-title container d-flex justify-content-between">
+        <h4 class="font-style, font-weight-bold my-5">Edit Listing</h4>
+        <div class="my-5">
+          <button id="backToProfile" type="submit" class="btn text-white my-btn-style rounded-pill hover-effect mb-3">Back to profile</button>
         </div>
       </div>
-    </div> <!-- show listing modal end -->
+      <div class="content-listing container">
+        <div id="listingCardEdit" class="row"></div>
+      </div>
+      <div class="footer-listing d-flex justify-content-center my-5">
+         <nav class="text-center">
+           <i id="addProductBtn" class="fas fa-plus-circle" data-toggle="modal" data-target="#addNewListingModal"></i>
+           <p class="font-style">Add new listing</p>
+         </nav>
+      </div>
+
 
     <!-- add new product modal -->
     <div class="modal fade" id="addNewListingModal" tabindex="-1" role="dialog" aria-labelledby="addNewListingModal" aria-hidden="true">
@@ -408,37 +433,47 @@
             </div>
             <form id="addListingForm" class="container-sm container-md container-lg container-xl bg-white py-5 px-5 rounded dropshadow">
               <div class="listing-category-container mb-2">
-                <label for="addProductCategory" class="col-sm-12 col-form-label text-color">Category:</label>
+                <label for="addProductCategory" class="col-sm-12 col-form-label text-color">Category: <span aria-hidden="true" class="required">*</span></label>
                 <div class="product-category-option">
                   <select name="group" id="addProductCategory" class="col-sm-12 form-control rounded-pill border-color">
-                    <option selected>Select Category</option>
+                    <option selected></option>
                     <option value="cake">Cake</option>
                     <option value="donut">Donut</option>
-                    <option value="accessories">Accessories</option>
+                    <option value="cookies">Cookies</option>
                   </select>
                 </div>
               </div>
               <div class="listing-name-container mb-2">
-                <label for="addProductName" class="col-sm-12 col-form-label text-color">Product Name:</label>
-                <input type="text" id="addProductName" class="col-sm-12 form-control rounded-pill border-color" name="addProductName">
+                <label for="addProductName" class="col-sm-12 col-form-label text-color">Product Name: <span aria-hidden="true" class="required">*</span></label>
+                <input type="text" id="addProductName" class="col-sm-12 form-control rounded-pill border-color" name="addProductName" required>
               </div>
               <div class="listing-flavour-container mb-2">
-                <label for="addProductFlavour" class="col-sm-12 col-form-label text-color">Flavour:</label>
-                <input type="text" id="addProductFlavour" class="col-sm-12 form-control rounded-pill border-color" name="addProductFlavour">
+                <label for="addProductFlavour" class="col-sm-12 col-form-label text-color">Flavour: <span aria-hidden="true" class="required">*</span></label>
+                <!-- <input type="text" id="addProductFlavour" class="col-sm-12 form-control rounded-pill border-color" name="addProductFlavour" required> -->
+                <div class="product-flavour-option">
+                  <select name="group" id="addProductFlavour" class="col-sm-12 form-control rounded-pill border-color">
+                    <option selected></option>
+                    <option value="Chocolate">Chocolate</option>
+                    <option value="Vanilla">Vanilla</option>
+                    <option value="Caramel">Caramel</option>
+                    <option value="Strawberry">Strawberry</option>
+                    <option value="Berry">Berry</option>
+                  </select>
+                </div>
               </div>
               <div class="listing-desc-container mb-2">
-                <label for="addProductDesc" class="col-sm-12 col-form-label text-color">Description:</label>
+                <label for="addProductDesc" class="col-sm-12 col-form-label text-color">Description: <span aria-hidden="true" class="required">*</span></label>
                 <textarea id="addProductDesc" class="col-sm-12 form-control extra-radius border-color" rows="3"></textarea>
               </div>
               <div class="listing-price-container mb-2">
-                <label for="addProductPrice" class="col-sm-12 col-form-label text-color">Price: $ </label>
-                <input type="number" id="addProductPrice" class="col-sm-12 form-control rounded-pill border-color" name="addProductPrice">
+                <label for="addProductPrice" class="col-sm-12 col-form-label text-color">Price: $  <span aria-hidden="true" class="required">*</span></label>
+                <input type="number" id="addProductPrice" class="col-sm-12 form-control rounded-pill border-color" name="addProductPrice" required>
               </div>
               <div class="listing-image-container extra-radius border-color d-flex flex-column mt-4 mb-2 pt-3">
                 <i class="fas fa-camera text-center"></i>
-                <label for="addProductImage" class="col-sm-12 col-form-label text-color text-center">Upload Picture:</label>
+                <label for="addProductImage" class="col-sm-12 col-form-label text-color text-center">Upload Picture: <span aria-hidden="true" class="required">*</span></label>
                 <div class="justify-content-center mt-2">
-                  <input type="text" id="addProductImage" class="col-sm-12 form-control border-color" name="addProductImage">
+                  <input type="text" id="addProductImage" class="col-sm-12 form-control border-color" name="addProductImage" required>
                 </div>
               </div>
             </form>
@@ -470,10 +505,9 @@
               <div class="product-category-container mb-2">
                 <label for="updateProductCategory" class="col-sm-12 col-form-label text-color">Category:</label>
                 <select name="group" id="updateProductCategory" class="col-sm-12 form-control rounded-pill border-color">
-                  <option selected>Select Category</option>
                   <option value="cake">Cake</option>
                   <option value="donut">Donut</option>
-                  <option value="accessories">Accessories</option>
+                  <option value="cookies">Cookies</option>
                 </select>
               </div>
               <div class="product-name-container mb-2">
@@ -482,14 +516,23 @@
               </div>
               <div class="product=flavour-container mb-2">
                 <label for="updateProductFlavour" class="col-sm-12 col-form-label text-color">Flavour:</label>
-                  <input type="text" id="updateProductFlavour" class="col-sm-12 form-control rounded-pill border-color" name="updateProductFlavour">
+                  <!-- <input type="text" id="updateProductFlavour" class="col-sm-12 form-control rounded-pill border-color" name="updateProductFlavour"> -->
+                  <div class="product-flavour-option">
+                    <select name="group" id="addProductFlavour" class="col-sm-12 form-control rounded-pill border-color">
+                      <option value="Chocolate">Chocolate</option>
+                      <option value="Vanilla">Vanilla</option>
+                      <option value="Caramel">Caramel</option>
+                      <option value="Strawberry">Strawberry</option>
+                      <option value="Berry">Berry</option>
+                    </select>
+                  </div>
               </div>
               <div class="product-desc-container mb-2">
                 <label for="updateProductDesc" class="col-sm-12 col-form-label text-color">Description:</label>
                 <textarea id="updateProductDesc" class="col-sm-12 form-control extra-radius border-color" rows="3"></textarea>
               </div>
               <div class="product-price-container mb-2">
-                <label for="updateProductPrice" class="col-sm-12 col-form-label text-color">Price:</label>
+                <label for="updateProductPrice" class="col-sm-12 col-form-label text-color">Price: $</label>
                 <input type="number" id="updateProductPrice" class="col-sm-12 form-control rounded-pill border-color" name="updateProductPrice">
               </div>
             </form>
@@ -522,19 +565,20 @@
       </div>
     </div>
     <!-- delete product modal end -->
+</div> <!-- show listing section end -->
 
 
-</div>
+
+<!-- **************************** code from Pearly end here  =========== -->
 
 
-<!-- **************************** code from Pearly end here -->
+
+
 
 
 
 <!-- ***Vandy*** -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>

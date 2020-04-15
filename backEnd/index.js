@@ -103,7 +103,7 @@ app.get('/allProducts/cat=:category', (req,res)=>{
       res.send("There's no product in this category")
     }
   }).catch(err => res.send(err));
-}); // end of get product by user id
+}); // end of get product by category
 
 
 //get user by user id
@@ -118,6 +118,21 @@ app.get('/user/u=:id', (req,res)=>{
     }
   }).catch(err => res.send(err));
 }); // end of get user by user id
+
+
+//get product by flavour
+app.get('/allProducts/flavour=:flavour', (req,res)=>{
+  const pFlavour = req.params.flavour;
+  Product.find({flavour:pFlavour}, (err, result)=>{
+    if(result.length> 0){
+      res.send(result)
+    }
+    else{
+      res.send("There's no product in this flavour")
+    }
+  }).catch(err => res.send(err));
+}); // end of get product by flavour
+
 
 
 // code from Pearly end here
