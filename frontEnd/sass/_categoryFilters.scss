@@ -1,15 +1,16 @@
-.homeCategoryFilter {
 
-}
+/**** Kristine's code starts here ****/
 
-.selectedProductsCategoryFilter {
+
+// <!-- Filter for categories -->
+.selected-products-category-filter {
     margin: 0;
     padding: 0;
     list-style: none;
 
     li {
         display: inline-block;
-        margin-right: 16px;
+        margin-right: 20px;
         color: $theme-sec-color-hot-pink;
         cursor: pointer;
 
@@ -27,3 +28,7 @@
         }
     }
 }
+
+
+
+/**** Kristine's code finishes here ****/

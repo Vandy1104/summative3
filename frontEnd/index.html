@@ -20,26 +20,27 @@
   <!-- icons from fontawesome -->
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-
   <!-- link to bootstrap css -->
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <!-- link to own stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-
 </head>
 <body>
   <div class="main-container">
     <!--  *****************   Kristine's code starts here  *****************  -->
+    <div class="main-navigation">
     <div class="treatme-header">
-      <!-- Principles: has two states - logged in, logged out -->
-      <div id="logo"><h1 id="treatme">Treatme</h1></div>
-      <!-- homepage nav bar start -->
-      <nav id="navLoggedIn" class="navbar navbar-light bg-light justify-content-between">
-      </nav>
+    <!-- Principles: has two states - logged in, logged out -->
+      <img id="treatme" class="treatme-logo" src="images/image-treatme-donut-logo.png" alt="treatme-logo">
     </div>
+    <!-- Search bar -->
+    <div class="search-bar container w-75 w-lg-100">
+      <input type="text" class="form-control extra-radius" placeholder="Type your search here" aria-label="search" aria-describedby="button-addon2">
+      <div class="input-group-append"></div>
+        <button class="search" type="button" id="searchButton"></button>
+      </div>
+    </div>  
     <!-- homepage nav bar finishes -->
 
     <!-- homepage body start -->
@@ -48,64 +49,49 @@
       <div id="views">
 
         <!-- Home view -->
-        <div id="homeView">
-          <div class="container">
-            <h2>Home</h2>
-              <div class="homeCategoryFilter my-5">
-                <button id="cakeButton" value="cake" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">Cake</button><br>
-                <button id="donutButton" value="donut" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">Donut</button><br>
-                <button id="accessoriesButton" value="accessories" class="py-4 px-3 text-center btn-lg rounded-pill manipBtn" type="button" name="button">Accessories</button>
+        <div id="homeView" class="homeview-container">
+          <div class="container d-flex justify-content-center py-5">
+            
+               <!-- home-category-filter -->
+               <div class="category-image ml-5 extra-radius ">
+                <img src="images/image-cake-desktop.jpg" alt=“image description” class=“landing-image”>
               </div>
-              
-              <div class="products">
-                <!-- populate with products from db -->
-    
-                <!--TODO: Style productCard and add to index.js
-                  <div class="productCard">
-                  <div class="productCard__image">
-                    <img src="{img_url}" alt="{title}">
-                  </div>
-                  <div class="productCard__title">
-                    {title}
-                  </div>
-                  <div class="productCard__price">
-                    ${price}.00
-                  </div>
+
+              <div class="home-category-filter">
+                <div class="catagory-home extra-radius pt-3 ml-2">
+                  <button id="cakeButton" value="cake" class="catagory-button extra-radius ml-3 " type="button" name="button">Cakes</button><br>
                 </div>
-                -->
+                <div class="catagory-home extra-radius mt-3 ml-2">
+                  <button id="donutButton" value="donut" class="catagory-button extra-radius ml-3 mt-4" type="button" name="button">Donuts</button><br>
+                </div>
+                <div class="catagory-home extra-radius mt-3 ml-2">
+                  <button id="cookiesButton" value="cookies" class="catagory-button extra-radius ml-3 mt-4" type="button" name="button">Cookies</button>
+                </div>  
               </div>
           </div>
         </div>
-
+        
         <!-- Select products view -->
-        <div id="selectedProductsView">
+        <div id="selectedProductsView" class="selectedProductsView ">
           <div class="container">
-            <!-- TODO: create function to make filter for categories to work -->
-            <ul class="selectedProductsCategoryFilter">
-              <li data-category="cake">Cakes</li>
-              <li data-category="donut">Donuts</li>
-              <li data-category="accessories">Accessories</li>
-            </ul>
-            <h2>Selected products</h2>
-              <div class="products">
-                <!-- populate with products from db -->
+            </div>
+            
+            <!-- Filter for categories -->
+            <div class="selected-products-category-filter-container">
+              <ul class="selected-products-category-filter ml-4 h4">
+                <li data-category="cake">Cakes</li>
+                <li data-category="donut">Donuts</li>
+                <li data-category="cookies">Cookies</li>
+              </ul>
+            </div>
 
-                <!--TODO: Style productCard and add to index.js
-                  <div class="productCard">
-                  <div class="productCard__image">
-                    <img src="{img_url}" alt="{title}">
-                  </div>
-                  <div class="productCard__title">
-                    {title}
-                  </div>
-                  <div class="productCard__price">
-                    ${price}.00
-                  </div>
-                </div>
-                -->
+            <!-- populates all the products on the product veiw -->
+            <div class="container"> 
+              <div class="products row">
+                <!-- populate with products from db  -->
               </div>
+            </div> 
 
-             <!--TODO: Convert modal to a view  -->
               <!-- Selected product modal start -->
               <div id="selectedProductModalView" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -117,23 +103,20 @@
                         </button>
                     </div>
                       <div class="modal-body">
+                        
                           <!-- populate with product information from db -->
                       </div>
                       <!-- <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div> -->
+                   </div> -->
                   </div>
                 </div>
               </div>
               <!-- Selected product modal end -->
-
           </div>     
         </div>  
       </div>
-
     </div>
-  </div>
+  <!-- </div> -->
 
 
   <!--  *****************   Kristine code finishes here  *****************  -->
@@ -522,13 +505,12 @@
 <!-- ***Vandy*** -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="config.json"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 <script src="js/script.js"></script>
 
 <!-- Vandy ends here -->

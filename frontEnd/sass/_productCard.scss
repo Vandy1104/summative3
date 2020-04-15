@@ -1,12 +1,36 @@
-.productCard {
-    &__image {
-        border-radius: 16px;
-        overflow: hidden;
-    }
+/**** Kristine's code starts here ****/
 
-    &__title {
-        color: red;
+.productCard {
+        margin-top: 25px;
+        // background-color: white;
+        border-color: pink;
+        border: 5px;
+        width: 200px;
+        height: 325px;
+
+    &__businessName {
+        color: $theme-sec-color-hot-pink;
         font-size: 18px;
         font-weight: bold;
+        margin-left: 10px;
+        margin-top: 15px;
+    }
+
+    &__productName{
+        color: $theme-sec-color-hot-pink;
+        font-size: 14px;
+        font-weight: bold;
+        margin-left: 10px;
+        margin-top: 3px;
+    }
+
+    &__price{
+        color: $theme-sec-color-hot-pink;
+        font-size: 14px;
+        font-weight: bold;
+        margin-left: 10px;
+        margin-top: 3px;
     }
 }
+
+/**** Kristine's code finishes here ****/
