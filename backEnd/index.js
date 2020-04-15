@@ -9,7 +9,7 @@ const User = require('./models/user.js'); //this refers to the structure for use
 const Product = require('./models/product.js'); //this refers to the structure for product ojects
 const Comment = require('./models/comment.js'); //this refers to the structure for comment ojects
 
-const port = 8080; //set server port
+const port = 3000; //set server port
 
 //connect to db
 
@@ -47,7 +47,7 @@ app.use((req,res,next)=>{
 app.get('/', (req, res) => res.send('Hello World!'));
 
 // add new comment
-app.post('/addComment', (req,res)=> {
+app.post('/addComment/p=:id', (req,res)=> {
       const productComment = new Comment({
         _id : new mongoose.Types.ObjectId,
         message : req.body.message,
@@ -66,8 +66,8 @@ app.post('/addComment', (req,res)=> {
 // get comment by product id
 app.get('/allComments/p=:id', (req,res)=> {
   const idParam = req.params.id;
-  Comment.find({product_id:idParam},(err, result)=>{
-    if(result.length> 0){
+  Comment.find({product_id:idParam}, (err, result)=>{
+    if(result.length > 0) {
       res.send(result)
     }
     else{
@@ -82,7 +82,7 @@ app.get('/allComments/p=:id', (req,res)=> {
 app.get('/allProducts/u=:id', (req,res)=>{
   const idParam = req.params.id;
   Product.find({user_id:idParam}, (err, result)=>{
-    if(result.length> 0){
+    if(result.length > 0) {
       res.send(result)
     }
     else{
@@ -103,7 +103,7 @@ app.get('/allProducts/cat=:category', (req,res)=>{
       res.send("There's no product in this category")
     }
   }).catch(err => res.send(err));
-}); // end of get product by user id
+}); // end of get product by category
 
 
 //get user by user id
@@ -118,6 +118,21 @@ app.get('/user/u=:id', (req,res)=>{
     }
   }).catch(err => res.send(err));
 }); // end of get user by user id
+
+
+//get product by flavour
+app.get('/allProducts/flavour=:flavour', (req,res)=>{
+  const pFlavour = req.params.flavour;
+  Product.find({flavour:pFlavour}, (err, result)=>{
+    if(result.length> 0){
+      res.send(result)
+    }
+    else{
+      res.send("There's no product in this flavour")
+    }
+  }).catch(err => res.send(err));
+}); // end of get product by flavour
+
 
 
 // code from Pearly end here
