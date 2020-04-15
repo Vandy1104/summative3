@@ -18,7 +18,7 @@ $.ajax({
 
 });
 
-$('#tabs').hide();
+
 $(document).ready(function(){
 
   // *********  code from Kristine start
@@ -46,7 +46,7 @@ $(document).ready(function(){
     $('*[data-category="' + selectedButtonValue + '"]').addClass('isSelected'); // https://stackoverflow.com/questions/2487747/selecting-element-by-data-attribute
 
     console.log("Selected category: ", selectedButtonValue);
-    
+
     $.ajax({
       url :`${url}/allProducts/cat=${selectedButtonValue}`,
       type :'GET',
@@ -64,7 +64,7 @@ $(document).ready(function(){
             <h4 class="">${displayProducts[i].price}</h4>
             </div>`
           ); // append end
-        }//for end 
+        }//for end
 
       },//success end
       error:function(){
@@ -126,7 +126,7 @@ $(document).ready(function(){
       error:function(){
         console.log('error: Cannot call api');
       }//closing error end
-      
+
     });//ajax end
   }//function end
 
@@ -190,6 +190,8 @@ $('#customRadio1').click(function(){
 		let confirmPassword = document.getElementById('confirmPassword').value;
     let businessName = document.getElementById('businessName').value;
     let businessAbout = document.getElementById('businessAbout').value;
+    let defaultProfileImg = document.getElementById('defaultProfileImg').value;
+
 
     console.log(newUsername, firstName, lastName, email, newPassword);
 		// Ensures that the user has made their passwords match
@@ -206,6 +208,7 @@ $('#customRadio1').click(function(){
 					type :'POST',
 					dataType : 'json',
 					data : {
+            profileImgUrl : defaultProfileImg,
 						username : newUsername,
             firstName : firstName,
             lastName : lastName,
@@ -294,21 +297,50 @@ $('#customRadio1').click(function(){
 
 // ******************************  code from Pearly start
 
+
+
+// edit listing section
+$('#showListingSection').hide();
+
+$('#buyCart').hide();
+
+// buying and selling tab listing hide and show
+$('#tab').hide();
+$('#showListingBtn').hide();
+
+$('#sellingTab').click(function(){
+  $('#buyCart').hide();
+  $('#sellCart').show();
+  $('#showListingBtn').show();
+});
+
+$('#buyingTab').click(function(){
+  $('#sellCart').hide();
+  $('#buyCart').show();
+  $('#showListingBtn').hide();
+});
+
+$('#backToProfile').click(function(){
+  $('#showListingSection').hide();
+  $('#profilePage').show();
+  displayListing();
+});
+
 // profile icon clicked
 $('nav i').on('click', function () {
+
+  document.getElementById('listingCard').innerHTML = "";
   showProfile();
 
 });
 
 
-// $( function() {
-//     $( "#tabs" ).tabs();
-//   } );
 
 // display user profile function
 function showProfile(){
    let uID = sessionStorage.uID;
    console.log(uID);
+   $('#tab').show();
 
    //display user information
     $.ajax({
@@ -322,7 +354,7 @@ function showProfile(){
         for(let i=0; i<displayUser.length; i++){
           document.getElementById('displayProfile').innerHTML +=
           ` <div class="container ml-4 col-md-12 col-lg-12 row">
-            <div class="flex-container col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <div class="flex-container text-center pr-5 col-sm-12 col-md-12 col-lg-6 col-xl-6">
             <img class="extra-radius profile-img-size" src="${displayUser[i].profileImgUrl}" alt="image"/>
             <h3 class="font-style text-color vertical-rl my-5 mx-3">${displayUser[i].firstName} ${displayUser[i].lastName}</h3>
             </div><br>
@@ -332,7 +364,7 @@ function showProfile(){
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
             <div class="col">
-            <button id="editProfileBtn" type="button" class="btn text-white my-btn-style rounded-pill hover-effect mr-5" data-index="${i}" data-toggle="modal" data-target="#editProfileModal">Edit Profile</button>
+            <button id="editProfileBtn" type="button" class="btn text-white my-btn-style rounded-pill hover-effect mt-3" data-index="${i}" data-toggle="modal" data-target="#editProfileModal">Edit Profile</button>
             </div>
             </div><br>
             <h4 class="font-style text-color font-weight-bold">Business Name</h4>
@@ -343,7 +375,7 @@ function showProfile(){
             <br>
             <h4 class="font-style text-color font-weight-bold">Email</h4>
             <h6 class="font-style mb-5 pb-5">${displayUser[i].email}</h6>
-            <button id="showListingBtn" type="button" class="btn text-white my-btn-style rounded-pill hover-effect mb-3" data-toggle="modal" data-target="#showListingModal">Edit Listing</button>
+            <button id="showListingBtn" type="button" class="btn text-white my-btn-style rounded-pill hover-effect mb-3">Edit Selling Listing</button>
             </div>
             </div>`;
         }
@@ -367,11 +399,13 @@ function showProfile(){
           $('#editBusinessName').val(displayUser[index].businessName);
           $('#editBusinessAbout').val(displayUser[index].businessAbout);
         });
-
+        //$('#showListingBtn').hide();
         $('#showListingBtn').click(function(){
-          // $('#updateProductForm').hide();
+          $('#showListingSection').show();
+          $('#profilePage').hide();
           displayListing();
         });
+
 
       },//success
       error:function(){
@@ -390,13 +424,20 @@ function showProfile(){
 
         for(let j=0; j<displayProducts.length; j++){
         document.getElementById('listingCard').innerHTML +=
-          `<div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-3">
-           <img class="extra-radius mb-2" src="${displayProducts[j].productImageUrl}" alt="Image">
+          `<div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-5">
+           <div class="wrapper">
+           <img class="extra-radius mb-2 d-block w-100" src="${displayProducts[j].productImageUrl}" alt="Image">
+           <div class="overlay">
+           <p class="font-style overlay-text">${displayProducts[j].category}</p>
+           </div>
+           </div>
            <h6 class="font-weight-bold font-style text-color">${displayProducts[j].productName}</h6>
            <h6 class="font-weight-bold font-style text-color">$${displayProducts[j].price}</h6>
+           <i class="fas fa-bread-slice d-inline desktop-display-text"></i>
+           <p class="font-weight-bold font-style text-color desktop-display-text d-inline pr-5 mr-3">${displayProducts[j].description}</p>
            </div>`;
         }
-        $('#tabs').show();
+
       },//success
       error:function(){
         console.log('error: cannot call api');
@@ -407,7 +448,7 @@ function showProfile(){
 
 
 
-// function for display listing in modal - profile page
+// function for display listing in listing section - profile page
 function displayListing(){
   let uID = sessionStorage.uID;
   console.log(uID);
@@ -421,16 +462,22 @@ function displayListing(){
 
       for(let i=0; i<products.length; i++){
       document.getElementById('listingCardEdit').innerHTML +=
-        `<div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-4">
-          <div class="row">
-          <img class="extra-radius" src="${products[i].productImageUrl}" alt="Image">
-          </div>
-          <div class="row mt-2">
-          <button type="button" class="btn text-white my-btn-style rounded editProductBtn mx-2" data-id="${products[i]._id}" data-index="${i}" data-toggle="modal" data-target="#updateProductModal">Edit</button>
-          <button type="button" class="btn text-white my-btn-style rounded deleteProductBtn mx-2" data-id="${products[i]._id}" data-index="${i}" data-toggle="modal" data-target="#deleteProductModal">Delete</button>
-          </div>
-          </div>`;
+          `<div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-4 pl-5">
+           <div class="row">
+           <div class="wrapper">
+           <img class="extra-radius d-block w-100" src="${products[i].productImageUrl}" alt="Image">
+           <div class="overlay">
+           <p class="font-weight-bold font-style overlay-text">${products[i].productName} <br> $ ${products[i].price}</p>
+           </div>
+           </div>
+           </div>
+           <div class="row">
+           <button type="button" class="btn btn-link text-color editProductBtn mx-2" data-id="${products[i]._id}" data-index="${i}" data-toggle="modal" data-target="#updateProductModal"><span>Edit</span></button>
+           <button type="button" class="btn btn-link text-color deleteProductBtn mx-2 " data-id="${products[i]._id}" data-index="${i}" data-toggle="modal" data-target="#deleteProductModal">Delete</button>
+           </div>
+           </div>`;
       }
+
 
       $('.editProductBtn').click(function(){
         let index = $(this).attr('data-index');
@@ -447,7 +494,8 @@ function displayListing(){
         $('#updateProductDesc').val(products[index].description);
         $('#updateProductPrice').val(products[index].price);
         $('#updateProductImage').val(products[index].productImageUrl);
-        $('#showListingModal').hide();
+        //$('#showListingModal').hide();
+        $('#showListingModal').modal('hide');
       });
 
       $('.deleteProductBtn').click(function(){
@@ -461,10 +509,12 @@ function displayListing(){
          <br>
          <h4 class="text-color font-style">Would you like to delete this product?</h4>`;
 
-         $('#showListingModal').hide();
+         $('#showListingModal').modal('hide');
          deleteProduct();
 
       });
+
+
 
     },//success
     error:function(){
@@ -477,18 +527,18 @@ function displayListing(){
 
 $('#updateProductClose').click(function(){
    $('.modal-backdrop').hide();
-   $('#showListingModal').hide();
+   $('#showListingModal').modal('hide');
 });
 
 $('#deleteProductClose').click(function(){
    $('.modal-backdrop').hide();
-   $('#showListingModal').hide();
+   $('#showListingModal').modal('hide');
 });
 
 $('#cancelBtn').click(function(){
-   $('#deleteProductModal').hide();
+   $('#deleteProductModal').modal('hide');
    $('.modal-backdrop').hide();
-   $('#showListingModal').hide();
+   $('#showListingModal').modal('hide');
 });
 
 
@@ -507,7 +557,12 @@ $('#updateProfileBtn').click(function(){
   console.log(fName, lName, email, bName, bAbout, uID);
 
   if (profileImg == '' || fName == '' || lName == '' || email == '' || password == '' || bName == '' || bAbout == ''){
-    alert('Please enter all details');
+    // alert('Please enter all details');
+    Swal.fire(
+      'Missing Information?',
+      'Please enter all details?',
+      'question'
+    );
   } else {
 
     $.ajax({
@@ -524,9 +579,16 @@ $('#updateProfileBtn').click(function(){
         },
       success : function(data){
         console.log(data);
-        alert('your profile has been updated!');
-        $('#editProfileModal').hide();
+        // alert('your profile has been updated!');
+        Swal.fire({
+            icon: 'success',
+            title: 'Your profile has been updated',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        $('#editProfileModal').modal('hide');
         $('.modal-backdrop').hide();
+        showProfile();
       },//success
       error:function(){
         console.log('error: cannot call api');
@@ -554,7 +616,12 @@ $('#submitUpdateBtn').click(function(){
   console.log(uCategory, uProductName, uFlavour, uDesc, uPrice, uImage);
 
   if (uCategory == '' || uProductName == '' || uFlavour == '' || uDesc == '' || uPrice == '' || uImage == ''){
-    alert('Please enter all details');
+    // alert('Please enter all details');
+    Swal.fire(
+      'Missing Information?',
+      'Please enter all details?',
+      'question'
+    );
   } else {
 
     $.ajax({
@@ -572,15 +639,15 @@ $('#submitUpdateBtn').click(function(){
         console.log(data);
         //alert('your product listing has been updated!');
         Swal.fire({
-            position: 'top-end',
             icon: 'success',
-            title: 'Your work has been saved',
+            title: 'Your product listing has been updated',
             showConfirmButton: false,
             timer: 1500
           });
-        $('#updateProductModal').hide();
+        $('#updateProductModal').modal('hide');
         $('.modal-backdrop').hide();
-        //displayListingProfile();
+        displayListing();
+        showProfile();
       },//success
       error:function(){
         console.log('error: cannot call api');
@@ -591,10 +658,6 @@ $('#submitUpdateBtn').click(function(){
 });//update Product (Edit product Form) function
 
 
-// close bootstrap backdrop
-// $('#editModalClose').click(function(){
-//  $('.modal-backdrop').hide();
-// });
 
 // open add new listing form
 $('#addProductBtn').click(function(){
@@ -607,7 +670,7 @@ $('#addProductBtn').click(function(){
 
 //close add new form, back to edit lisitng display modal
  $('#addNewModalClose').click(function(){
-  // $('#editListingModal').show();
+  $('#showListingModal').modal('hide');
   $('.modal-backdrop').hide();
  });
 
@@ -627,7 +690,12 @@ $('#submitAddNewBtn').click(function(){
   console.log(category, bName, productName, productFlavour, productDesc, productPrice, productImage ,uID);
 
   if (category == '' || productName == '' || productFlavour == '' || productDesc == '' || productPrice == '' || productImage == '' || uID == '' ){
-    alert('Please enter all details');
+    //alert('Please enter all details');
+    Swal.fire(
+      'Missing Information?',
+      'Please enter all details.',
+      'question'
+    );
   } else {
 
   $.ajax({
@@ -650,15 +718,28 @@ $('#submitAddNewBtn').click(function(){
       // addProduct = 'Item is already in database. Please try again!';
       // if (! addProduct) {
       if (!(addProduct == 'Item is already in database. Please try again!')) {
-      alert('added listing');
-      $('#addNewListingModal').hide();
-      $('#showListingModal').hide();
+      // alert('added listing');
+      Swal.fire({
+          icon: 'success',
+          title: 'Added new listing',
+          showConfirmButton: false,
+          timer: 1500
+        });
+
+      $('#addNewListingModal').modal('hide');
+      $('#showListingModal').modal('hide');
       $('.modal-backdrop').hide();
+      displayListing();
       showProfile();
 
       } else {
-        alert('Item is already in database. Please try again!');
-
+        //alert('Item is already in database. Please try again!');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Item name is already in database. Please try another name!',
+            showConfirmButton: false,
+            timer: 1500
+          });
       }
       $('#addProductCategory').val('');
       $('#addProductName').val('');
@@ -690,21 +771,68 @@ function deleteProduct(){
        },
        success : function(data){
          console.log(data);
-         alert('your product has been deleted!');
-         $('#deleteProductModal').hide();
-         $('#showListingModal').hide();
+        // alert('your product has been deleted!');
+        Swal.fire({
+            icon: 'success',
+            title: 'Your product has been deleted',
+            showConfirmButton: false,
+            timer: 1500
+          });
+         $('#deleteProductModal').modal('hide');
+         $('#showListingModal').modal('hide');
          $('.modal-backdrop').hide();
+         displayListing();
          showProfile();
 
        },
        error:function(err){
          console.log('error: cannot call api');
-       }
+       } //error
        });//ajax
     });
 } //function for delete project end
 
 
+
+// filter dropdown clicked
+document.getElementById('filterDropdown').addEventListener('click',function(){
+
+    console.log('filterDropdown clicked');
+    let flavour = $(this).val();
+    filterFlavour(flavour);
+    console.log(flavour);
+    filterFlavour(flavour);
+
+});
+
+// filter function
+function filterFlavour(chosenFlavour){
+  console.log(chosenFlavour);
+
+
+  $.ajax({
+    url :`${url}/allProducts/flavour=${chosenFlavour}`,
+    type :'GET',
+    dataType :'json',
+    success : function(displayProducts){
+
+        document.getElementById('viewSortList').innerHTML = "";
+        for(let i=0; i<displayProducts.length; i++) {
+        document.getElementById('viewSortList').innerHTML +=
+        `<div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-5" data-productid="${displayProducts[i]._id}">
+        <img class="extra-radius" src="${displayProducts[i].productImageUrl}" alt="Image">
+        <h3 class="">${displayProducts[i].businessName}</h3>
+        <h4 class="">${displayProducts[i].productName}</h4>
+        <h4 class="">${displayProducts[i].price}</h4>
+        </div>`;
+      }//for end
+
+    },//success end
+    error:function(){
+      console.log('error: Cannot call api');
+    } //error
+  });//ajax end
+}
 
 
 // ************************  code from Pearly end
