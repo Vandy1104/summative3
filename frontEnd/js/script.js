@@ -46,7 +46,7 @@ $(document).ready(function(){
     $('*[data-category="' + selectedButtonValue + '"]').addClass('isSelected'); // https://stackoverflow.com/questions/2487747/selecting-element-by-data-attribute
 
     console.log("Selected category: ", selectedButtonValue);
-    
+
     $.ajax({
       url :`${url}/allProducts/cat=${selectedButtonValue}`,
       type :'GET',
@@ -64,7 +64,7 @@ $(document).ready(function(){
             <h4 class="">${displayProducts[i].price}</h4>
             </div>`
           ); // append end
-        }//for end 
+        }//for end
 
       },//success end
       error:function(){
@@ -102,6 +102,7 @@ $(document).ready(function(){
       type :'GET',
       dataType :'json',
       success : function(product){
+
         $('#exampleModalLongTitle').html(""); // clear exampleModalLongTitle
         $('#selectedProductModalView .modal-body').html(""); // clear modal body
 
@@ -115,7 +116,9 @@ $(document).ready(function(){
           $('#selectedProductModalView .modal-body').append(
             `<img class="img-thumbnail" src="${product[i].productImageUrl}" alt="Image" style="width: 100%; height: auto">
             <h3 class="">${product[i].businessName}</h3>
-            <h4 class="">${product[i].price}</h4>`
+            <h4 class="">${product[i].price}</h4>`,
+            $('#addCommentForm').show()   //Line By Vandy
+
           );//append end
 
           $('#selectedProductModalView').modal('toggle'); // show modal
@@ -126,8 +129,10 @@ $(document).ready(function(){
       error:function(){
         console.log('error: Cannot call api');
       }//closing error end
-      
+
     });//ajax end
+    addComment(productId);    // Line By Vandy
+    allComments(productId);  // Line By Vandy
   }//function end
 
   // Product cards: Click event
@@ -149,21 +154,19 @@ $(document).ready(function(){
 
 console.log(sessionStorage);
 
+if (sessionStorage.uID) {
+    console.log('You are logged in');
+    $('#loginBtn').hide();
+    $('#logoutBtn').show();
+    $('#registerBtn').hide();
 
 
-  //sessionStorage.clear();
-
-
-  	// Login Status
-  	function checkLoginStatus(){
-  		if(sessionStorage.getItem('uID')){
-  		// add logout button
-  			document.getElementById('logoutUserBtnContainer').innerHTML =
-  			`<button id="logoutBtn" class="btn btn-outline-danger rounded-pill">Logout</button>`;
-  		} else{
-  			console.log('No user logged in');
-  		}
-  	}
+  } else {
+    console.log('Please login');
+    $('#logoutBtn').hide();
+    $('#loginBtn').show();
+    $('#registerBtn').show();
+  }
 
 
   // Register user form submission
@@ -196,7 +199,7 @@ $('#customRadio1').click(function(){
 		if(newPassword !== confirmPassword){
 			alert('Ensure your passwords are matching');
 		} else{
-			// Sets the password to the one that the user has inputted
+			// Sets the password to the one that the user has input
 			newPassword = confirmPassword;
 			if((newUsername === '') || (firstName === '') || (lastName === '') || (email === '') || (newPassword === '')|| (confirmPassword === '')){
 				alert('Please enter all details');
@@ -228,9 +231,13 @@ $('#customRadio1').click(function(){
 		}
 	});     //Register ends
 
+
   //login
+
 	$('#loginForm').submit(function(){
 		event.preventDefault();
+    $('#logoutBtn').hide();
+
     let username = $('#username').val();
     let password = $('#password').val();
 		console.log(username, password);
@@ -249,26 +256,26 @@ $('#customRadio1').click(function(){
 
 				success : function(user){
 			    console.log(user);
-          //alert('Congrats you are logged in');
           if (user == 'user not found. Please register'){
-				    alert('user not found. Please enter correct data or register a new user');
+				    Swal.fire('user not found. please enter correct data or register a new user');
+            $('#username').val('');
+  					$('#password').val('');
 			    } else if (user == 'not authorized'){
-					alert('Please try with correct details');
+					Swal.fire('Please try with correct details');
 					$('#username').val('');
 					$('#password').val('');
 			    } else{
 			    	$('#loginUserModal').modal('hide');
+            $('#logoutBtn').show();
+            $('#loginBtn').hide();
+            $('#registerBtn').hide();
 					sessionStorage.setItem('uID',user._id);
 					sessionStorage.setItem('username', user.username);
 					sessionStorage.setItem('email',user.email);
 					console.log(sessionStorage);
+          Swal.fire('Login successful');
 			    }
-				checkLoginStatus();
-				logoutBtnClick();
-        $('#loginBtn').hide();
-        $('#registerBtn').hide();
-
-			  }, // success
+			   }, // success
 			  error : function(){
 				console.log('error: cannot call api');
 			  } // error
@@ -278,15 +285,95 @@ $('#customRadio1').click(function(){
 
 
   // Logout function called inside of login form submission
-  	function logoutBtnClick(){
-  		$('#logoutBtn').on('click', function(){
+  	// function logoutBtnClick(){
+  		$('#logoutBtn').click(function(){
   			sessionStorage.clear();
+        console.log('Please login');
   			// Removes priviledges from page
-  			document.getElementById('logoutUserBtnContainer').innerHTML = '';
+        $('#logoutBtn').hide();
         $('#loginBtn').show();
         $('#registerBtn').show();
   		});//logout Button functionality ends here
-  	}
+
+// add comment start here
+    var dateString = new Date();
+    dateString = dateString.toUTCString();
+    dateString = dateString.split(' ').slice(0, 4).join(' ');
+    console.log(dateString);
+    var date = dateString;
+    console.log(date);
+      $('#addCommentForm').hide();
+      function addComment(productId){
+        $('#addCommentForm').submit(function(){
+          event.preventDefault();
+          let message = document.getElementById('message').value;
+          let postby = sessionStorage.username;
+          let date = dateString;
+          let user_id = sessionStorage.uID;
+          let pID = productId;
+          console.log(date);
+         //display add comment box
+          $.ajax({
+            url :`${url}/addComment/p=${productId}`,
+            type :'POST',
+            data :{
+              message : message,
+              postby  : postby,
+              date    : date,
+              user_id : user_id,
+              product_id : pID
+              },
+            success : function(addComment){
+              console.log(addComment);
+              Swal.fire('Sent');
+                $('#message').val(' ');
+                allComments(productId);
+            },//success
+            error:function(){
+              console.log('error: cannot call api');
+            }//error
+          });//ajax end
+        }); //Submit function ends
+      }
+
+//allComments start here
+
+function allComments(productId){
+    $.ajax({
+      url :`${url}/allComments/p=${productId}`,
+      type :'GET',
+      dataType :'json',
+      success : function(allComments){
+        console.log(allComments);
+        $('#commentShow').html("");
+        //document.getElementById('selectedProductModalView').innerHTML= '';
+        for(let i=0; i<allComments.length; i++){
+          $('#commentShow').append(
+          `<div class="comment-outline col-12 my-2 py-2 px-3 mx-2">
+                  <div class="row">
+                    <div class="col-6">
+                      <h6 class="font-style text-color mb-3 font-italic">${allComments[i].postby}</h6>
+                    </div>
+                    <div class="col-6">
+                      <h6 class="font-style text-color mb-3 font-italic">${allComments[i].date}</h6>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                     <div class="col">
+                        <h6 class="font-style mb-3 font-italic">${allComments[i].message}</h6>
+                        </div>
+                    </div>
+            </div>`
+          ); //append ends
+        } //for ends
+      },//success
+      error:function(){
+        console.log('error: cannot call api');
+      }//error
+    });//ajax end
+
+} // allComments function ends
 
 //  code from Vandy end
 
