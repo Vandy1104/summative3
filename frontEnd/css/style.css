@@ -288,19 +288,6 @@
   height: auto;
 }
 
-.catagory-button {
-  width: 320px;
-  height: 150px;
-  border: 5px solid #F7268A;
-  border: 2px solid white;
-  font-family: "Noto Sans", sans-serif;
-  font-weight: bold;
-  font-size: 30px;
-  color: #F7268A;
-  background: none;
-}
-
-
 .selectedProductsView {
   background-color: #FFDFF0;
 }
@@ -322,7 +309,6 @@
 .comment-outline {
   border: 2px solid #FFDFF0;
 }
-
 
 .register-border {
   border: 2px solid #F7268A;
