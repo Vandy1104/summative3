@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- favicon -->
-  <link rel="shortcut icon" type="image/png" href="images/image-treatme-logo-design-long.png">
+  <link rel="shortcut icon" type="image/png" href="images/image-treatme-donut-logo.png">
 
   <title>Treat Me</title>
 
@@ -28,23 +28,51 @@
 
 </head>
 <body>
-  <!-- header by all members - Vandy(login - out button), Pearly (profile icon)& Kristine (treatme logo) -->
 
-  <div class="main-container">
-    <!--  *****************   Kristine's code starts here  *****************  -->
-    <div class="main-navigation">
-    <div class="treatme-header">
-    <!-- Principles: has two states - logged in, logged out -->
-      <img id="treatme" class="treatme-logo" src="images/image-treatme-donut-logo.png" alt="treatme-logo">
-    </div>
-    <!-- Search bar -->
-    <div class="search-bar container w-75 w-lg-100">
-      <input type="text" class="form-control extra-radius" placeholder="Type your search here" aria-label="search" aria-describedby="button-addon2">
-      <div class="input-group-append"></div>
-        <button class="search" type="button" id="searchButton"></button>
+
+
+  <!-- header by all members - Vandy(login - out button), Pearly (profile icon)& Kristine (search bar, treatme logo) -->
+
+  <div class="main-navigation treatme-header">
+    <div class="d-flex justify-content-between mr-4">
+      <div class="treatme-logo">
+      <!-- Principles: has two states - logged in, logged out -->
+         <img id="treatme" class="treatme-logo" src="images/image-treatme-donut-logo.png" alt="treatme-logo">
       </div>
-    </div>  
-    <!-- homepage nav bar finishes -->
+
+        <div class="icon-container row">
+          <!-- profile icons -->
+          <nav class="mr-5 col-4">
+            <i id="profileIcon" class="fas fa-user-circle mx-5"></i>
+          </nav>
+          <!-- <div class="mr-5 col-4">
+            <button id="profileIcon" type="button" class="btn text-color btn-hover rounded-pill mr-3">Profile</button>
+          </div> -->
+          <!-- Login & Register buttons on Homepage -->
+          <div class="col-4">
+          <div class="mr-3 mt-2 d-flex justify-content-center">
+            <button id="loginBtn" data-toggle="modal" data-target="#loginUserModal" type="button" class="btn text-color btn-hover rounded-pill mr-3">Login</button>
+            <button id="registerBtn" data-toggle="modal" data-target="#exampleModal" type="button" class="btn register-border btn-hover text-color rounded-pill">Register</button>
+            <button id="logoutBtn" class="btn register-border text-color rounded-pill btn-hover ml-5">Logout</button>
+          </div>
+         </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Search bar -->
+      <div class="search-bar container my-4 w-75 w-md-100 w-lg-100">
+        <input type="text" class="form-control extra-radius" placeholder="Type your search here" aria-label="search" aria-describedby="button-addon2">
+        <div class="input-group-append"></div>
+      </div>
+    </div>
+  </div>
+  <!-- homepage nav bar finishes -->
+
+
+<!--  *****************   Kristine's code starts here  *****************  -->
+  <div id="homePage" class="main-container">
 
     <!-- homepage body start -->
     <div class="treatme-body">
@@ -54,48 +82,71 @@
         <!-- Home view -->
         <div id="homeView" class="homeview-container">
           <div class="container d-flex justify-content-center py-5">
-            
+
                <!-- home-category-filter -->
-               <div class="category-image ml-5 extra-radius ">
-                <img src="images/image-cake-desktop.jpg" alt=“image description” class=“landing-image”>
+               <div class="category-image ml-5 mr-5 pr-5">
+                <img class="extra-radius landing-image" src="images/image-cake-desktop.jpg" alt=“image description”>
               </div>
 
 
               <div class="home-category-filter">
                 <div class="catagory-home extra-radius pt-3 ml-2">
-                  <button id="cakeButton" value="cake" class="catagory-button extra-radius ml-3 " type="button" name="button">Cakes</button><br>
+                  <button id="cakeButton" value="cake" class="catagory-button cake-image extra-radius text-left ml-3 px-4" type="button" name="button">Cakes</button><br>
 
                 </div>
                 <div class="catagory-home extra-radius mt-3 ml-2">
-                  <button id="donutButton" value="donut" class="catagory-button extra-radius ml-3 mt-4" type="button" name="button">Donuts</button><br>
+                  <button id="donutButton" value="donut" class="catagory-button extra-radius donut-image text-left ml-3 pl-4 mt-4" type="button" name="button">Donuts</button><br>
                 </div>
                 <div class="catagory-home extra-radius mt-3 ml-2">
-                  <button id="cookiesButton" value="cookies" class="catagory-button extra-radius ml-3 mt-4" type="button" name="button">Cookies</button>
-                </div>  
+                  <button id="cookiesButton" value="cookies" class="catagory-button extra-radius cookies-image text-left ml-3 pl-4 mt-4" type="button" name="button">Cookies</button>
+                </div>
               </div>
           </div>
         </div>
-        
+
         <!-- Select products view -->
         <div id="selectedProductsView" class="selectedProductsView ">
-          <div class="container">
-            </div>
-            
+          <div class="row pt-5 pl-5">
+            <!-- filter and sort button by Pearly -->
+              <div class="filter-sort-container ml-3 col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                  <div class="row">
+                  <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12 mb-3">
+                     <select id="filterDropdown" class="custom-select my-dropdown text-white rounded-pill font-style pl-4 mr-1">
+                         <option selected>Filter</option>
+                         <option value="Chocolate">Chocolate</option>
+                         <option value="Vanilla">Vanilla</option>
+                         <option value="Caramel">Caramel</option>
+                         <option value="Strawberry">Strawberry</option>
+                         <option value="Berry">Berry</option>
+                     </select>
+                  </div>
+                    <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12">
+                     <select id="sortDropdown" class="custom-select col-sm-6 col-md-12 col-lg-12 my-dropdown text-white rounded-pill font-style pl-4">
+                         <option selected>Sort Price</option>
+                         <option value="one">$ Low to High</option>
+                         <option value="two">$ High to Low</option>
+                     </select>
+                   </div>
+                   </div>
+                  <!-- <div id="viewSortList" class="row pt-5"></div> -->
+             </div>   <!-- by Pearly -->
+
+
             <!-- Filter for categories -->
-            <div class="selected-products-category-filter-container">
+            <div class="selected-products-category-filter-container pt-3 ml-5 col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
               <ul class="selected-products-category-filter ml-4 h4">
                 <li data-category="cake">Cakes</li>
                 <li data-category="donut">Donuts</li>
                 <li data-category="cookies">Cookies</li>
               </ul>
             </div>
-
+          </div>
             <!-- populates all the products on the product veiw -->
-            <div class="container"> 
+            <div class="container">
               <div class="products row">
                 <!-- populate with products from db  -->
               </div>
-            </div> 
+            </div>
 
               <!-- Selected product modal start -->
               <div id="selectedProductModalView" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -108,7 +159,7 @@
                         </button>
                     </div>
                       <div class="modal-body">
-                        
+
                           <!-- populate with product information from db -->
                       </div>
                       <!-- <div class="modal-footer">
@@ -117,22 +168,18 @@
                 </div>
               </div>
               <!-- Selected product modal end -->
-          </div>     
-        </div>  
+          </div>
+        </div>
       </div>
     </div>
-  
+
 
 
   <!--  *****************   Kristine code finishes here  *****************  -->
 
 
   <!-- *********  code from Vandy start -->
-<!-- Login & Register buttons on Homepage -->
-<div class="mt-4 float-right mr-3">
-  <button id="loginBtn" data-toggle="modal" data-target="#loginUserModal" type="button" class="btn btn-outline-danger rounded-pill">Login</button>
-  <button id="registerBtn" data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-outline-danger rounded-pill">Register</button>
-</div>
+
 
         <!-- register form -->
 
@@ -149,25 +196,25 @@
           <div class="modal-body formText mx-5">
             <h3 class="mb-3">Enter your details</h3>
               <form id="registerForm" class="rounded-pill">
-                  <label for="newUsername" class=""> Username: <span aria-hidden="true" class="required">*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Username can't be changed)</span></label>
-                  <input type="text" id="newUsername" name="newUsername" class="form-control rounded-pill" required>
+                  <label for="newUsername" class="formText"> Username: <span aria-hidden="true" class="required">*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Username can't be changed)</span></label>
+                  <input type="text" id="newUsername" name="newUsername" class="form-control rounded-pill border-color" required>
                   <br>
-                  <label for="firstName" class=""> First Name: <span aria-hidden="true" class="required">*</span></label>
-                  <input type="text" id="firstName" name="firstName" class="form-control rounded-pill" required>
+                  <label for="firstName" class="formText"> First Name: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="text" id="firstName" name="firstName" class="form-control rounded-pill border-color" required>
                   <br>
-                  <label for="lastName" class=""> Last Name: <span aria-hidden="true" class="required">*</span></label>
-                  <input type="text" id="lastName" name="lastName" class="form-control rounded-pill" required>
+                  <label for="lastName" class="formText"> Last Name: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="text" id="lastName" name="lastName" class="form-control rounded-pill border-color" required>
                   <br>
-                  <label for="email" class=""> Email: <span aria-hidden="true" class="required">*</span></label>
-                  <input type="email" id="email" name="email" class="form-control rounded-pill" required>
+                  <label for="email" class="formText"> Email: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="email" id="email" name="email" class="form-control rounded-pill border-color" required>
                   <br>
-                  <label for="newPassword" class=""> Password: <span aria-hidden="true" class="required">*</span></label>
-                  <input type="password" name="newPassword" id="newPassword" class="form-control rounded-pill" required>
+                  <label for="newPassword" class="formText"> Password: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="password" name="newPassword" id="newPassword" class="form-control rounded-pill border-color" required>
                   <br>
-                  <label for="confirmPassword" class="">Confirm Password: <span aria-hidden="true" class="required">*</span></label>
-                  <input type="password" name="confirmPassword" id="confirmPassword" class="form-control rounded-pill" required>
+                  <label for="confirmPassword" class="formText">Confirm Password: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="password" name="confirmPassword" id="confirmPassword" class="form-control rounded-pill border-color" required>
                     <label for="radio" class="mt-3">Choose account type: <span aria-hidden="true" class="required">*</span></label><br>
-                    <div class="border rounded border-danger">
+                    <div class="border rounded border-color px-4 py-3">
                       <div class="custom-control custom-radio">
                         <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
                         <label class="custom-control-label" for="customRadio1"><b>Personal</b><br><p class="ml-3">Personal accounts allow you to purchase items from Treatme.</p></label>
@@ -179,10 +226,10 @@
                     </div>
                     <!-- Separate Div for Business Details - -->
                   <div id="business" class="my-3">
-                    <label for="businessName" class="">Business Name: <span aria-hidden="true" class="required">*</span></label>
-                    <input type="text" name="businessName" id="businessName" class="form-control rounded">
-                    <label for="businessAbout" class="">Business Abouts: </label>                   
-                    <textarea rows="4" cols="50" type="text" name="businessAbout" id="businessAbout" class="form-control rounded" value=""></textarea>
+                    <label for="businessName" class="formText">Business Name: <span aria-hidden="true" class="required">*</span></label>
+                    <input type="text" name="businessName" id="businessName" class="form-control rounded-pilled border-color">
+                    <label for="businessAbout" class="formText">Business Abouts: </label>
+                    <textarea rows="4" cols="50" type="text" name="businessAbout" id="businessAbout" class="form-control rounded border-color" value=""></textarea>
                     <input type="text" id="defaultProfileImg" name="defaultProfileImg" class="form-control rounded-pill invisible" value="https://drive.google.com/thumbnail?id=1pzSfhPX_Pf85c3ScMGpivyLKVvlxg0hd">
                   </div>
                   <button type="submit" class="btn bg-dark text-white rounded-pill btn-lg my-4 makeCenter">Create my account</button>
@@ -211,10 +258,10 @@
             <h3 class="mb-3">Enter your details</h3>
               <form id="loginForm" class="rounded-pill">
                   <label for="username" class=""> Username <span aria-hidden="true" class="required">*</span></label>
-                  <input type="text" id="username" name="username" class="form-control rounded-pill" required>
+                  <input type="text" id="username" name="username" class="form-control rounded-pill border-color" required>
                   <br>
                   <label for="password" class=""> Password <span aria-hidden="true" class="required">*</span></label>
-                  <input type="password" name="password" id="password" class="form-control rounded-pill" required>
+                  <input type="password" name="password" id="password" class="form-control rounded-pill border-color" required>
                   <br>
                     <button type="submit" class="btn loginBtnBackground text-white rounded-pill btn-lg my-2 mx-auto btn-block makeCenter">Login</button>
               </form>
@@ -228,10 +275,7 @@
     </div>
 		<!-- Login form end -->
 
-    <!-- Logout button container -->
-				<div class="row my-2">
-            <button id="logoutBtn" class="btn btn-outline-danger rounded-pill">Logout</button>
-				</div>
+
 
 
     <!-- Add Comment Form -->
@@ -254,34 +298,6 @@
   <!-- *************  code from Pearly start ****************** -->
 
 
-  <!-- profile icons by Pearly -->
-  <nav id="profileIcon" class="float-right mr-5">
-    <i class="fas fa-user-circle foat-right mx-5"></i>
-  </nav> <!-- by Pearly -->
-
-<!-- filter and sort button by Pearly -->
-  <div class="filter-sort-container mx-5 my-5">
-      <div class="row w-100">
-      <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12 mb-3">
-         <select id="filterDropdown" class="custom-select my-dropdown text-white rounded-pill font-style pl-4 mr-5">
-             <option selected>Filter</option>
-             <option value="Chocolate">Chocolate</option>
-             <option value="Vanilla">Vanilla</option>
-             <option value="Caramel">Caramel</option>
-             <option value="Strawberry">Strawberry</option>
-             <option value="Berry">Berry</option>
-         </select>
-      </div>
-        <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12">
-         <select id="sortDropdown" class="custom-select col-sm-6 col-md-12 col-lg-12 my-dropdown text-white rounded-pill font-style pl-4">
-             <option selected>Sort Price</option>
-             <option value="one">$ Low to High</option>
-             <option value="two">$ High to Low</option>
-         </select>
-       </div>
-       </div>
-      <div id="viewSortList" class="row pt-5"></div>
- </div>   <!-- by Pearly -->
 
 
  <!-- Profile page section start -->
@@ -293,7 +309,7 @@
 
      <!-- display selling and buying tab listing -->
       <div id="tab">
-        <ul class="nav d-flex justify-content-start mb-3 container">
+        <ul class="nav d-flex justify-content-start mb-3 container pl-5">
           <li>
             <button id="sellingTab" type="button" class="btn btn-link text-color mx-2"><u>Selling Listing</u></button>
           </li>
@@ -302,7 +318,7 @@
           </li>
         </ul>
 
-        <div id="sellCart" class="buying-listing-container container">
+        <div id="sellCart" class="buying-listing-container container pl-5">
           <div id="listingCard" class="row">
           </div>
         </div>
@@ -437,7 +453,6 @@
               </div>
               <div class="listing-flavour-container mb-2">
                 <label for="addProductFlavour" class="col-sm-12 col-form-label text-color">Flavour: <span aria-hidden="true" class="required">*</span></label>
-                <!-- <input type="text" id="addProductFlavour" class="col-sm-12 form-control rounded-pill border-color" name="addProductFlavour" required> -->
                 <div class="product-flavour-option">
                   <select name="group" id="addProductFlavour" class="col-sm-12 form-control rounded-pill border-color">
                     <option selected></option>
@@ -504,7 +519,6 @@
               </div>
               <div class="product=flavour-container mb-2">
                 <label for="updateProductFlavour" class="col-sm-12 col-form-label text-color">Flavour:</label>
-                  <!-- <input type="text" id="updateProductFlavour" class="col-sm-12 form-control rounded-pill border-color" name="updateProductFlavour"> -->
                   <div class="product-flavour-option">
                     <select name="group" id="addProductFlavour" class="col-sm-12 form-control rounded-pill border-color">
                       <option value="Chocolate">Chocolate</option>

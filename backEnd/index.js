@@ -9,7 +9,7 @@ const User = require('./models/user.js'); //this refers to the structure for use
 const Product = require('./models/product.js'); //this refers to the structure for product ojects
 const Comment = require('./models/comment.js'); //this refers to the structure for comment ojects
 
-const port = 3000; //set server port
+const port = 8080; //set server port
 
 //connect to db
 
