@@ -116,8 +116,8 @@
   display : flex;
   justify-content: flex-start;
 }
-//  style listing form end
 
+//  style listing form end
 .hover-effect:hover {
   color : $theme-primary-color-light-pink;
 }
@@ -126,7 +126,7 @@
   color: $theme-accessories-accent-color;
 }
 
-// style product card display - profile page
+// style product card display overlay - profile page
 .wrapper {
   position: relative;
   width: 80%;
@@ -170,7 +170,7 @@
   width: 150px;
 
 }
-//
+
 
 
 // mobile display only
@@ -243,7 +243,7 @@
     font-weight: bold;
     font-size: 100px;
     color: white;
-    // background-image:url('../images/image-login-mobile-background.jpg');
+
   }
 
   .cake-image, .donut-image, .cookies-image {
@@ -279,13 +279,6 @@
 }
 
 
-
-// .form-control {
-//   width: 320px;
-//   font-family: $bodyff;
-//   border: none;
-//   color: $theme-sec-color-hot-pink;
-// }
 
 //Selected Products View starts here
 .selectedProductsView {
