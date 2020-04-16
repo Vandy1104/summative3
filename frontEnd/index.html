@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="C2C Niche Market App">
+  <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+  <meta name="author" content="Team VPK">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- favicon -->
+  <link rel="shortcut icon" type="image/png" href="images/image-treatme-donut-logo.png">
+
+  <title>Treat Me</title>
+
+  <!-- link to google font -->
+  <link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
+
+  <!-- icons from fontawesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+  <!-- link to bootstrap css -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <!-- link to own stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body>
+
+
+
+  <!-- header by all members - Vandy(login - out button), Pearly (profile icon)& Kristine (search bar, treatme logo) -->
+
+  <div class="main-navigation treatme-header">
+    <div class="d-flex justify-content-between mr-4">
+      <div class="treatme-logo">
+      <!-- Principles: has two states - logged in, logged out -->
+         <img id="treatme" class="treatme-logo" src="images/image-treatme-donut-logo.png" alt="treatme-logo">
+      </div>
+
+        <div class="icon-container row">
+          <!-- profile icons -->
+          <nav class="mr-5 col-4">
+            <i id="profileIcon" class="fas fa-user-circle mx-5"></i>
+          </nav>
+          <!-- Login & Register buttons on Homepage -->
+          <div class="col-4">
+          <div class="mr-3 mt-2 d-flex justify-content-center">
+            <button id="loginBtn" data-toggle="modal" data-target="#loginUserModal" type="button" class="btn text-color btn-hover rounded-pill mr-3">Login</button>
+            <button id="registerBtn" data-toggle="modal" data-target="#exampleModal" type="button" class="btn register-border btn-hover text-color rounded-pill">Register</button>
+            <button id="logoutBtn" class="btn register-border text-color rounded-pill btn-hover ml-5">Logout</button>
+          </div>
+         </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Search bar -->
+      <div class="search-bar container my-4 w-75 w-md-100 w-lg-100">
+        <input type="text" class="form-control extra-radius" placeholder="Type your search here" aria-label="search" aria-describedby="button-addon2">
+        <div class="input-group-append"></div>
+      </div>
+    </div>
+  </div>
+  <!-- homepage nav bar finishes -->
+
+
+<!--  *****************   Kristine's code starts here  *****************  -->
+  <div id="homePage" class="main-container">
+
+    <!-- homepage body start -->
+    <div class="treatme-body">
+      <!-- Approach: faux paging (no JS routes yet) Principles: Dynamic view content. Content is updated based on button taps and specific filter settings -->
+      <div id="views">
+
+        <!-- Home view -->
+        <div id="homeView" class="homeview-container">
+          <div class="container d-flex justify-content-center py-5">
+
+               <!-- home-category-filter -->
+               <div class="category-image ml-5 mr-5 pr-5">
+                <img class="extra-radius landing-image" src="images/image-cake-desktop.jpg" alt=“image description”>
+              </div>
+
+
+              <div class="home-category-filter">
+                <div class="catagory-home extra-radius pt-3 ml-2">
+                  <button id="cakeButton" value="cake" class="catagory-button cake-image extra-radius text-left ml-3 px-4" type="button" name="button">Cakes</button><br>
+
+                </div>
+                <div class="catagory-home extra-radius mt-3 ml-2">
+                  <button id="donutButton" value="donut" class="catagory-button extra-radius donut-image text-left ml-3 pl-4 mt-4" type="button" name="button">Donuts</button><br>
+                </div>
+                <div class="catagory-home extra-radius mt-3 ml-2">
+                  <button id="cookiesButton" value="cookies" class="catagory-button extra-radius cookies-image text-left ml-3 pl-4 mt-4" type="button" name="button">Cookies</button>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <!-- Select products view -->
+        <div id="selectedProductsView" class="selectedProductsView ">
+          <div class="row pt-5 pl-5">
+            <!-- filter and sort button by Pearly -->
+              <div class="filter-sort-container ml-3 col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                  <div class="row">
+                  <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12 mb-3">
+                     <select id="filterDropdown" class="custom-select my-dropdown text-white rounded-pill font-style pl-4 mr-1">
+                         <option selected>Filter</option>
+                         <option value="Chocolate">Chocolate</option>
+                         <option value="Vanilla">Vanilla</option>
+                         <option value="Caramel">Caramel</option>
+                         <option value="Strawberry">Strawberry</option>
+                         <option value="Berry">Berry</option>
+                     </select>
+                  </div>
+                    <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12">
+                     <select id="sortDropdown" class="custom-select col-sm-6 col-md-12 col-lg-12 my-dropdown text-white rounded-pill font-style pl-4">
+                         <option selected>Sort Price</option>
+                         <option value="one">$ Low to High</option>
+                         <option value="two">$ High to Low</option>
+                     </select>
+                   </div>
+                   </div>
+                  <!-- <div id="viewSortList" class="row pt-5"></div> -->
+             </div>   <!-- by Pearly -->
+
+
+            <!-- Filter for categories -->
+            <div class="selected-products-category-filter-container pt-3 ml-5 col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+              <ul class="selected-products-category-filter ml-4 h4">
+                <li data-category="cake">Cakes</li>
+                <li data-category="donut">Donuts</li>
+                <li data-category="cookies">Cookies</li>
+              </ul>
+            </div>
+          </div>
+            <!-- populates all the products on the product veiw -->
+            <div class="container">
+              <div class="products row">
+                <!-- populate with products from db  -->
+              </div>
+            </div>
+
+              <!-- Selected product modal start -->
+              <div id="selectedProductModalView" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                      <div class="modal-body">
+
+                          <!-- populate with product information from db -->
+                      </div>
+                      <!-- <div class="modal-footer">
+                   </div> -->
+                  </div>
+                </div>
+              </div>
+              <!-- Selected product modal end -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  <!--  *****************   Kristine code finishes here  *****************  -->
+
+
+  <!-- *********  code from Vandy start -->
+
+
+        <!-- register form -->
+
+    <!-- Modal -->
+    <div class="modal registerModal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title ml-5" id="exampleModalLabel">Register</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body formText mx-5">
+            <h3 class="mb-3">Enter your details</h3>
+              <form id="registerForm" class="rounded-pill">
+                  <label for="newUsername" class="formText"> Username: <span aria-hidden="true" class="required">*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Username can't be changed)</span></label>
+                  <input type="text" id="newUsername" name="newUsername" class="form-control rounded-pill border-color" required>
+                  <br>
+                  <label for="firstName" class="formText"> First Name: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="text" id="firstName" name="firstName" class="form-control rounded-pill border-color" required>
+                  <br>
+                  <label for="lastName" class="formText"> Last Name: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="text" id="lastName" name="lastName" class="form-control rounded-pill border-color" required>
+                  <br>
+                  <label for="email" class="formText"> Email: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="email" id="email" name="email" class="form-control rounded-pill border-color" required>
+                  <br>
+                  <label for="newPassword" class="formText"> Password: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="password" name="newPassword" id="newPassword" class="form-control rounded-pill border-color" required>
+                  <br>
+                  <label for="confirmPassword" class="formText">Confirm Password: <span aria-hidden="true" class="required">*</span></label>
+                  <input type="password" name="confirmPassword" id="confirmPassword" class="form-control rounded-pill border-color" required>
+                    <label for="radio" class="mt-3">Choose account type: <span aria-hidden="true" class="required">*</span></label><br>
+                    <div class="border rounded border-color px-4 py-3">
+                      <div class="custom-control custom-radio">
+                        <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadio1"><b>Personal</b><br><p class="ml-3">Personal accounts allow you to purchase items from Treatme.</p></label>
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadio2"><b>Business</b><br><p class="ml-3">Business account allows you to sell items on Treatme.</p></label>
+                      </div>
+                    </div>
+                    <!-- Separate Div for Business Details - -->
+                  <div id="business" class="my-3">
+                    <label for="businessName" class="formText">Business Name: <span aria-hidden="true" class="required">*</span></label>
+                    <input type="text" name="businessName" id="businessName" class="form-control rounded-pilled border-color">
+                    <label for="businessAbout" class="formText">Business Abouts: </label>
+                    <textarea rows="4" cols="50" type="text" name="businessAbout" id="businessAbout" class="form-control rounded border-color" value=""></textarea>
+                    <input type="text" id="defaultProfileImg" name="defaultProfileImg" class="form-control rounded-pill invisible" value="https://drive.google.com/thumbnail?id=1pzSfhPX_Pf85c3ScMGpivyLKVvlxg0hd">
+                  </div>
+                  <button type="submit" class="btn bg-dark text-white rounded-pill btn-lg my-4 makeCenter">Create my account</button>
+                </form>
+              </div>
+
+          <!-- <div class="modal-footer">
+
+          </div> -->
+
+        </div>
+      </div>
+    </div><!-- Register form ends -->
+
+    <!-- Login form -->
+    <div class="modal fade" id="loginUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title ml-5" id="exampleModalLabel">Login</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body formText mx-5">
+            <h3 class="mb-3">Enter your details</h3>
+              <form id="loginForm" class="rounded-pill">
+                  <label for="username" class=""> Username <span aria-hidden="true" class="required">*</span></label>
+                  <input type="text" id="username" name="username" class="form-control rounded-pill border-color" required>
+                  <br>
+                  <label for="password" class=""> Password <span aria-hidden="true" class="required">*</span></label>
+                  <input type="password" name="password" id="password" class="form-control rounded-pill border-color" required>
+                  <br>
+                    <button type="submit" class="btn loginBtnBackground text-white rounded-pill btn-lg my-2 mx-auto btn-block makeCenter">Login</button>
+              </form>
+            </div>
+            <!-- <div class="modal-footer">
+
+            </div> -->
+
+        </div>
+      </div>
+    </div>
+		<!-- Login form end -->
+
+
+
+
+    <!-- Add Comment Form -->
+        <form class="form-inline container" id="addCommentForm">
+            <h5 class="my-2 mx-auto text-color font-weight-bold">Ask the seller questions</h5><br>
+            <textarea rows="4" cols="50" class="form-control container extra-radius" id="message" placeholder="Type Comment"></textarea>
+            <button type="submit" class="btn w-75 loginBtnBackground text-white rounded-pill my-4 mx-auto btn-block">Send</button>
+            <div class="container">
+              <h6 class="my-2 mx-2 py-2 text-color">Comments :</h6>
+            <div id="commentShow" class="row"></div>
+          </div>
+        </form>
+
+    <!-- Add Comment Form ends -->
+
+
+<!--code from Vandy end here -->
+
+
+  <!-- *************  code from Pearly start ****************** -->
+
+
+
+
+ <!-- Profile page section start -->
+  <div id="profilePage" class="profile-container-size container-bg-color pt-5">
+    <div class="user-container pt-5 pr-3 mt-5">
+        <div id="displayProfile"></div>
+    </div>
+
+
+     <!-- display selling and buying tab listing -->
+      <div id="tab">
+        <ul class="nav d-flex justify-content-start mb-3 container pl-5">
+          <li>
+            <button id="sellingTab" type="button" class="btn btn-link text-color mx-2"><u>Selling Listing</u></button>
+          </li>
+          <li>
+            <button id="buyingTab" type="button" class="btn btn-link text-color mx-2"><u>Buying Listing</u></button>
+          </li>
+        </ul>
+
+        <div id="sellCart" class="buying-listing-container container pl-5">
+          <div id="listingCard" class="row">
+          </div>
+        </div>
+
+        <div id="buyCart" class="selling-listing-container container">
+          <p class="py-5">You currently don't have any buy items! </p>
+        </div>
+      </div>
+
+
+    <!-- edit user profile modal -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModal" aria-hidden="true">
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content form-bg-image">
+          <div class="modal-header bg-white">
+            <h4 class="modal-title font-weight-bold font-style">Edit Profile</h4>
+            <button type="button" class="close my-close-btn-style" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+            <div class="profile-container">
+              <div id="profileImg" class="text-center mb-2"></div>
+              <div class="username-container d-flex justify-content-center pl-5 mb-3">
+                <span><label for="usernameProfile" class="col-sm-12 col-form-label text-color pl-5">Username:</label></span>
+                <span><input type="text" id="usernameProfile" readonly class="form-control-plaintext text-color" name="usernameProfile"></span>
+              </div>
+            </div>
+            <form id="editProfileForm" class="container-sm container-md container-lg container-xl bg-white py-3 px-5 rounded dropshadow">
+               <div class="profile-img-container row">
+                 <label for="editProfileImage" class="col-sm-12 col-form-label text-color">Change Profile Image:</label>
+                 <input type="text" id="editProfileImage" class="col-sm-12 form-control rounded-pill border-color" name="editProfileImage">
+               </div>
+               <div class="detail-container row">
+                 <div class="account-container col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                   <div class="modal-title mt-5 mb-2">
+                     <h6 class="col-sm-12 font-weight-bold">Account Details</h6>
+                   </div>
+                   <div class="first-name-container mb-2">
+                      <label for="editFirstName" class="col-sm-12 col-form-label text-color">First Name:</label>
+                      <input type="text" id="editFirstName" class="col-sm-12 form-control rounded-pill border-color" name="editUsername">
+                    </div>
+                    <div class="last-name-container mb-2">
+                      <label for="editLastName" class="col-sm-12 col-form-label text-color">Last Name:</label>
+                      <input type="text" id="editLastName" class="col-sm-12 form-control rounded-pill border-color" name="editLastName">
+                    </div>
+                    <div class="email-container mb-2">
+                      <label for="editEmail" class="col-sm-12 col-form-label text-color">Email Address:</label>
+                      <input type="text" id="editEmail" class="col-sm-12 form-control rounded-pill border-color" name="editEmail">
+                    </div>
+                    <div class="password-container mb-2">
+                      <label for="editPassword" class="col-sm-12 col-form-label text-color">Password:</label>
+                      <input type="password" id="editPassword" class="col-sm-12 form-control rounded-pill border-color" name="editPassword">
+                    </div>
+                  </div>
+                  <div class="business-container col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <div class="modal-title mt-5 mb-2">
+                      <h6 class="col-sm-12 font-weight-bold">Business Details</h6>
+                    </div>
+                    <div class="business-name-container mb-2">
+                      <label for="editBusinessName" class="col-sm-12 col-form-label text-color">Business Name:</label>
+                      <input type="text" id="editBusinessName" class="col-sm-12 form-control rounded-pill border-color" name="editBusinessName">
+                    </div>
+                    <div class="business-about-container mb-2">
+                      <label for="editBusinessAbout" class="col-sm-12 col-form-label text-color">About:</label>
+                      <textarea id="editBusinessAbout" class="col-sm-12 form-control extra-radius border-color font-style" rows="5"></textarea>
+                    </div>
+                  </div>
+                </div>
+            </form>
+          </div>
+          <div class="d-flex justify-content-center py-4">
+            <button id="updateProfileBtn" type="submit" class="btn bg-dark text-white rounded-pill px-5 py-3 mb-3 border border-white font-style">Update Profile</button>
+          </div>
+        </div>
+      </div>
+    </div> <!-- edit user profile modal end -->
+
+</div>
+<!-- profile page section end -->
+
+
+ <!-- show listing product at profile page -->
+  <div id="showListingSection" class="container-bg-color py-5">
+      <div class="header-title container d-flex justify-content-between">
+        <h4 class="font-style, font-weight-bold my-5">Edit Listing</h4>
+        <div class="my-5">
+          <button id="backToProfile" type="submit" class="btn text-white my-btn-style rounded-pill hover-effect mb-3">Back to profile</button>
+        </div>
+      </div>
+      <div class="content-listing container">
+        <div id="listingCardEdit" class="row"></div>
+      </div>
+      <div class="footer-listing d-flex justify-content-center my-5">
+         <nav class="text-center">
+           <i id="addProductBtn" class="fas fa-plus-circle" data-toggle="modal" data-target="#addNewListingModal"></i>
+           <p class="font-style">Add new listing</p>
+         </nav>
+      </div>
+
+
+    <!-- add new product modal -->
+    <div class="modal fade" id="addNewListingModal" tabindex="-1" role="dialog" aria-labelledby="addNewListingModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content form-bg-image-2">
+          <div class="modal-header">
+            <h5 class="modal-title font-weight-bold font-style">Add New Listing</h5>
+            <button type="button" id="addNewModalClose" class="close my-close-btn-style" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+            <div class="business-name-container d-flex justify-content-center mb-2">
+              <span><label for="addbusinessName" class="col-sm-12 col-form-label text-color font-weight-bold font-style">Business Name:</label></span>
+              <span><input type="text" id="addbusinessName" readonly class="form-control-plaintext text-color w-100 font-weight-bold font-style" name="addbusinessName"></span>
+            </div>
+            <form id="addListingForm" class="container-sm container-md container-lg container-xl bg-white py-5 px-5 rounded dropshadow">
+              <div class="listing-category-container mb-2">
+                <label for="addProductCategory" class="col-sm-12 col-form-label text-color">Category: <span aria-hidden="true" class="required">*</span></label>
+                <div class="product-category-option">
+                  <select name="group" id="addProductCategory" class="col-sm-12 form-control rounded-pill border-color">
+                    <option selected></option>
+                    <option value="cake">Cake</option>
+                    <option value="donut">Donut</option>
+                    <option value="cookies">Cookies</option>
+                  </select>
+                </div>
+              </div>
+              <div class="listing-name-container mb-2">
+                <label for="addProductName" class="col-sm-12 col-form-label text-color">Product Name: <span aria-hidden="true" class="required">*</span></label>
+                <input type="text" id="addProductName" class="col-sm-12 form-control rounded-pill border-color" name="addProductName" required>
+              </div>
+              <div class="listing-flavour-container mb-2">
+                <label for="addProductFlavour" class="col-sm-12 col-form-label text-color">Flavour: <span aria-hidden="true" class="required">*</span></label>
+                <div class="product-flavour-option">
+                  <select name="group" id="addProductFlavour" class="col-sm-12 form-control rounded-pill border-color">
+                    <option selected></option>
+                    <option value="Chocolate">Chocolate</option>
+                    <option value="Vanilla">Vanilla</option>
+                    <option value="Caramel">Caramel</option>
+                    <option value="Strawberry">Strawberry</option>
+                    <option value="Berry">Berry</option>
+                  </select>
+                </div>
+              </div>
+              <div class="listing-desc-container mb-2">
+                <label for="addProductDesc" class="col-sm-12 col-form-label text-color">Description: <span aria-hidden="true" class="required">*</span></label>
+                <textarea id="addProductDesc" class="col-sm-12 form-control extra-radius border-color" rows="3"></textarea>
+              </div>
+              <div class="listing-price-container mb-2">
+                <label for="addProductPrice" class="col-sm-12 col-form-label text-color">Price: $  <span aria-hidden="true" class="required">*</span></label>
+                <input type="number" id="addProductPrice" class="col-sm-12 form-control rounded-pill border-color" name="addProductPrice" required>
+              </div>
+              <div class="listing-image-container extra-radius border-color d-flex flex-column mt-4 mb-2 pt-3">
+                <i class="fas fa-camera text-center"></i>
+                <label for="addProductImage" class="col-sm-12 col-form-label text-color text-center">Upload Picture: <span aria-hidden="true" class="required">*</span></label>
+                <div class="justify-content-center mt-2">
+                  <input type="text" id="addProductImage" class="col-sm-12 form-control border-color" name="addProductImage" required>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button id="submitAddNewBtn" type="submit" class="btn bg-dark text-white rounded-pill px-5 py-3 mb-3 border border-white font-style">Add New Listing</button>
+          </div>
+        </div>
+      </div>
+    </div> <!-- add new product modal end -->
+
+    <!-- update product modal -->
+    <div class="modal fade" id="updateProductModal" tabindex="-1" role="dialog" aria-labelledby="updateProductModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content form-bg-image-2">
+          <div class="modal-header">
+            <h5 class="modal-title font-weight-bold font-style">Update Listing</h5>
+            <button type="button" id="updateProductClose" class="close my-close-btn-style" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+            <form id="updateProductForm" class="container-sm container-md container-lg container-xl bg-white py-5 px-5 rounded dropshadow">
+              <div class="product-img-container mb-2">
+                <div id="productImg" class="text-center"></div>
+                <label for="updateProductImage" class="col-sm-12 col-form-label text-color">Upload Picture:</label>
+                <input type="text" id="updateProductImage" class="col-sm-12 form-control rounded-pill border-color" name="updateProductImage">
+              </div>
+              <div class="product-category-container mb-2">
+                <label for="updateProductCategory" class="col-sm-12 col-form-label text-color">Category:</label>
+                <select name="group" id="updateProductCategory" class="col-sm-12 form-control rounded-pill border-color">
+                  <option value="cake">Cake</option>
+                  <option value="donut">Donut</option>
+                  <option value="cookies">Cookies</option>
+                </select>
+              </div>
+              <div class="product-name-container mb-2">
+                <label for="updateProductName" class="col-sm-12 col-form-label text-color">Product Name:</label>
+                <input type="text" id="updateProductName" class="col-sm-12 form-control rounded-pill border-color" name="updateProductName">
+              </div>
+              <div class="product=flavour-container mb-2">
+                <label for="updateProductFlavour" class="col-sm-12 col-form-label text-color">Flavour:</label>
+                  <div class="product-flavour-option">
+                    <select name="group" id="addProductFlavour" class="col-sm-12 form-control rounded-pill border-color">
+                      <option value="Chocolate">Chocolate</option>
+                      <option value="Vanilla">Vanilla</option>
+                      <option value="Caramel">Caramel</option>
+                      <option value="Strawberry">Strawberry</option>
+                      <option value="Berry">Berry</option>
+                    </select>
+                  </div>
+              </div>
+              <div class="product-desc-container mb-2">
+                <label for="updateProductDesc" class="col-sm-12 col-form-label text-color">Description:</label>
+                <textarea id="updateProductDesc" class="col-sm-12 form-control extra-radius border-color" rows="3"></textarea>
+              </div>
+              <div class="product-price-container mb-2">
+                <label for="updateProductPrice" class="col-sm-12 col-form-label text-color">Price: $</label>
+                <input type="number" id="updateProductPrice" class="col-sm-12 form-control rounded-pill border-color" name="updateProductPrice">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button id="submitUpdateBtn" type="submit" class="btn bg-dark text-white rounded-pill px-5 py-3 mb-3 border border-white font-style">Update Listing</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- update product modal end -->
+
+    <!-- delete product modal -->
+    <div class="modal fade" id="deleteProductModal" tabindex="-1" role="dialog" aria-labelledby="deleteProductModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content container-bg-color">
+          <div class="modal-header">
+            <button type="button" id="deleteProductClose" class="close my-close-btn-style" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="deleteInformation" class="text-center"></div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button id="submitDeleteBtn" type="submit" class="btn text-white rounded-pill px-4 py-3 mb-3 my-btn-style">Yes, Delete Listing</button>
+            <button id="cancelBtn" type="submit" class="btn bg-dark text-white rounded-pill px-4 py-3 mb-3 border border-white font-style">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- delete product modal end -->
+</div> <!-- show listing section end -->
+
+
+
+<!-- **************************** code from Pearly end here  =========== -->
+
+
+
+<!-- ***Vandy*** -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="config.json"></script>
+<script src="js/script.js"></script>
+
+<!-- Vandy ends here -->
+
+</body>
+</html>
