@@ -148,6 +148,7 @@ $(document).ready(function(){
             <h4 class="">${product[i].price}</h4>
             <button id="submitComment" type="button" class="btn btn-dark px-5 py-2 float-right rounded-pill">Buy</button>`,
             $('#addCommentForm').show()   //Line By Vandy
+
           );//append end
 
           $('#selectedProductModalView').modal('toggle'); // show modal
