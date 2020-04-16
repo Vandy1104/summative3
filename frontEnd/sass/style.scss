@@ -79,7 +79,9 @@
 
 //  style listing form
 .fa-user-circle {
+//  display: none;
   @extend .fas;
+
 }
 
 .fa-user-circle:hover, {
@@ -139,7 +141,7 @@
   background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
   color: $theme-primary-color-light-pink;
   overflow: hidden;
-  width: 100%;
+  width: 75%;
   height: 0;
   transition: .5s ease;
   border-radius: 20px;
@@ -168,7 +170,7 @@
   width: 150px;
 
 }
-
+//
 
 
 // mobile display only
@@ -184,11 +186,43 @@
    }
 
 //Kristine
+   .catagory-button {
+     width: 320px;
+     height: 150px;
+     border: 5px solid $theme-sec-color-hot-pink;
+     border: 2px solid white;
+     font-family: $bodyff;
+     font-weight: bold;
+     font-size: 35px;
+     color: $theme-sec-color-hot-pink;
+     background: none;
+   }
+
 
    .category-image {
     display: none;
   }
 
+  .cake-image {
+    background-image:url('../images/image-cake-mobile-cut.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: 160px 4px;
+  }
+
+  .donut-image {
+    background-image:url('../images/image-donut-mobile-cut.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: right;
+  }
+
+  .cookies-image {
+    background-image:url('../images/image-cookie-mobile-cut.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: 170px 22px;
+  }
 
 
 }
@@ -199,20 +233,22 @@
     display: block;
   }
 
-//Kristine
-.catagory-button {
-  width: 320px;
-  height: 150px;
-  margin-right: 25px;
-  border: none;
-  font-family: $bodyff;
-  font-weight: bold;
-  font-size: 100px;
-  color: white;
-  background: none;
-}
+  //Kristine
+  .catagory-button {
+    width: 320px;
+    height: 150px;
+    margin-right: 25px;
+    border: none;
+    font-family: $bodyff;
+    font-weight: bold;
+    font-size: 100px;
+    color: white;
+    // background-image:url('../images/image-login-mobile-background.jpg');
+  }
 
-
+  .cake-image, .donut-image, .cookies-image {
+    background: none;
+  }
 
 }
 
@@ -224,10 +260,12 @@
 
 /**** Kristine's code starts here ****/
 
-//homeview styling starts here 
+//homeview styling starts here
 
 .homeview-container {
   background-image:url('../images/image-login-mobile-background.jpg');
+  width: 100%;
+  height: auto;
 }
 
 .treatme-header {
@@ -240,26 +278,16 @@
   height: auto;
 }
 
-.catagory-button {
-  width: 320px;
-  height: 150px;
-  border: 5px solid $theme-sec-color-hot-pink;
-  border: 2px solid white;
-  font-family: $bodyff;
-  font-weight: bold;
-  font-size: 30px;
-  color: $theme-sec-color-hot-pink;
-  background: none;
-}
 
-.form-control {
-  width: 320px;
-  font-family: $bodyff;
-  border: none;
-  color: $theme-sec-color-hot-pink;
-}
 
-//Selected Products View starts here 
+// .form-control {
+//   width: 320px;
+//   font-family: $bodyff;
+//   border: none;
+//   color: $theme-sec-color-hot-pink;
+// }
+
+//Selected Products View starts here
 .selectedProductsView {
   background-color: $theme-primary-color-light-pink;
 }
@@ -274,7 +302,7 @@
 }
 
 .formText{
-  font-color : $theme-sec-color-hot-pink;
+  color : $theme-sec-color-hot-pink;
 }
 
 .loginBtnBackground{
@@ -285,4 +313,11 @@
   border: 2px solid $theme-primary-color-light-pink;
 }
 
+.register-border {
+  border : 2px solid $theme-sec-color-hot-pink;
+}
+
+.btn-hover:hover {
+  color : white;
+}
 // code from Vandy end -->

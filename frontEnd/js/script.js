@@ -21,12 +21,15 @@ $.ajax({
 
 $(document).ready(function(){
 
+
   // *********  code from Kristine start
 
   // A function to hide all views except home view
   function showHomeView() {
     $('#views').children().hide();
     $('#homeView').show();
+    $('#profilePage').show();
+
   }
 
   showHomeView();
@@ -34,6 +37,8 @@ $(document).ready(function(){
   // Logo: Tapping the 'treatme' logo will navigate the user back to the home view
   $('#treatme').click(function() {
     showHomeView();
+    $('#homePage').show();
+    $('#profilePage').hide();
   });
 
   // Selected category link: Tapping a category link will navigate the user to the individual selected product view with only the specific category of item displayed
@@ -85,16 +90,23 @@ $(document).ready(function(){
   $('#cakeButton').click(function(){
     let buttonValue = $(this).val();
     categorySelected(buttonValue);
+  //  $('#profileIcon').show();
+    $('#profilePage').hide();
+
   });
 
   $('#donutButton').click(function(){
     let buttonValue = $(this).val();
     categorySelected(buttonValue);
+  //  $('#profileIcon').show();
+   $('#profilePage').hide();
   });
 
   $('#cookiesButton').click(function(){
     let buttonValue = $(this).val();
     categorySelected(buttonValue);
+  //  $('#profileIcon').show();
+    $('#profilePage').hide();
   });
 
   // hover function for desktop
@@ -134,8 +146,9 @@ $(document).ready(function(){
             `<img class="img-thumbnail extra-radius" src="${product[i].productImageUrl}" alt="Image" style="width: 100%; height: auto">
             <h3 class="">${product[i].businessName}</h3>
             <h4 class="">${product[i].price}</h4>
-            <button type="button" class="btn btn-dark px-5 py-2 float-right rounded-pill">Buy</button>`,
-            $('#addCommentForm').show()   //Line By Vandyy
+            <button id="submitComment" type="button" class="btn btn-dark px-5 py-2 float-right rounded-pill">Buy</button>`,
+            $('#addCommentForm').show()   //Line By Vandy
+
           );//append end
 
           $('#selectedProductModalView').modal('toggle'); // show modal
@@ -170,11 +183,14 @@ $(document).ready(function(){
 
 console.log(sessionStorage);
 
+
+
 if (sessionStorage.uID) {
     console.log('You are logged in');
     $('#loginBtn').hide();
     $('#logoutBtn').show();
     $('#registerBtn').hide();
+    $('#profileIcon').show();
 
 
   } else {
@@ -182,6 +198,7 @@ if (sessionStorage.uID) {
     $('#logoutBtn').hide();
     $('#loginBtn').show();
     $('#registerBtn').show();
+    $('#profielIcon').hide();
   }
 
 
@@ -256,7 +273,7 @@ $('#customRadio1').click(function(){
 	$('#loginForm').submit(function(){
 		event.preventDefault();
     $('#logoutBtn').hide();
-
+    $('#profileIcon').hide();
     let username = $('#username').val();
     let password = $('#password').val();
 		console.log(username, password);
@@ -288,6 +305,7 @@ $('#customRadio1').click(function(){
             $('#logoutBtn').show();
             $('#loginBtn').hide();
             $('#registerBtn').hide();
+            $('#profileIcon').show();
 					sessionStorage.setItem('uID',user._id);
 					sessionStorage.setItem('username', user.username);
 					sessionStorage.setItem('email',user.email);
@@ -312,6 +330,9 @@ $('#customRadio1').click(function(){
         $('#logoutBtn').hide();
         $('#loginBtn').show();
         $('#registerBtn').show();
+        $('#profilePage').hide();
+        $('#profileIcon').hide();
+        $('#homePage').show();
   		});//logout Button functionality ends here
 
 // add comment start here
@@ -353,8 +374,7 @@ $('#customRadio1').click(function(){
             }//error
           });//ajax end
         }); //Submit function ends
-      }
-
+}
 //allComments start here
 
 function allComments(productId){
@@ -397,14 +417,13 @@ function allComments(productId){
 //  code from Vandy end
 
 
+// ******************************* code from Pearly start
 
-// ******************************  code from Pearly start
-
-
+$('#profileIcon').hide();
+//$('#profilePage').hide();
 
 // edit listing section
 $('#showListingSection').hide();
-
 $('#buyCart').hide();
 
 // buying and selling tab listing hide and show
@@ -429,14 +448,16 @@ $('#backToProfile').click(function(){
   displayListing();
 });
 
-// profile icon clicked
-$('nav i').on('click', function () {
 
+// profile icon clicked
+// $('nav i').on('click', function () {
+$('#profileIcon').click(function(){
+  $('#homePage').hide();
   document.getElementById('listingCard').innerHTML = "";
+  $('#profilePage').show();
   showProfile();
 
 });
-
 
 
 // display user profile function
@@ -444,6 +465,7 @@ function showProfile(){
    let uID = sessionStorage.uID;
    console.log(uID);
    $('#tab').show();
+
 
    //display user information
     $.ajax({
@@ -507,6 +529,7 @@ function showProfile(){
           $('#showListingSection').show();
           $('#profilePage').hide();
           displayListing();
+
         });
 
 
@@ -529,15 +552,14 @@ function showProfile(){
         document.getElementById('listingCard').innerHTML +=
           `<div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-5">
            <div class="wrapper">
-           <img class="extra-radius mb-2 d-block w-100" src="${displayProducts[j].productImageUrl}" alt="Image">
+           <img class="img-thumbnail extra-radius mb-2 d-block w-75" src="${displayProducts[j].productImageUrl}" alt="Image">
            <div class="overlay">
            <p class="font-style overlay-text">${displayProducts[j].category}</p>
            </div>
            </div>
-           <h6 class="font-weight-bold font-style text-color">${displayProducts[j].productName}</h6>
-           <h6 class="font-weight-bold font-style text-color">$${displayProducts[j].price}</h6>
-           <i class="fas fa-bread-slice d-inline desktop-display-text"></i>
-           <p class="font-weight-bold font-style text-color desktop-display-text d-inline pr-5 mr-3">${displayProducts[j].description}</p>
+           <h4 class="productCard__businessName font-weight-bold font-style text-color">${displayProducts[j].productName}</h4>
+           <p class="productCard__productName font-style text-color desktop-display-text pr-5 mr-3 w-75">${displayProducts[j].description}</p>
+           <h6 class="productCard__price font-weight-bold font-style text-color">$${displayProducts[j].price}</h6>
            </div>`;
         }
 
@@ -568,14 +590,14 @@ function displayListing(){
           `<div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-4 pl-5">
            <div class="row">
            <div class="wrapper">
-           <img class="extra-radius d-block w-100" src="${products[i].productImageUrl}" alt="Image">
+           <img class="img-thumbnail extra-radius mb-2 d-block w-75" src="${products[i].productImageUrl}" alt="Image">
            <div class="overlay">
-           <p class="font-weight-bold font-style overlay-text">${products[i].productName} <br> $ ${products[i].price}</p>
+           <h4 class="font-weight-bold font-style overlay-text">${products[i].productName} <br> $ ${products[i].price}</h4>
            </div>
            </div>
            </div>
            <div class="row">
-           <button type="button" class="btn btn-link text-color editProductBtn mx-2" data-id="${products[i]._id}" data-index="${i}" data-toggle="modal" data-target="#updateProductModal"><span>Edit</span></button>
+           <button type="button" class="btn btn-link text-color editProductBtn" data-id="${products[i]._id}" data-index="${i}" data-toggle="modal" data-target="#updateProductModal"><span>Edit</span></button>
            <button type="button" class="btn btn-link text-color deleteProductBtn mx-2 " data-id="${products[i]._id}" data-index="${i}" data-toggle="modal" data-target="#deleteProductModal">Delete</button>
            </div>
            </div>`;
@@ -700,7 +722,6 @@ $('#updateProfileBtn').click(function(){
     });//ajax
 } //else
 });//update user (Edit User Profile Form) function end
-
 
 
 
@@ -920,15 +941,25 @@ function filterFlavour(chosenFlavour){
     dataType :'json',
     success : function(displayProducts){
 
-        document.getElementById('viewSortList').innerHTML = "";
-        for(let i=0; i<displayProducts.length; i++) {
-        document.getElementById('viewSortList').innerHTML +=
-        `<div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-5" data-productid="${displayProducts[i]._id}">
-        <img class="extra-radius" src="${displayProducts[i].productImageUrl}" alt="Image">
-        <h3 class="">${displayProducts[i].businessName}</h3>
-        <h4 class="">${displayProducts[i].productName}</h4>
-        <h4 class="">${displayProducts[i].price}</h4>
-        </div>`;
+      $('#selectedProductsView .products').html(""); // clear products container
+      for(let i=0; i<displayProducts.length; i++) {
+
+        $('#selectedProductsView .products').append(
+          `<div class="productCard col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-5" data-productid="${displayProducts[i]._id}">
+              <div class="productCard__image">
+                <img class="img-thumbnail extra-radius" src="${displayProducts[i].productImageUrl}" alt="Image">
+              </div>
+              <div class="productCard__businessName .text-dark h4">
+                ${displayProducts[i].businessName}
+              </div>
+              <div class="productCard__productName">
+                ${displayProducts[i].productName}
+              </div>
+              <div class="productCard__price">
+                $${displayProducts[i].price}
+              </div>
+           </div>`
+        ); // append end
       }//for end
 
     },//success end
