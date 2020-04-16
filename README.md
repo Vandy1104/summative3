@@ -5,12 +5,12 @@ Yoobee Module3 Summative (Vandy/Pearly/Kristine)
 This is our Full stack application. You need to run its front-end part in browser using localhost. Alternatively, use Postman to monitor the request and response.
 
 
-Step 1 – Clone this project to www folder (in Windows) or htdocs folder (in )
+Step 1 – Clone this project to www folder (in Windows) or htdocs folder (in MAC )
 git clone https://github.com/Vandy1104/summative3.git
 
 
 Step 2 – Install packages
-npm i (On both prompts - frontEnd and backEnd)
+npm i (On both prompts - frontEnd and backEnd inside summative3 prompt)
 
 
 Step 3 – Mongodb
@@ -18,6 +18,12 @@ You should have a mongodb account. The URI connection string needs username, pas
 
 
 Copy the template_config.json file and rename it to config.json and add your username, password and clustername with its id. (Inside both frontEnd folder and backEnd folder)
+For MongoDB username/password/cluster name use -
+{
+  "MONGO_USER" : "vandy",
+  "MONGO_PASSWORD" : "19wdwu07",
+  "MONGO_CLUSTER_NAME" : "summative3-7vja9"
+}
 
 
 Step 4 - Run the project
@@ -32,11 +38,18 @@ use this in non-vagrant set up
 nodemon index.js
 
 
+Access in the browser -
+use your localhost to view the app
 Step 5 - To see the home page - http://localhost/summative3/frontEnd/
-or use ip in the place of localhost
+or use IP address in the place of localhost.
 
+ 
 
-In postman use - localhost:3000 or use ip in the place of localhost (/relatedendpoint after port number)
+Authentication
+Only users who has a login username and password can edit profile and manipulate the products such as add, update and delete. Otherwise, register as a new user, then login.
+
+For Checking Backend endpoints functionality -
+In postman use - localhost:3000 or use IP in the place of localhost (/relatedendpoint after port number)
 
 
 Step 6 - Endpoints
