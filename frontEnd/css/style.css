@@ -6,7 +6,6 @@
   scroll-behavior: smooth;
 }
 
-
 /**** Kristine's code starts here ****/
 .productCard {
   margin-top: 25px;
@@ -17,8 +16,6 @@
 }
 .productCard__businessName {
   color: #F7268A;
-  
-.productCard__title {
   font-size: 18px;
   font-weight: bold;
   margin-left: 10px;
@@ -39,6 +36,7 @@
   margin-top: 3px;
 }
 
+/**** Kristine's code finishes here ****/
 /**** Kristine's code starts here ****/
 .selected-products-category-filter {
   margin: 0;
@@ -63,10 +61,6 @@
 }
 
 /**** Kristine's code finishes here ****/
-
-/**** Pearly's code starts here ****/
-  
-/* Style profile page */
 .container-bg-color {
   background-color: #FFDFF0;
 }
@@ -76,13 +70,13 @@
   height: auto;
 }
 
-.fas, .fa-user-circle, .my-close-btn-style {
+.fas, .my-close-btn-style, .fa-user-circle {
   color: #F7268A;
   font-size: 3rem;
   cursor: pointer;
 }
 
-.fas:hover, .fa-user-circle:hover, .my-close-btn-style:hover {
+.fas:hover, .my-close-btn-style:hover, .fa-user-circle:hover {
   color: #2B2B2B;
 }
 
@@ -100,7 +94,7 @@
   color: #F7268A;
 }
 
-.font-style, .my-btn-style, .text-color {
+.font-style, .text-color, .my-btn-style {
   font-family: "Noto Sans", sans-serif;
 }
 
@@ -255,17 +249,6 @@
   width: 164px;
   height: auto;
 }
-/* Kristine's code starts  */
-.products__image {
-  border-radius: 16px;
-  overflow: hidden;
-}
-.products__title {
-  color: red;
-  font-size: 18px;
-  font-weight: bold;
-}
-
 
 .catagory-button {
   width: 320px;
@@ -291,8 +274,6 @@
 }
 
 /**** Kristine's code finishes here ****/
-
-
 .makeCenter {
   display: block;
   margin: auto;
@@ -306,10 +287,8 @@
   background-color: #F7268A;
 }
 
-
 .comment-outline {
   border: 2px solid #FFDFF0;
 }
-
 
 /*# sourceMappingURL=style.css.map */
