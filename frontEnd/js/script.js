@@ -51,11 +51,11 @@ $(document).ready(function(){
       url :`${url}/allProducts/cat=${selectedButtonValue}`,
       type :'GET',
       dataType :'json',
-      success : function(displayProducts){        
+      success : function(displayProducts){
 
         $('#selectedProductsView .products').html(""); // clear products container
         for(let i=0; i<displayProducts.length; i++) {
-          
+
           $('#selectedProductsView .products').append(
             `<div class="productCard col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-5" data-productid="${displayProducts[i]._id}">
                 <div class="productCard__image">
@@ -70,7 +70,7 @@ $(document).ready(function(){
                 <div class="productCard__price">
                   $${displayProducts[i].price}
                 </div>
-             </div>` 
+             </div>`
           ); // append end
         }//for end
 
@@ -133,9 +133,9 @@ $(document).ready(function(){
           $('#selectedProductModalView .modal-body').append(
             `<img class="img-thumbnail extra-radius" src="${product[i].productImageUrl}" alt="Image" style="width: 100%; height: auto">
             <h3 class="">${product[i].businessName}</h3>
-            <h4 class="">${product[i].price}</h4>,
-            <button type="button" class="btn btn-dark px-5 py-2 float-right rounded-pill">Buy</button>`
-            $('#addCommentForm').show()   //Line By Vandy
+            <h4 class="">${product[i].price}</h4>
+            <button type="button" class="btn btn-dark px-5 py-2 float-right rounded-pill">Buy</button>`,
+            $('#addCommentForm').show()   //Line By Vandyy
           );//append end
 
           $('#selectedProductModalView').modal('toggle'); // show modal
@@ -451,7 +451,7 @@ function showProfile(){
       type :'GET',
       dataType :'json',
       success : function(displayUser){
-        console.log(displayUser);          
+        console.log(displayUser);
         document.getElementById('displayProfile').innerHTML = "";
 
         for(let i=0; i<displayUser.length; i++){
@@ -835,7 +835,7 @@ $('#submitAddNewBtn').click(function(){
       $('.modal-backdrop').hide();
       displayListing();
       showProfile();
-        
+
       } else {
         //alert('Item is already in database. Please try again!');
         Swal.fire({
