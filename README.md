@@ -59,6 +59,7 @@ For Checking Backend endpoints functionality -
 In postman use - localhost:3000 or use IP in the place of localhost (/relatedendpoint after port number)
 
 
+
 Step 6 - Endpoints
 Endpoints	Description	Acceptable values	Method
 /addComment/p=	 add new comment		POST
