@@ -4,7 +4,7 @@ Yoobee Module3 Summative (Vandy/Pearly/Kristine)
 This is our Full stack application. You need to run its front-end part in browser using localhost. Alternatively, use Postman to monitor the request and response.
 
 Step 1 – Clone this project to www folder (in Windows) or htdocs folder (in )
-git clone https://github.com/19wdwu07/Mongodb-project.git
+git clone https://github.com/Vandy1104/summative3.git
 
 Step 2 – Install packages
 npm i (On both prompts - frontEnd and backEnd)
