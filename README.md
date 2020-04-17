@@ -49,20 +49,33 @@ In postman use - localhost:3000 or use IP in the place of localhost (/relatedend
 
 Step 6 - Endpoints
 Endpoints	Description	Acceptable values	Method
-/addComment/p=	 add new comment		POST
-/allComments/p=	 get comment by product id	GET
-/allProducts/u=	 get product by user id		GET
-/allProducts/cat=	get product by category		GET
-/user/u=	get user by user id		GET
-/allProducts/flavour=	get product by flavour		GET
-/addProduct	Adding a product in db		POST
-/allProducts	View products	GET
-/updateProduct/	Updating a product	PATCH
-/deleteProduct/	Delete a product	DELETE
-/registerUser	register user	POST
-/loginUser	login the user	POST
-/updateUser/	update user	PATCH
-/allProducts/p=	get product by product id	GET
+/addComment/p=	       add new comment		            POST
+
+/allComments/p=	      get comment by product id	   GET
+
+/allProducts/u=	      get product by user id		     GET
+
+/allProducts/cat=	    get product by category		    GET
+
+/user/u=         	    get user by user id		        GET
+
+/allProducts/flavour=	get product by flavour	    	 GET
+
+/addProduct	          Adding a product in db		     POST
+
+/allProducts	         View products	               GET
+
+/updateProduct/      	Updating a product	          PATCH
+
+/deleteProduct/      	Delete a product	            DELETE
+
+/registerUser/       	register user	               POST
+
+/loginUser           	login the user              	POST
+
+/updateUser/	         update user	                 PATCH
+
+/allProducts/p=	      get product by product id	   GET
 
 Step 7 - Mongodb
 To see data being posted,updated or deleted, click on cluster->collections->summative3db->users/ products or comments respectively
