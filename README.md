@@ -18,19 +18,6 @@ You should have a mongodb account. The URI connection string needs username, pas
 
 
 Copy the template_config.json file and rename it to config.json and add your username, password and clustername with its id. (Inside both frontEnd folder and backEnd folder)
-For MongoDB username/password/cluster name use following -
-{
-  "MONGO_USER" : "vandy",
-  "MONGO_PASSWORD" : "19wdwu07",
-  "MONGO_CLUSTER_NAME" : "summative3-7vja9"
-}
-
-For Server URL & PORT -
-
-{
-  "SERVER_URL":  "http://localhost",
-  "SERVER_PORT":  3000
-  }
 
 
 Step 4 - Run the project
