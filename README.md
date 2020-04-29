@@ -1,4 +1,4 @@
-# summative3
+# Summative3 - Full Stack Application
 Yoobee Module3 Summative (Vandy/Pearly/Kristine)
 
 
