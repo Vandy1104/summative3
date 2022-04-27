@@ -12,12 +12,12 @@
   "dependencies": {
     "@popperjs/core": "^2.2.1",
     "bootstrap": "^4.4.1",
-    "grunt": "^1.1.0",
+    "grunt": "^1.5.2",
     "jquery": "^3.4.1",
     "sweetalert2": "^9.10.10"
   },
   "devDependencies": {
-    "grunt": "^1.1.0",
+    "grunt": "^1.5.2",
     "grunt-contrib-csslint": "^2.0.0",
     "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-jshint": "^2.1.0",
